@@ -8,6 +8,7 @@
       <router-link :to="{ name: 'Tracking' }">追蹤浪浪</router-link>
       <router-link :to="{ name: 'Volunteer' }">志工招募</router-link>
       <a href="##">愛心項圈</a>
+      <router-link :to="{ name: 'Info' }">資訊</router-link>
     </div>
   </nav>
 </template>
