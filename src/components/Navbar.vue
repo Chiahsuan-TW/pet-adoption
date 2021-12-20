@@ -22,6 +22,8 @@ export default {
 nav {
   display: flex;
   justify-content: space-between;
+  padding: 41px 100px;
+  background-color: color.$primary;
 }
 
 .tabs {
@@ -29,7 +31,7 @@ nav {
     color: color.$text_dark;
   }
   a + a {
-    margin-left: 5px;
+    margin-left: 60px;
   }
 }
 </style>
