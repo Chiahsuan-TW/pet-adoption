@@ -5,7 +5,7 @@
       <span class="line"></span>
       <span class="circle circle_2"></span>
     </div>
-    <h2>步驟一 認養需知</h2>
+    <h3>步驟一 認養需知</h3>
     <form class="adoption_form">
       <div class="question question_1">
         <p>
@@ -263,7 +263,7 @@
       <span class="line"></span>
       <span class="circle circle_2"></span>
     </div>
-    <h2>步驟二 認養申請</h2>
+    <h3>步驟二 認養申請</h3>
     <div class="confirm_check">
       <input type="checkbox" name="" id="confirm_check" />
       <label for="confirm_check">本人願意遵守以下規定, 並提出認養申請</label>
@@ -302,6 +302,69 @@
         本認養申請資料送出後，不代表已完成所選動物之認養，亦不代表您已具認養本動物的第一優先權，認養以收容所現場完成程序為準。
       </li>
     </ol>
+    <div class="applicant_info">
+      <h4>申請資料</h4>
+      <div class="applicant_input">
+        <div>
+          <div class="location">
+            <label for="location">飼養地點</label>
+            <input
+              type="text"
+              name="location"
+              id="location"
+              placeholder="請輸入地址及型態(公寓、透天...)"
+            />
+          </div>
+          <div class="space">
+            <label for="space">空間大小</label>
+            <input
+              type="text"
+              name="space"
+              id="space"
+              placeholder="請輸入坪數"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="hadpets">
+            <label for="hadpets">現有動物隻數</label>
+            <input type="text" name="hadpets" id="hadpets" />
+          </div>
+          <div></div>
+        </div>
+        <div>
+          <div class="name">
+            <label for="name">認養人姓名</label>
+            <input type="text" name="name" id="name" />
+          </div>
+          <div class="birth">
+            <label for="birth">認養人出生日期</label>
+            <input type="text" name="birth" id="birth" />
+          </div>
+        </div>
+        <div>
+          <div class="tel">
+            <label for="tel">認養人聯絡電話</label>
+            <input type="tel" name="tel" id="tel" />
+          </div>
+          <div class="mail">
+            <label for="mail">電子信箱</label>
+            <input type="email" name="mail" id="mail" />
+          </div>
+        </div>
+        <div>
+          <div class="address">
+            <label for="address">通訊地址</label>
+            <input type="text" name="address" id="address" />
+          </div>
+          <div></div>
+        </div>
+      </div>
+      <div class="form_btn">
+        <button class="btn cancel_btn">取消</button>
+        <button class="btn next_btn">申請</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -314,9 +377,10 @@
   margin: 0 auto;
   padding: 36px 16px 60px 16px;
   background-color: color.$primary;
-  h2 {
+  h3 {
     margin-bottom: 60px;
     text-align: center;
+    font-size: 50px;
     color: color.$text_dark;
   }
 }
@@ -342,7 +406,30 @@
     background-color: #e5e5e5;
   }
 }
-
+.form_btn {
+  text-align: center;
+  .btn {
+    width: 233px;
+    height: 81px;
+    margin-right: 36px;
+    border-radius: 10px;
+    font-size: 25px;
+    color: #fbf8f5;
+    transition: 0.4s;
+  }
+  .cancel_btn {
+    background-color: color.$cancel_btn;
+    &:hover {
+      background-color: #b6b6b6;
+    }
+  }
+  .next_btn {
+    background-color: color.$secondary;
+    &:hover {
+      background-color: #deb071;
+    }
+  }
+}
 // adoption
 .adoption_form {
   color: color.$text_dark;
@@ -364,6 +451,8 @@
       vertical-align: middle;
       appearance: none;
       background-color: #c4c4c4;
+      cursor: pointer;
+      transition: 0.4s;
       &:checked {
         background-color: color.$secondary;
       }
@@ -376,24 +465,17 @@
     }
   }
 }
-.form_btn {
-  text-align: center;
-  .btn {
-    width: 233px;
-    height: 81px;
-    margin-right: 36px;
-    border-radius: 10px;
-    font-size: 25px;
-    color: #fbf8f5;
-  }
-  .cancel_btn {
-    background-color: color.$cancel_btn;
-  }
-  .next_btn {
-    background-color: color.$secondary;
+@media (max-width: 992px) {
+  .question {
+    flex-wrap: wrap;
+    p {
+      margin-bottom: 8px;
+    }
+    .check_box {
+      margin-left: 16px;
+    }
   }
 }
-
 // application
 .application {
   margin-top: 50px;
@@ -403,6 +485,66 @@
     }
     .circle_2 {
       background-color: color.$solid_circle;
+    }
+  }
+}
+.confirm_check {
+  width: fit-content;
+  margin: 0 auto 16px auto;
+  input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    margin-right: 16px;
+    vertical-align: middle;
+    appearance: none;
+    background-color: #c4c4c4;
+    cursor: pointer;
+    transition: 0.4s;
+    &:checked {
+      background-color: color.$secondary;
+    }
+  }
+  label {
+    vertical-align: middle;
+  }
+}
+.consent_info {
+  margin-bottom: 60px;
+  li:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}
+.applicant_info {
+  h4 {
+    width: fit-content;
+    margin: 0 auto 18px auto;
+  }
+  .applicant_input {
+    margin-bottom: 60px;
+    > div {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      > div {
+        flex: 1 0 0;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: color.$text_dark;
+        font-size: 20px;
+      }
+      input {
+        display: block;
+        width: 100%;
+        height: 52px;
+        padding: 0 16px;
+        border: 2px solid color.$secondary;
+        &::placeholder {
+          font-size: 20px;
+          color: color.$cancel_btn;
+        }
+      }
     }
   }
 }
