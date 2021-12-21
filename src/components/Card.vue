@@ -1,29 +1,41 @@
 <template>
     <div class="pet_card">
         <div class="wrap_img">
-            <img src="./../assets/images/dog-brown.jpg" alt="" />
+            <img :src="checkPhotoExit" alt="動物圖片" />
         </div>
         <div class="introduce">
-            <p>{{ type }}</p>
-            <p>{{ color }}</p>
-            <p>{{ gender }}</p>
+            <p>{{ pet.animal_kind }}</p>
+            <p>{{ pet.animal_colour }}</p>
+            <p>{{ bacterinTranslate }}</p>
         </div>
         <div class="address">
             <img src="./../assets/images/map.png" alt="" />
-            <span>{{ address }}</span>
+            <span>{{ pet.animal_place }}</span>
         </div>
     </div>
 </template>
 <script>
 export default {
     name: 'Card',
+    props: {
+        pet: {
+            type: Object,
+            required: true,
+        },
+    },
     data() {
-        return {
-            type: '貓',
-            color: '灰白色',
-            gender: '男生',
-            address: '澎湖縣流浪動物收容中心',
-        };
+        return {};
+    },
+    computed: {
+        bacterinTranslate() {
+            return this.pet.animal_bacterin === 'F' ? '女生' : '男生';
+        },
+        checkPhotoExit() {
+            if (this.pet.album_file) {
+                return this.pet.album_file;
+            }
+            return require('./../assets/images/dog-brown.jpg');
+        },
     },
 };
 </script>
