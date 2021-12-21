@@ -1,260 +1,286 @@
 <template>
-  <div class="adoption modal_layout">
-    <div class="processbar">
-      <span class="circle circle_1"></span>
-      <span class="line"></span>
-      <span class="circle circle_2"></span>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+  >
+    Launch static backdrop modal
+  </button>
+
+  <div
+    class="adoption modal_layout modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="processbar">
+          <span class="circle circle_1"></span>
+          <span class="line"></span>
+          <span class="circle circle_2"></span>
+        </div>
+        <h3>步驟一 認養需知</h3>
+        <form class="adoption_form">
+          <div class="question question_1">
+            <p>
+              <span>1.</span>
+              <span
+                >您是否看過犬貓之行為健康評估表?您是否與管理人員或志工討論過該犬貓之狀況。</span
+              >
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_1"
+                id="question_1_true"
+                value="true"
+              />
+              <label for="question_1_true">是</label>
+              <input
+                type="radio"
+                name="question_1"
+                id="question_1_false"
+                value="false"
+                checked
+              />
+              <label for="question_1_false">否</label>
+            </div>
+          </div>
+          <div class="question question_2">
+            <p>
+              <span>2.</span
+              ><span>
+                您是否知道犬貓的健康有許多不確定的風險?
+                您是否了解當牠生病時立即就醫治療是飼主的責任?
+              </span>
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_2"
+                id="question_2_true"
+                value="true"
+              />
+              <label for="question_2_true">是</label>
+              <input
+                type="radio"
+                name="question_2"
+                id="question_2_false"
+                value="false"
+                checked
+              />
+              <label for="question_2_false">否</label>
+            </div>
+          </div>
+          <div class="question question_3">
+            <p>
+              <span>3.</span
+              ><span
+                >您是否了解: 給犬貓良好的教育，是飼主應該努力學習的責任?</span
+              >
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_3"
+                id="question_3_true"
+                value="true"
+              />
+              <label for="question_3_true">是</label>
+              <input
+                type="radio"
+                name="question_3"
+                id="question_3_false"
+                value="false"
+                checked
+              />
+              <label for="question_3_false">否</label>
+            </div>
+          </div>
+          <div class="question question_4">
+            <p>
+              <span>4.</span
+              ><span>
+                您是否了解犬貓剛到新環境時，許多潛在的疾病會因
+                1.運輸過程吹風淋雨 2.洗澡 3.過度玩耍
+                4.更換食物等等讓降低抵抗力而爆發疾病
+              </span>
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_4"
+                id="question_4_true"
+                value="true"
+              />
+              <label for="question_4_true">是</label>
+              <input
+                type="radio"
+                name="question_4"
+                id="question_4_false"
+                value="false"
+                checked
+              />
+              <label for="question_4_false">否</label>
+            </div>
+          </div>
+          <div class="question question_5">
+            <p>
+              <span>5.</span>
+              <span
+                >您是否了解就外觀判斷犬貓健康是不夠的，必須到動物醫院為牠做基本的檢查</span
+              >
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_5"
+                id="question_5_true"
+                value="true"
+              />
+              <label for="question_5_true">是</label>
+              <input
+                type="radio"
+                name="question_5"
+                id="question_5_false"
+                value="false"
+                checked
+              />
+              <label for="question_5_false">否</label>
+            </div>
+          </div>
+          <div class="question question_6">
+            <p>
+              <span>6.</span
+              ><span>犬貓將近有15年的壽命，您是否了解無論人事物的演變</span>
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_6"
+                id="question_6_true"
+                value="true"
+              />
+              <label for="question_6_true">是</label>
+              <input
+                type="radio"
+                name="question_6"
+                id="question_6_false"
+                value="false"
+                checked
+              />
+              <label for="question_6_false">否</label>
+            </div>
+          </div>
+          <div class="question question_7">
+            <p>
+              <span>7.</span><span>您是否了解飼養動物需要適當的居家條件?</span>
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_7"
+                id="question_7_true"
+                value="true"
+              />
+              <label for="question_7_true">是</label>
+              <input
+                type="radio"
+                name="question_7"
+                id="question_7_false"
+                value="false"
+                checked
+              />
+              <label for="question_7_false">否</label>
+            </div>
+          </div>
+          <div class="question question_8">
+            <p>
+              <span>8.</span
+              ><span
+                >您是否同意在未取得共識之前絕不貿然認養，以免造成日後極大的心理負擔</span
+              >
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_8"
+                id="question_8_true"
+                value="true"
+              />
+              <label for="question_8_true">是</label>
+              <input
+                type="radio"
+                name="question_8"
+                id="question_8_false"
+                value="false"
+                checked
+              />
+              <label for="question_8_false">否</label>
+            </div>
+          </div>
+          <div class="question question_9">
+            <p>
+              <span>9.</span
+              ><span
+                >您是否了解若縱放犬貓在外，任何人都可以加以協送保護送交收容所。</span
+              >
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_9"
+                id="question_9_true"
+                value="true"
+              />
+              <label for="question_9_true">是</label>
+              <input
+                type="radio"
+                name="question_9"
+                id="question_9_false"
+                value="false"
+                checked
+              />
+              <label for="question_9_false">否</label>
+            </div>
+          </div>
+          <div class="question question_10">
+            <p>
+              <span>10.</span>
+              <span
+                >如因任何原因無法續養，本人願為牠找到新的認養家庭，或送至動物保護團體所屬收容所，或再送至貴所辦理不擬續養手續並依收容所規定繳交規費</span
+              >
+            </p>
+            <div class="check_box">
+              <input
+                type="radio"
+                name="question_10"
+                id="question_10_true"
+                value="true"
+              />
+              <label for="question_10_true">是</label>
+              <input
+                type="radio"
+                name="question_10"
+                id="question_10_false"
+                value="false"
+                checked
+              />
+              <label for="question_10_false">否</label>
+            </div>
+          </div>
+          <div class="form_btn">
+            <button class="btn cancel_btn" data-bs-dismiss="modal">取消</button>
+            <button class="btn next_btn">下一步</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <h3>步驟一 認養需知</h3>
-    <form class="adoption_form">
-      <div class="question question_1">
-        <p>
-          <span>1.</span>
-          <span
-            >您是否看過犬貓之行為健康評估表?您是否與管理人員或志工討論過該犬貓之狀況。</span
-          >
-        </p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_1"
-            id="question_1_true"
-            value="true"
-          />
-          <label for="question_1_true">是</label>
-          <input
-            type="radio"
-            name="question_1"
-            id="question_1_false"
-            value="false"
-            checked
-          />
-          <label for="question_1_false">否</label>
-        </div>
-      </div>
-      <div class="question question_2">
-        <p>
-          <span>2.</span
-          ><span>
-            您是否知道犬貓的健康有許多不確定的風險?
-            您是否了解當牠生病時立即就醫治療是飼主的責任?
-          </span>
-        </p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_2"
-            id="question_2_true"
-            value="true"
-          />
-          <label for="question_2_true">是</label>
-          <input
-            type="radio"
-            name="question_2"
-            id="question_2_false"
-            value="false"
-            checked
-          />
-          <label for="question_2_false">否</label>
-        </div>
-      </div>
-      <div class="question question_3">
-        <p>
-          <span>3.</span
-          ><span>您是否了解: 給犬貓良好的教育，是飼主應該努力學習的責任?</span>
-        </p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_3"
-            id="question_3_true"
-            value="true"
-          />
-          <label for="question_3_true">是</label>
-          <input
-            type="radio"
-            name="question_3"
-            id="question_3_false"
-            value="false"
-            checked
-          />
-          <label for="question_3_false">否</label>
-        </div>
-      </div>
-      <div class="question question_4">
-        <p>
-          <span>4.</span
-          ><span>
-            您是否了解犬貓剛到新環境時，許多潛在的疾病會因 1.運輸過程吹風淋雨
-            2.洗澡 3.過度玩耍 4.更換食物等等讓降低抵抗力而爆發疾病
-          </span>
-        </p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_4"
-            id="question_4_true"
-            value="true"
-          />
-          <label for="question_4_true">是</label>
-          <input
-            type="radio"
-            name="question_4"
-            id="question_4_false"
-            value="false"
-            checked
-          />
-          <label for="question_4_false">否</label>
-        </div>
-      </div>
-      <div class="question question_5">
-        <p>
-          <span>5.</span>
-          <span
-            >您是否了解就外觀判斷犬貓健康是不夠的，必須到動物醫院為牠做基本的檢查</span
-          >
-        </p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_5"
-            id="question_5_true"
-            value="true"
-          />
-          <label for="question_5_true">是</label>
-          <input
-            type="radio"
-            name="question_5"
-            id="question_5_false"
-            value="false"
-            checked
-          />
-          <label for="question_5_false">否</label>
-        </div>
-      </div>
-      <div class="question question_6">
-        <p>
-          <span>6.</span
-          ><span>犬貓將近有15年的壽命，您是否了解無論人事物的演變</span>
-        </p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_6"
-            id="question_6_true"
-            value="true"
-          />
-          <label for="question_6_true">是</label>
-          <input
-            type="radio"
-            name="question_6"
-            id="question_6_false"
-            value="false"
-            checked
-          />
-          <label for="question_6_false">否</label>
-        </div>
-      </div>
-      <div class="question question_7">
-        <p><span>7.</span><span>您是否了解飼養動物需要適當的居家條件?</span></p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_7"
-            id="question_7_true"
-            value="true"
-          />
-          <label for="question_7_true">是</label>
-          <input
-            type="radio"
-            name="question_7"
-            id="question_7_false"
-            value="false"
-            checked
-          />
-          <label for="question_7_false">否</label>
-        </div>
-      </div>
-      <div class="question question_8">
-        <p>
-          <span>8.</span
-          ><span
-            >您是否同意在未取得共識之前絕不貿然認養，以免造成日後極大的心理負擔</span
-          >
-        </p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_8"
-            id="question_8_true"
-            value="true"
-          />
-          <label for="question_8_true">是</label>
-          <input
-            type="radio"
-            name="question_8"
-            id="question_8_false"
-            value="false"
-            checked
-          />
-          <label for="question_8_false">否</label>
-        </div>
-      </div>
-      <div class="question question_9">
-        <p>
-          <span>9.</span
-          ><span
-            >您是否了解若縱放犬貓在外，任何人都可以加以協送保護送交收容所。</span
-          >
-        </p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_9"
-            id="question_9_true"
-            value="true"
-          />
-          <label for="question_9_true">是</label>
-          <input
-            type="radio"
-            name="question_9"
-            id="question_9_false"
-            value="false"
-            checked
-          />
-          <label for="question_9_false">否</label>
-        </div>
-      </div>
-      <div class="question question_10">
-        <p>
-          <span>10.</span>
-          <span
-            >如因任何原因無法續養，本人願為牠找到新的認養家庭，或送至動物保護團體所屬收容所，或再送至貴所辦理不擬續養手續並依收容所規定繳交規費</span
-          >
-        </p>
-        <div class="check_box">
-          <input
-            type="radio"
-            name="question_10"
-            id="question_10_true"
-            value="true"
-          />
-          <label for="question_10_true">是</label>
-          <input
-            type="radio"
-            name="question_10"
-            id="question_10_false"
-            value="false"
-            checked
-          />
-          <label for="question_10_false">否</label>
-        </div>
-      </div>
-      <div class="form_btn">
-        <button class="btn cancel_btn">取消</button>
-        <button class="btn next_btn">下一步</button>
-      </div>
-    </form>
   </div>
 
   <div class="application modal_layout">
@@ -428,6 +454,28 @@
     &:hover {
       background-color: #deb071;
     }
+  }
+}
+// BS modal setting
+.adoption.modal {
+  top: 50px;
+  right: 0;
+  height: 80vh;
+  .modal-dialog {
+    .modal-content {
+      border: none;
+      background-color: color.$primary;
+    }
+  }
+}
+.modal-dialog {
+  margin: 0;
+  width: 100%;
+}
+@media (min-width: 576px) {
+  .adoption .modal-dialog {
+    max-width: 100%;
+    margin: 0;
   }
 }
 // adoption
