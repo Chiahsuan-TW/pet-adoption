@@ -1,5 +1,5 @@
 <template>
-  <div class="adoption">
+  <div class="adoption modal_layout">
     <div class="processbar">
       <span class="circle circle_1"></span>
       <span class="line"></span>
@@ -257,7 +257,7 @@
     </form>
   </div>
 
-  <div class="application">
+  <div class="application modal_layout">
     <div class="processbar">
       <span class="circle circle_1"></span>
       <span class="line"></span>
@@ -308,7 +308,8 @@
 <script></script>
 
 <style scoped lang="scss">
-.adoption {
+// common set for modal
+.modal_layout {
   width: 90%;
   margin: 0 auto;
   padding: 36px 16px 60px 16px;
@@ -341,6 +342,8 @@
     background-color: #e5e5e5;
   }
 }
+
+// adoption
 .adoption_form {
   color: color.$text_dark;
 }
@@ -388,6 +391,19 @@
   }
   .next_btn {
     background-color: color.$secondary;
+  }
+}
+
+// application
+.application {
+  margin-top: 50px;
+  .processbar {
+    .line {
+      background-color: color.$solid_circle;
+    }
+    .circle_2 {
+      background-color: color.$solid_circle;
+    }
   }
 }
 </style>
