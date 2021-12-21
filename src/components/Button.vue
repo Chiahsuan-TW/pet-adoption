@@ -12,7 +12,8 @@ export default {
 
 <style lang="scss" scoped>
 button {
-  padding: 26px 66px;
+  width: 233px;
+  height: 81px;
   background-color: color.$secondary;
   color: color.$primary;
   border-radius: 10px;
