@@ -1,5 +1,7 @@
 <template>
-  <Navbar />
+  <header>
+    <Navbar />
+  </header>
   <router-view />
 </template>
 
@@ -15,4 +17,9 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+header {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+</style>
