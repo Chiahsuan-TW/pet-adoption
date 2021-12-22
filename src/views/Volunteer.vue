@@ -37,17 +37,15 @@
             <p>18 歲以上一般民眾</p>
           </div>
         </div>
-        <Button class="apply">報名加入</Button>
         <!--Bootstrap-->
         <!-- Button trigger modal -->
-        <button
+        <Button
           type="button"
           class="btn apply"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdrop"
+          >報名加入</Button
         >
-          報名加入
-        </button>
 
         <!-- Modal -->
         <ApplicationForm @clickSubmit="handleSubmit" />
