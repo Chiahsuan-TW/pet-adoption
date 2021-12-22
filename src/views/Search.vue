@@ -24,10 +24,6 @@
             </nav>
         </div>
     </div>
-
-    <footer>
-        <p>@2021GoodIdeas.All rights reserved</p>
-    </footer>
 </template>
 
 <script>
@@ -154,15 +150,5 @@ h2 {
     &:last-child a {
         @extend %pagination;
     }
-}
-
-footer {
-    p {
-        color: color.$secondary;
-        padding: 20px 0;
-        text-align: center;
-        font-weight: 900;
-    }
-    background: #fff;
 }
 </style>
