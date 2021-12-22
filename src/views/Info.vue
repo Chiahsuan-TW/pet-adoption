@@ -1,12 +1,15 @@
 <template>
+  <!-- 浪浪資料頁 -->
   <div class="info">
     <div class="info_container">
       <h2>浪浪資料</h2>
       <div class="info_area">
+        <!-- 裝飾線 -->
         <div class="line_horizontal"></div>
         <div class="line_vertical"></div>
         <div class="row row-cols-1 row-cols-md-2 gx-0">
           <div class="col">
+            <!-- 左半部 -->
             <div class="info_visual">
               <div class="info_img"></div>
               <div class="tracking">
@@ -28,6 +31,7 @@
               </button>
             </div>
           </div>
+          <!-- 右半部 -->
           <div class="col">
             <ul class="info_data">
               <li>狀態:<span>待領養</span></li>
@@ -48,11 +52,13 @@
           </div>
         </div>
       </div>
+      <!-- 裝飾線 -->
       <div class="line_horizontal_long"></div>
       <button type="button" class="text_btn">尋找其他浪浪</button>
     </div>
   </div>
 
+  <!-- 認養須知 -->
   <div
     class="adoption modal_layout modal fade"
     id="adoption"
