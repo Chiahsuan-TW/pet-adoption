@@ -7,11 +7,15 @@
         <!-- 裝飾線 -->
         <div class="line_horizontal"></div>
         <div class="line_vertical"></div>
-        <div class="row row-cols-1 row-cols-md-2 gx-0">
+        <div class="row row-cols-1 row-cols-md-2 gx-3">
           <div class="col">
             <!-- 左半部 -->
             <div class="info_visual">
-              <div class="info_img"></div>
+              <div class="info_img">
+                <div class="dots">
+                  <img src="./../assets/images/circles.png" alt="dots box" />
+                </div>
+              </div>
               <div class="tracking">
                 <span
                   :class="['tracking_icon', { favorite_true: isLiked }]"
@@ -53,12 +57,17 @@
         </div>
       </div>
       <!-- 裝飾線 -->
-      <div class="line_horizontal_long"></div>
-      <button type="button" class="text_btn">尋找其他浪浪</button>
+      <div class="search_others">
+        <div class="line_horizontal_long"></div>
+        <button type="button" class="text_btn">尋找其他浪浪</button>
+        <router-link :to="{ name: 'Search' }"
+          ><img src="./../assets/images/arrow-right.png" alt="right arraow"
+        /></router-link>
+      </div>
     </div>
   </div>
 
-  <!-- 認養須知 -->
+  <!-- 認養須知 modal -->
   <div
     class="adoption modal_layout modal fade"
     id="adoption"
@@ -340,6 +349,7 @@
     </div>
   </div>
 
+  <!-- 認養申請 modal -->
   <div
     class="application modal_layout modal fade"
     id="application"
@@ -494,6 +504,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// animation
 @keyframes fontScale {
   0% {
     font-size: 24px;
@@ -512,7 +523,7 @@ export default {
 .tracking .tracking_icon.favorite_true {
   color: red;
 }
-// info
+// info style
 .info {
   max-width: 1440px;
   margin: 0 auto;
@@ -545,11 +556,18 @@ export default {
   margin-bottom: 120px;
 }
 .info_img {
+  position: relative;
   max-width: 500px;
   height: 400px;
   background-color: #ccc;
   margin-bottom: 40px;
+  .dots {
+    position: absolute;
+    bottom: -60px;
+    right: -80px;
+  }
 }
+//  追蹤按鈕
 .tracking {
   margin-bottom: 60px;
   span {
@@ -586,21 +604,48 @@ export default {
     }
   }
 }
+.search_others {
+  display: flex;
+  align-items: center;
+  img {
+    flex: 0 1 auto;
+    animation: move 0.5s infinite alternate;
+
+    @keyframes move {
+      0% {
+        transform: translateX(-6px);
+      }
+      25% {
+        transform: translateX(-3px);
+      }
+      50% {
+        transform: translateX(0px);
+      }
+      75% {
+        transform: translateX(5px);
+      }
+      100% {
+        transform: translateX(10px);
+      }
+    }
+  }
+}
 .line_horizontal_long {
-  display: inline-block;
+  flex: 0 1 auto;
   margin-right: 70px;
   width: 700px;
-  height: 4px;
+  height: 1px;
   background-color: color.$secondary;
 }
 .text_btn {
+  margin-right: 36px;
   font-size: 40px;
   background: transparent;
   color: color.$solid_circle;
   cursor: pointer;
 }
 
-// common set for modal
+// common setting for modal
 .modal_layout {
   width: 90%;
   margin: 0 auto;
@@ -689,6 +734,7 @@ export default {
     margin: 0;
   }
 }
+
 // adoption
 .adoption_form {
   color: color.$text_dark;
@@ -716,7 +762,7 @@ export default {
         background-color: color.$secondary;
       }
       &:hover {
-        outline: 2px solid #deb071;
+        outline: 4px solid #deb071;
       }
     }
     label {
@@ -779,7 +825,7 @@ button[data-bs-target="#application"] {
       background-color: color.$secondary;
     }
     &:hover {
-      outline: 2px solid #deb071;
+      outline: 4px solid #deb071;
     }
   }
   label {
