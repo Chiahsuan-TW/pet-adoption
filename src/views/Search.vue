@@ -1,154 +1,156 @@
 <template>
-    <div class="search_page">
-        <div class="wrap_container">
-            <h2>尋找浪浪</h2>
-            <Filter
-                @clickSend="sendConfirm"
-                @confirm="getCity"
-                @confirm_animal="getAnimal"
-                :cities="cities"
-                :animalKind="animalKind"
-            ></Filter>
-            <!-- <button type="button" style="padding: 30px" @click="getAnimalType">看api資料</button> -->
-            <section class="content">
-                <Card v-for="pet in pets" :key="pet.animal_id" :pet="pet"></Card>
-            </section>
-            <nav aria-label="Page navigation ">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="##">第一頁</a></li>
-                    <li class="page-item"><a class="page-link active" href="##">1</a></li>
-                    <li class="page-item"><a class="page-link" href="##">2</a></li>
-                    <li class="page-item"><a class="page-link" href="##">3</a></li>
-                    <li class="page-item"><a class="page-link" href="##">最後一頁</a></li>
-                </ul>
-            </nav>
-        </div>
+  <div class="search_page">
+    <div class="wrap_container">
+      <h2>尋找浪浪</h2>
+      <Filter
+        @clickSend="sendConfirm"
+        @confirm="getCity"
+        @confirm_animal="getAnimal"
+        :cities="cities"
+        :animalKind="animalKind"
+      ></Filter>
+      <!-- <button type="button" style="padding: 30px" @click="getAnimalType">看api資料</button> -->
+      <section class="content">
+        <Card v-for="pet in pets" :key="pet.animal_id" :pet="pet"></Card>
+      </section>
+      <nav aria-label="Page navigation ">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="##">第一頁</a></li>
+          <li class="page-item"><a class="page-link active" href="##">1</a></li>
+          <li class="page-item"><a class="page-link" href="##">2</a></li>
+          <li class="page-item"><a class="page-link" href="##">3</a></li>
+          <li class="page-item"><a class="page-link" href="##">最後一頁</a></li>
+        </ul>
+      </nav>
     </div>
+  </div>
 </template>
 
 <script>
-import Card from '@/components/Card';
-import Api from '@/services/Api';
-import Filter from '@/components/Filter';
+import Card from "@/components/Card";
+import Api from "@/services/Api";
+import Filter from "@/components/Filter";
 export default {
-    name: 'Search',
-    components: {
-        Card,
-        Filter,
-    },
-    data() {
-        return {
-            pets: null,
-            cities: null,
-            animalKind: null,
-            selectCity: null,
-            selectAnimalType: null,
-        };
-    },
-    created() {
-        Api.getPets()
-            .then((response) => {
-                this.pets = response.data;
-                // console.log('顯示第一次接api回傳', response.data);
-                this.getCityOfAddress();
-                this.getAnimalType();
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    },
-    methods: {
-        getCity(city) {
-            this.selectCity = city;
-            console.log('選擇都市的', this.selectCity, this.cities[this.selectCity]);
+  name: "Search",
+  components: {
+    Card,
+    Filter,
+  },
+  data() {
+    return {
+      pets: null,
+      cities: null,
+      animalKind: null,
+      selectCity: null,
+      selectAnimalType: null,
+    };
+  },
+  created() {
+    Api.getPets()
+      .then((response) => {
+        this.pets = response.data;
+        // console.log('顯示第一次接api回傳', response.data);
+        this.getCityOfAddress();
+        this.getAnimalType();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  methods: {
+    getCity(city) {
+      this.selectCity = city;
+      console.log("選擇都市的", this.selectCity, this.cities[this.selectCity]);
 
-            // console.log('parent', city);
-        },
-        getAnimal(animal) {
-            this.selectAnimalType = animal;
-            // console.log('parent', animal);
-        },
-        getCityOfAddress() {
-            const apiData = this.pets;
-            const cities = {};
-            apiData.forEach((data) => {
-                let address = data.shelter_address;
-                let city_code = data.animal_area_pkid;
-                let city = address[0] + address[1] + address[2];
-                cities[city] = city_code;
-            });
-            // console.log(cities);
-            this.cities = { ...cities };
-        },
-        getAnimalType() {
-            const allAnimalKind = [];
-            this.pets.forEach((data) => {
-                allAnimalKind.push(data.animal_kind);
-            });
-            this.animalKind = [...new Set(allAnimalKind)];
-        },
-        async sendConfirm() {
-            const cityCode = this.cities[this.selectCity] ? this.cities[this.selectCity] : '';
-            const kind = this.selectAnimalType ? this.selectAnimalType : '';
-            const { data } = await Api.getPetsByVariable(kind, cityCode);
-            this.pets = data;
-            this.selectCity = null;
-            this.selectAnimalType = null;
-        },
+      // console.log('parent', city);
     },
+    getAnimal(animal) {
+      this.selectAnimalType = animal;
+      // console.log('parent', animal);
+    },
+    getCityOfAddress() {
+      const apiData = this.pets;
+      const cities = {};
+      apiData.forEach((data) => {
+        let address = data.shelter_address;
+        let city_code = data.animal_area_pkid;
+        let city = address[0] + address[1] + address[2];
+        cities[city] = city_code;
+      });
+      // console.log(cities);
+      this.cities = { ...cities };
+    },
+    getAnimalType() {
+      const allAnimalKind = [];
+      this.pets.forEach((data) => {
+        allAnimalKind.push(data.animal_kind);
+      });
+      this.animalKind = [...new Set(allAnimalKind)];
+    },
+    async sendConfirm() {
+      const cityCode = this.cities[this.selectCity]
+        ? this.cities[this.selectCity]
+        : "";
+      const kind = this.selectAnimalType ? this.selectAnimalType : "";
+      const { data } = await Api.getPetsByVariable(kind, cityCode);
+      this.pets = data;
+      this.selectCity = null;
+      this.selectAnimalType = null;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scope>
 .search_page {
-    background: color.$primary;
+  background: color.$primary;
 }
 
 .wrap_container {
-    margin: 0 auto;
-    max-width: 1440px;
-    padding: 0px 100px 60px 100px;
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0px 100px 60px 100px;
 }
 
 h2 {
-    color: color.$text_dark;
-    margin-bottom: 26px;
-    font-size: 50px;
+  color: color.$text_dark;
+  margin-bottom: 26px;
+  font-size: 50px;
 }
 
 .wrap_container {
-    .pagination {
-        justify-content: center;
-        font-size: 18px;
-        a {
-            color: #e5e5e5;
-            border: 0;
-            background: none;
-            &:focus {
-                box-shadow: none;
-            }
-            &:hover {
-                color: color.$text_dark;
-            }
-        }
+  .pagination {
+    justify-content: center;
+    font-size: 18px;
+    a {
+      color: #e5e5e5;
+      border: 0;
+      background: none;
+      &:focus {
+        box-shadow: none;
+      }
+      &:hover {
+        color: color.$text_dark;
+      }
     }
+  }
 }
 .content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 %pagination {
-    background: color.$secondary;
-    color: #ffff;
+  background: color.$secondary;
+  color: #ffff;
 }
 .pagination li {
-    &:first-child a {
-        @extend %pagination;
-    }
-    &:last-child a {
-        @extend %pagination;
-    }
+  &:first-child a {
+    @extend %pagination;
+  }
+  &:last-child a {
+    @extend %pagination;
+  }
 }
 </style>

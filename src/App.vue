@@ -19,6 +19,7 @@ export default {
 };
 </script>
 
+
 <style lang="scss">
 header {
   max-width: 1440px;
