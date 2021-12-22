@@ -14,7 +14,11 @@
       </a>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li v-for="(animal_type, index) in animalKind" :key="index" @click="click_animal(animal_type)">
+        <li
+          v-for="(animal_type, index) in animalKind"
+          :key="index"
+          @click="click_animal(animal_type)"
+        >
           <a class="dropdown-item" href="#">{{ animal_type }}</a>
         </li>
       </ul>
@@ -33,7 +37,11 @@
       </a>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li v-for="(cityId, city) in cities" :key="cityId" @click="click_city(city)">
+        <li
+          v-for="(cityId, city) in cities"
+          :key="cityId"
+          @click="click_city(city)"
+        >
           <a class="dropdown-item" href="#">{{ city }}</a>
         </li>
       </ul>
@@ -43,7 +51,7 @@
 </template>
 <script>
 export default {
-  name: 'Filter',
+  name: "Filter",
   props: {
     cities: {
       type: Object,
@@ -61,13 +69,12 @@ export default {
   },
   methods: {
     click_city(city) {
-      // console.log(city);
-      this.$emit('confirm', city);
+      this.$emit("confirm", city);
       console.log(this.animalKind);
     },
     click_animal(animal) {
       // console.log(animal);
-      this.$emit('confirm_animal', animal);
+      this.$emit("confirm_animal", animal);
     },
   },
 };

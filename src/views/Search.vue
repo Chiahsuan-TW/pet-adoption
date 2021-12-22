@@ -102,14 +102,11 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.search_page {
-  background: color.$primary;
-}
-
 .wrap_container {
   margin: 0 auto;
   max-width: 1440px;
   padding: 0px 100px 60px 100px;
+  background: color.$primary;
 }
 
 h2 {
