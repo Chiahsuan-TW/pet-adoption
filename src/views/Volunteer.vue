@@ -80,6 +80,9 @@
 <script>
 import Button from "@/components/Button";
 import ApplicationForm from "@/components/ApplicationForm";
+import { db } from "../firebase/config";
+import { collection, addDoc } from "firebase/firestore";
+
 export default {
   name: "Volunteer",
   components: {
@@ -87,8 +90,16 @@ export default {
     ApplicationForm,
   },
   methods: {
-    handleSubmit(form) {
+    async handleSubmit(form) {
       console.log("parent receive", form);
+
+      // projectFirestore.collection("volunteer").add(form);
+      try {
+        const docRef = await addDoc(collection(db, "volunteers"), form);
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
     },
   },
 };
