@@ -2,7 +2,14 @@
     <div class="search_page">
         <div class="wrap_container">
             <h2>尋找浪浪</h2>
-            <Filter @confirm="getCity"></Filter>
+            <Filter
+                @clickSend="sendConfirm"
+                @confirm="getCity"
+                @confirm_animal="getAnimal"
+                :cities="cities"
+                :animalKind="animalKind"
+            ></Filter>
+            <!-- <button type="button" style="padding: 30px" @click="getAnimalType">看api資料</button> -->
             <section class="content">
                 <Card v-for="pet in pets" :key="pet.animal_id" :pet="pet"></Card>
             </section>
@@ -36,14 +43,19 @@ export default {
     data() {
         return {
             pets: null,
-            cities: [],
+            cities: null,
+            animalKind: null,
+            selectCity: null,
+            selectAnimalType: null,
         };
     },
     created() {
         Api.getPets()
             .then((response) => {
                 this.pets = response.data;
-                console.log(response.data);
+                // console.log('顯示第一次接api回傳', response.data);
+                this.getCityOfAddress();
+                this.getAnimalType();
             })
             .catch((error) => {
                 console.log(error);
@@ -51,7 +63,41 @@ export default {
     },
     methods: {
         getCity(city) {
-            console.log('parent', city);
+            this.selectCity = city;
+            console.log('選擇都市的', this.selectCity, this.cities[this.selectCity]);
+
+            // console.log('parent', city);
+        },
+        getAnimal(animal) {
+            this.selectAnimalType = animal;
+            // console.log('parent', animal);
+        },
+        getCityOfAddress() {
+            const apiData = this.pets;
+            const cities = {};
+            apiData.forEach((data) => {
+                let address = data.shelter_address;
+                let city_code = data.animal_area_pkid;
+                let city = address[0] + address[1] + address[2];
+                cities[city] = city_code;
+            });
+            // console.log(cities);
+            this.cities = { ...cities };
+        },
+        getAnimalType() {
+            const allAnimalKind = [];
+            this.pets.forEach((data) => {
+                allAnimalKind.push(data.animal_kind);
+            });
+            this.animalKind = [...new Set(allAnimalKind)];
+        },
+        async sendConfirm() {
+            const cityCode = this.cities[this.selectCity] ? this.cities[this.selectCity] : '';
+            const kind = this.selectAnimalType ? this.selectAnimalType : '';
+            const { data } = await Api.getPetsByVariable(kind, cityCode);
+            this.pets = data;
+            this.selectCity = null;
+            this.selectAnimalType = null;
         },
     },
 };

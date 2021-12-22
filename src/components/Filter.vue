@@ -14,9 +14,9 @@
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">狗</a></li>
-                <li><a class="dropdown-item" href="#">貓</a></li>
-                <li><a class="dropdown-item" href="#">鼠</a></li>
+                <li v-for="(animal_type, index) in animalKind" :key="index" @click="click_animal(animal_type)">
+                    <a class="dropdown-item" href="#">{{ animal_type }}</a>
+                </li>
             </ul>
         </div>
         <p>收容所</p>
@@ -33,30 +33,41 @@
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li v-for="(city, index) in allCity" :key="index" @click="click_city(city)">
+                <li v-for="(cityId, city) in cities" :key="cityId" @click="click_city(city)">
                     <a class="dropdown-item" href="#">{{ city }}</a>
                 </li>
-                <!-- <li><a class="dropdown-item" href="#">澎湖</a></li>
-                <li><a class="dropdown-item" href="#" @click="click_city()">高雄</a></li>
-                <li><a class="dropdown-item" href="#">台南</a></li> -->
             </ul>
         </div>
-        <button>送出</button>
+        <button @click.prevent="this.$emit('clickSend')">送出</button>
     </div>
 </template>
 <script>
 export default {
     name: 'Filter',
+    props: {
+        cities: {
+            type: Object,
+            required: true,
+        },
+        animalKind: {
+            type: Object,
+            required: true,
+        },
+    },
     data() {
         return {
-            allCity: ['澎湖', '高雄', '台南', '花蓮'],
             theCity: null,
         };
     },
     methods: {
         click_city(city) {
-            console.log(city);
+            // console.log(city);
             this.$emit('confirm', city);
+            console.log(this.animalKind);
+        },
+        click_animal(animal) {
+            // console.log(animal);
+            this.$emit('confirm_animal', animal);
         },
     },
 };
@@ -89,8 +100,6 @@ $border: 2px solid color.$secondary;
     & > a {
         display: flex;
         justify-content: space-between;
-    }
-    & > a {
         border: $border;
     }
     ul {
@@ -117,6 +126,8 @@ $border: 2px solid color.$secondary;
     }
     .dropdown-menu {
         padding: 0;
+        max-height: 200px;
+        overflow: scroll;
         a {
             font-size: 18px;
             text-align: center;
