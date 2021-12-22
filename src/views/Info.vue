@@ -1,16 +1,61 @@
 <template>
-  <button
-    type="button"
-    class="btn btn-primary"
-    data-bs-toggle="modal"
-    data-bs-target="#staticBackdrop"
-  >
-    Launch static backdrop modal
-  </button>
+  <div class="info">
+    <div class="info_container">
+      <h2>浪浪資料</h2>
+      <div class="info_area">
+        <div class="line_horizontal"></div>
+        <div class="line_vertical"></div>
+        <div class="row row-cols-1 row-cols-md-2 gx-0">
+          <div class="col">
+            <div class="info_visual">
+              <div class="info_img"></div>
+              <div class="tracking">
+                <span
+                  :class="['tracking_icon', { favorite_true: isLiked }]"
+                  @click="favoriteClick"
+                  >&#9829;</span
+                >
+                <span class="tracking_text" @click="favoriteClick">{{
+                  isTracked
+                }}</span>
+              </div>
+              <button
+                class="btn next_btn"
+                data-bs-toggle="modal"
+                data-bs-target="#adoption"
+              >
+                我有意願認養
+              </button>
+            </div>
+          </div>
+          <div class="col">
+            <ul class="info_data">
+              <li>狀態:<span>待領養</span></li>
+              <li>類型:<span>貓</span></li>
+              <li>顏色:<span>灰白色</span></li>
+              <li>型別:<span>女孩</span></li>
+              <li>體型:<span>小</span></li>
+              <li>收容地點:<span>澎湖縣流浪動物收容中心</span></li>
+              <li>收容地址:<span>澎湖縣流浪動物收容中心</span></li>
+              <li>聯絡電話:<span>06-9213559</span></li>
+              <li>入所日期:<span>2021/09/23</span></li>
+              <li>
+                備註:<span
+                  >本站動物皆採現場互動面談後評估能否認養，不接受系統上的預約</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="line_horizontal_long"></div>
+      <button type="button" class="text_btn">尋找其他浪浪</button>
+    </div>
+  </div>
 
   <div
     class="adoption modal_layout modal fade"
-    id="staticBackdrop"
+    id="adoption"
     data-bs-backdrop="static"
     data-bs-keyboard="false"
     tabindex="-1"
@@ -276,127 +321,279 @@
           </div>
           <div class="form_btn">
             <button class="btn cancel_btn" data-bs-dismiss="modal">取消</button>
-            <button class="btn next_btn">下一步</button>
+            <button
+              class="btn next_btn"
+              data-bs-toggle="modal"
+              data-bs-target="#application"
+            >
+              <a href="##" data-bs-dismiss="modal">下一步</a>
+            </button>
           </div>
         </form>
       </div>
     </div>
   </div>
 
-  <div class="application modal_layout">
-    <div class="processbar">
-      <span class="circle circle_1"></span>
-      <span class="line"></span>
-      <span class="circle circle_2"></span>
-    </div>
-    <h3>步驟二 認養申請</h3>
-    <div class="confirm_check">
-      <input type="checkbox" name="" id="confirm_check" />
-      <label for="confirm_check">本人願意遵守以下規定, 並提出認養申請</label>
-    </div>
-    <ol class="consent_info">
-      <li>
-        依法辦理寵物登記、晶片植入等事項。並同意為認養隻動物絕育，避免不必要之繁殖。
-      </li>
-      <li>
-        無論何時都以人道方式對待認養動物，提供牠適當之食物、飲水及空間，並絕不任意棄養認養的動物。
-      </li>
-      <li>
-        若認養動物年齡未滿8週或不宜施打疫苗者，必須完成狂犬病預防注射，並將注射證明影本郵寄或傳真回本所備查。
-      </li>
-      <li>
-        定期幫牠進行狂犬病預防注射、驅蟲及健康檢查，受傷或罹病時，必請獸醫師給予醫療。
-      </li>
-      <li>妥善照顧牠，防止其無故侵害他人之生命，身體、自由、財產或安寧。</li>
-      <li>
-        不再隨便放縱牠於戶外，牠出入公共場所或公眾出入之場所時，必由7歲以上之人伴同，並採取適當之防衛措施，如繫犬鍊、帶口罩等，始得攜出戶外。
-      </li>
-      <li>
-        當牠轉讓、死亡或住所異動時，於1個月內依規定辦理變更登記；遺失時，於5天內依規定申報。
-      </li>
-      <li>本人願接受貴所之追蹤訪視及飼養輔導。</li>
-      <li>
-        如有違反上述認養規定，貴所有權收回該動物，並終止認養人對該認養動物之權利。
-      </li>
-      <li>
-        如因任何原因無法續養，本人願為牠找到新的認養家庭，或送至動物保護團體所屬收容所，或再送至貴所辦理不擬續養手續並依收容所規定繳交規費。
-      </li>
-      <li>
-        依據「動物保護法」第33-1條之規定:完成不擬續養手續後將不得飼養寵物及認養收容動物。
-      </li>
-      <li>
-        本認養申請資料送出後，不代表已完成所選動物之認養，亦不代表您已具認養本動物的第一優先權，認養以收容所現場完成程序為準。
-      </li>
-    </ol>
-    <div class="applicant_info">
-      <h4>申請資料</h4>
-      <div class="applicant_input">
-        <div>
-          <div class="location">
-            <label for="location">飼養地點</label>
-            <input
-              type="text"
-              name="location"
-              id="location"
-              placeholder="請輸入地址及型態(公寓、透天...)"
-            />
+  <div
+    class="application modal_layout modal fade"
+    id="application"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="processbar">
+          <span class="circle circle_1"></span>
+          <span class="line"></span>
+          <span class="circle circle_2"></span>
+        </div>
+        <h3>步驟二 認養申請</h3>
+        <div class="confirm_check">
+          <input type="checkbox" name="" id="confirm_check" />
+          <label for="confirm_check"
+            >本人願意遵守以下規定, 並提出認養申請</label
+          >
+        </div>
+        <ol class="consent_info">
+          <li>
+            依法辦理寵物登記、晶片植入等事項。並同意為認養隻動物絕育，避免不必要之繁殖。
+          </li>
+          <li>
+            無論何時都以人道方式對待認養動物，提供牠適當之食物、飲水及空間，並絕不任意棄養認養的動物。
+          </li>
+          <li>
+            若認養動物年齡未滿8週或不宜施打疫苗者，必須完成狂犬病預防注射，並將注射證明影本郵寄或傳真回本所備查。
+          </li>
+          <li>
+            定期幫牠進行狂犬病預防注射、驅蟲及健康檢查，受傷或罹病時，必請獸醫師給予醫療。
+          </li>
+          <li>
+            妥善照顧牠，防止其無故侵害他人之生命，身體、自由、財產或安寧。
+          </li>
+          <li>
+            不再隨便放縱牠於戶外，牠出入公共場所或公眾出入之場所時，必由7歲以上之人伴同，並採取適當之防衛措施，如繫犬鍊、帶口罩等，始得攜出戶外。
+          </li>
+          <li>
+            當牠轉讓、死亡或住所異動時，於1個月內依規定辦理變更登記；遺失時，於5天內依規定申報。
+          </li>
+          <li>本人願接受貴所之追蹤訪視及飼養輔導。</li>
+          <li>
+            如有違反上述認養規定，貴所有權收回該動物，並終止認養人對該認養動物之權利。
+          </li>
+          <li>
+            如因任何原因無法續養，本人願為牠找到新的認養家庭，或送至動物保護團體所屬收容所，或再送至貴所辦理不擬續養手續並依收容所規定繳交規費。
+          </li>
+          <li>
+            依據「動物保護法」第33-1條之規定:完成不擬續養手續後將不得飼養寵物及認養收容動物。
+          </li>
+          <li>
+            本認養申請資料送出後，不代表已完成所選動物之認養，亦不代表您已具認養本動物的第一優先權，認養以收容所現場完成程序為準。
+          </li>
+        </ol>
+        <div class="applicant_info">
+          <h4>申請資料</h4>
+          <div class="applicant_input">
+            <div>
+              <div class="location">
+                <label for="location">飼養地點</label>
+                <input
+                  type="text"
+                  name="location"
+                  id="location"
+                  placeholder="請輸入地址及型態(公寓、透天...)"
+                  required
+                />
+              </div>
+              <div class="space">
+                <label for="space">空間大小</label>
+                <input
+                  type="text"
+                  name="space"
+                  id="space"
+                  placeholder="請輸入坪數"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <div class="hadpets">
+                <label for="hadpets">現有動物隻數</label>
+                <input type="text" name="hadpets" id="hadpets" required />
+              </div>
+              <div></div>
+            </div>
+            <div>
+              <div class="name">
+                <label for="name">認養人姓名</label>
+                <input type="text" name="name" id="name" required />
+              </div>
+              <div class="birth">
+                <label for="birth">認養人出生日期</label>
+                <input type="text" name="birth" id="birth" required />
+              </div>
+            </div>
+            <div>
+              <div class="tel">
+                <label for="tel">認養人聯絡電話</label>
+                <input type="tel" name="tel" id="tel" required />
+              </div>
+              <div class="mail">
+                <label for="mail">電子信箱</label>
+                <input type="email" name="mail" id="mail" required />
+              </div>
+            </div>
+            <div>
+              <div class="address">
+                <label for="address">通訊地址</label>
+                <input type="text" name="address" id="address" required />
+              </div>
+              <div></div>
+            </div>
           </div>
-          <div class="space">
-            <label for="space">空間大小</label>
-            <input
-              type="text"
-              name="space"
-              id="space"
-              placeholder="請輸入坪數"
-            />
+          <div class="form_btn">
+            <button class="btn cancel_btn" data-bs-dismiss="modal">取消</button>
+            <button class="btn next_btn">申請</button>
           </div>
         </div>
-        <div>
-          <div class="hadpets">
-            <label for="hadpets">現有動物隻數</label>
-            <input type="text" name="hadpets" id="hadpets" />
-          </div>
-          <div></div>
-        </div>
-        <div>
-          <div class="name">
-            <label for="name">認養人姓名</label>
-            <input type="text" name="name" id="name" />
-          </div>
-          <div class="birth">
-            <label for="birth">認養人出生日期</label>
-            <input type="text" name="birth" id="birth" />
-          </div>
-        </div>
-        <div>
-          <div class="tel">
-            <label for="tel">認養人聯絡電話</label>
-            <input type="tel" name="tel" id="tel" />
-          </div>
-          <div class="mail">
-            <label for="mail">電子信箱</label>
-            <input type="email" name="mail" id="mail" />
-          </div>
-        </div>
-        <div>
-          <div class="address">
-            <label for="address">通訊地址</label>
-            <input type="text" name="address" id="address" />
-          </div>
-          <div></div>
-        </div>
-      </div>
-      <div class="form_btn">
-        <button class="btn cancel_btn">取消</button>
-        <button class="btn next_btn">申請</button>
       </div>
     </div>
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      isLiked: false,
+    };
+  },
+  methods: {
+    favoriteClick() {
+      this.isLiked = !this.isLiked;
+    },
+  },
+  computed: {
+    isTracked() {
+      if (this.isLiked) {
+        return "取消追蹤";
+      } else {
+        return "追蹤";
+      }
+    },
+  },
+};
+</script>
 
 <style scoped lang="scss">
+@keyframes fontScale {
+  0% {
+    font-size: 24px;
+  }
+  60% {
+    font-size: 30px;
+  }
+  100% {
+    font-size: 24px;
+  }
+}
+.tracking .tracking_icon.favorite_true {
+  animation: fontScale 0.75s;
+  transition: 0.7s;
+}
+.tracking .tracking_icon.favorite_true {
+  color: red;
+}
+// info
+.info {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 36px 100px 83px 100px;
+  background-color: color.$primary;
+  .info_container {
+    h2 {
+      margin-bottom: 60px;
+      font-size: 50px;
+    }
+  }
+}
+.info_area {
+  position: relative;
+  .line_horizontal {
+    position: absolute;
+    right: -30px;
+    width: 250px;
+    height: 4px;
+    background-color: color.$secondary;
+  }
+  .line_vertical {
+    position: absolute;
+    right: 0;
+    top: -30px;
+    width: 4px;
+    height: 250px;
+    background-color: color.$secondary;
+  }
+  margin-bottom: 120px;
+}
+.info_img {
+  max-width: 500px;
+  height: 400px;
+  background-color: #ccc;
+  margin-bottom: 40px;
+}
+.tracking {
+  margin-bottom: 60px;
+  span {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .tracking_icon {
+    margin-right: 16px;
+    color: #888;
+    font-size: 24px;
+    vertical-align: middle;
+  }
+  .tracking_text {
+    font-size: 18px;
+    vertical-align: middle;
+  }
+}
+.info_data {
+  list-style-type: none;
+  padding: 0;
+  li {
+    font-size: 24px;
+    font-weight: 900;
+    color: color.$text_dark;
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
+    span {
+      display: block;
+      margin-top: 12px;
+      font-size: 18px;
+      color: color.$text_light;
+    }
+  }
+}
+.line_horizontal_long {
+  display: inline-block;
+  margin-right: 70px;
+  width: 700px;
+  height: 4px;
+  background-color: color.$secondary;
+}
+.text_btn {
+  font-size: 40px;
+  background: transparent;
+  color: color.$solid_circle;
+  cursor: pointer;
+}
+
 // common set for modal
 .modal_layout {
   width: 90%;
@@ -433,34 +630,42 @@
   }
 }
 .form_btn {
-  text-align: center;
-  .btn {
-    width: 233px;
-    height: 81px;
-    margin-right: 36px;
-    border-radius: 10px;
-    font-size: 25px;
-    color: #fbf8f5;
-    transition: 0.4s;
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  width: 233px;
+  height: 81px;
+  margin-right: 36px;
+  border-radius: 10px;
+  font-size: 25px;
+  color: #fbf8f5;
+  transition: 0.4s;
+}
+.cancel_btn {
+  background-color: color.$cancel_btn;
+  &:hover {
+    background-color: #b6b6b6;
   }
-  .cancel_btn {
-    background-color: color.$cancel_btn;
-    &:hover {
-      background-color: #b6b6b6;
-    }
+}
+.next_btn {
+  background-color: color.$secondary;
+  &:hover {
+    background-color: #deb071;
   }
-  .next_btn {
-    background-color: color.$secondary;
-    &:hover {
-      background-color: #deb071;
-    }
+}
+@media (max-width: 767px) {
+  .form_btn {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
   }
 }
 // BS modal setting
-.adoption.modal {
-  top: 50px;
+.modal {
+  top: 30px;
   right: 0;
-  height: 80vh;
+  max-height: 90vh;
   .modal-dialog {
     .modal-content {
       border: none;
@@ -473,7 +678,7 @@
   width: 100%;
 }
 @media (min-width: 576px) {
-  .adoption .modal-dialog {
+  .modal-dialog {
     max-width: 100%;
     margin: 0;
   }
@@ -500,9 +705,12 @@
       appearance: none;
       background-color: #c4c4c4;
       cursor: pointer;
-      transition: 0.4s;
+      transition: background-color 0.25s;
       &:checked {
         background-color: color.$secondary;
+      }
+      &:hover {
+        outline: 2px solid #deb071;
       }
     }
     label {
@@ -525,8 +733,21 @@
   }
 }
 // application
+button[data-bs-target="#application"] {
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  border: none;
+
+  a {
+    width: 233px;
+    height: 81px;
+    line-height: 81px;
+    color: color.$primary;
+    display: inline-block;
+  }
+}
 .application {
-  margin-top: 50px;
   .processbar {
     .line {
       background-color: color.$solid_circle;
@@ -547,9 +768,12 @@
     appearance: none;
     background-color: #c4c4c4;
     cursor: pointer;
-    transition: 0.4s;
+    transition: background-color 0.4s;
     &:checked {
       background-color: color.$secondary;
+    }
+    &:hover {
+      outline: 2px solid #deb071;
     }
   }
   label {
@@ -588,9 +812,15 @@
         height: 52px;
         padding: 0 16px;
         border: 2px solid color.$secondary;
+        outline: none;
+        transition: 0.4s;
         &::placeholder {
           font-size: 20px;
           color: color.$cancel_btn;
+        }
+        &:focus {
+          box-shadow: 0 0 3px #ffc574, 0 0 12px #ffc574;
+          transform: translate(-2px, -2px);
         }
       }
     }
