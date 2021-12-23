@@ -36,19 +36,21 @@
         <div class="modal-footer">
           <p>單位收到資料後，三日內會有專人與您聯絡，感謝您的參與。</p>
           <div class="button_group">
-            <button
+            <Button
               type="button"
-              class="btn"
+              class="cancel"
               data-bs-dismiss="modal"
               @click="this.clickCancel"
             >
               取消
-            </button>
-            <a class="cancel" data-bs-dismiss="modal">
-              <button type="button" class="btn">
-                <Button @click="validate($event)" class="validate">送出</Button>
-              </button>
-            </a>
+            </Button>
+
+            <Button
+              @click="validate"
+              class="validate"
+              :data-bs-dismiss="closeModal ? 'modal' : ''"
+              >送出</Button
+            >
           </div>
         </div>
       </form>
@@ -70,6 +72,7 @@ export default {
         tel: "",
         email: "",
         address: "",
+        closeModal: false,
       },
     };
   },
@@ -77,10 +80,11 @@ export default {
     clickSubmit() {
       this.$emit("clickSubmit", this.volunteerInfo);
     },
-    validate($event) {
+    validate() {
       if (!this.volunteerInfo.name) {
-        $event.stopPropagation();
+        console.log("empty name");
       } else {
+        this.closeModal = true;
         return;
       }
     },
@@ -139,6 +143,7 @@ export default {
 
   .modal-footer {
     justify-content: center;
+
     border-top: none;
     padding: 0;
     margin-top: 36px;
@@ -153,14 +158,10 @@ export default {
 
     .button_group {
       margin-top: 60px;
+      display: flex;
     }
 
-    .cancel {
-      width: fit-content;
-    }
-
-    button[type="button"] {
-      width: fit-content;
+    .validate {
       margin-left: 36px;
     }
   }

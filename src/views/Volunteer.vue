@@ -41,12 +41,11 @@
         <!-- Button trigger modal -->
         <Button
           type="button"
-          class="btn apply"
+          class="apply"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdrop"
           >報名加入</Button
         >
-        <!-- <Button class="apply" @click="openForm">報名加入</Button> -->
 
         <!-- Modal -->
         <ApplicationForm v-if="formVisibility" @clickSubmit="handleSubmit" />
@@ -105,12 +104,6 @@ export default {
       } catch (e) {
         console.error("Error adding document: ", e);
       }
-    },
-    openForm() {
-      this.formVisibility = true;
-    },
-    closeForm() {
-      this.formVisibility = false;
     },
   },
 };
