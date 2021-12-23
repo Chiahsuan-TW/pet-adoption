@@ -36,10 +36,19 @@
         <div class="modal-footer">
           <p>單位收到資料後，三日內會有專人與您聯絡，感謝您的參與。</p>
           <div class="button_group">
-            <button type="button" class="btn" data-bs-dismiss="modal">
+            <button
+              type="button"
+              class="btn"
+              data-bs-dismiss="modal"
+              @click="this.clickCancel"
+            >
               取消
             </button>
-            <button type="submit" class="btn">送出</button>
+            <a class="cancel" data-bs-dismiss="modal">
+              <button type="button" class="btn">
+                <Button @click="validate($event)" class="validate">送出</Button>
+              </button>
+            </a>
           </div>
         </div>
       </form>
@@ -48,8 +57,12 @@
 </template>
 
 <script>
+import Button from "@/components/Button";
 export default {
   name: "ApplicationForm",
+  components: {
+    Button,
+  },
   data() {
     return {
       volunteerInfo: {
@@ -63,6 +76,13 @@ export default {
   methods: {
     clickSubmit() {
       this.$emit("clickSubmit", this.volunteerInfo);
+    },
+    validate($event) {
+      if (!this.volunteerInfo.name) {
+        $event.stopPropagation();
+      } else {
+        return;
+      }
     },
   },
 };
@@ -135,7 +155,12 @@ export default {
       margin-top: 60px;
     }
 
-    button[type="submit"] {
+    .cancel {
+      width: fit-content;
+    }
+
+    button[type="button"] {
+      width: fit-content;
       margin-left: 36px;
     }
   }

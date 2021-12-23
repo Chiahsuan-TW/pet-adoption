@@ -46,9 +46,10 @@
           data-bs-target="#staticBackdrop"
           >報名加入</Button
         >
+        <!-- <Button class="apply" @click="openForm">報名加入</Button> -->
 
         <!-- Modal -->
-        <ApplicationForm @clickSubmit="handleSubmit" />
+        <ApplicationForm v-if="formVisibility" @clickSubmit="handleSubmit" />
       </div>
     </section>
     <section>
@@ -87,9 +88,15 @@ export default {
     Button,
     ApplicationForm,
   },
+  data() {
+    return {
+      formVisibility: "false",
+    };
+  },
   methods: {
     async handleSubmit(form) {
       console.log("parent receive", form);
+      this.closeForm();
 
       // projectFirestore.collection("volunteer").add(form);
       try {
@@ -98,6 +105,12 @@ export default {
       } catch (e) {
         console.error("Error adding document: ", e);
       }
+    },
+    openForm() {
+      this.formVisibility = true;
+    },
+    closeForm() {
+      this.formVisibility = false;
     },
   },
 };
