@@ -8,8 +8,8 @@
         <div class="line_horizontal"></div>
         <div class="line_vertical"></div>
         <!--  -->
-        <div class="row row-cols-1 row-cols-md-2 gx-3">
-          <div class="col">
+        <div class="row gx-5">
+          <div class="col-12 col-md-7 col-lg-6">
             <!-- 左半部 -->
             <div class="info_visual">
               <div class="info_img">
@@ -17,11 +17,7 @@
                 <div class="wrap_img">
                   <img :src="petDetailData.album_file" alt="動物圖片" />
                 </div>
-                <img
-                  class="dots"
-                  src="../assets/images/circles.png"
-                  alt="circles"
-                />
+                <div class="dots"></div>
               </div>
               <div class="tracking">
                 <span
@@ -43,7 +39,7 @@
             </div>
           </div>
           <!-- 右半部 -->
-          <div class="col">
+          <div class="col-12 col-md-5 col-lg-6">
             <ul class="info_data">
               <li>狀態:<span>待領養</span></li>
               <li>
@@ -53,10 +49,10 @@
                 顏色:<span>{{ petDetailData.animal_colour }}</span>
               </li>
               <li>
-                型別:<span>{{ petDetailData.animal_sex }}</span>
+                型別:<span>{{ genderTranslate }}</span>
               </li>
               <li>
-                體型:<span>{{ petDetailData.animal_bodytype }}</span>
+                體型:<span>{{ bodytypeTranslate }}</span>
               </li>
               <li>
                 收容地點:<span>{{ petDetailData.shelter_name }}</span>
@@ -534,6 +530,28 @@ export default {
         return "追蹤";
       }
     },
+    genderTranslate() {
+      switch (this.petDetailData.animal_sex) {
+        case "F":
+          return "女孩";
+        case "M":
+          return "男孩";
+        default:
+          return "尚未確認";
+      }
+    },
+    bodytypeTranslate() {
+      switch (this.petDetailData.animal_bodytype) {
+        case "BIG":
+          return "大";
+        case "MEDIUM":
+          return "中";
+        case "SMALL":
+          return "小";
+        default:
+          return "尚未確認";
+      }
+    },
   },
 };
 </script>
@@ -575,6 +593,7 @@ export default {
   position: relative;
   .line_horizontal {
     position: absolute;
+    z-index: 99;
     right: -30px;
     width: 250px;
     height: 4px;
@@ -582,6 +601,7 @@ export default {
   }
   .line_vertical {
     position: absolute;
+    z-index: 99;
     right: 0;
     top: -30px;
     width: 4px;
@@ -592,22 +612,19 @@ export default {
 }
 .info_img {
   position: relative;
-  width: 500px;
-  height: 400px;
+  max-width: 500px;
   padding: 16px;
   background-color: #fff;
   margin-bottom: 40px;
   .wrap_img {
-    width: 468px;
-    height: 368px;
+    padding: 0 5%;
     text-align: center;
     background-color: color.$primary;
-  }
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    vertical-align: middle;
+    img {
+      width: 100%;
+      object-fit: contain;
+      vertical-align: middle;
+    }
   }
   .dots {
     width: 145px;
@@ -615,6 +632,12 @@ export default {
     position: absolute;
     bottom: -60px;
     right: -80px;
+    background: url(../assets/images/circles.png);
+  }
+  @media (max-width: 1439px) {
+    .dots {
+      display: none;
+    }
   }
 }
 //  追蹤按鈕
