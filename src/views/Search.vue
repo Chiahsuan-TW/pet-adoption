@@ -61,12 +61,12 @@ export default {
     getCity(city) {
       this.selectCity = city;
       console.log("選擇都市的", this.selectCity, this.cities[this.selectCity]);
+
       // console.log('parent', city);
     },
     getAnimal(animal) {
       this.selectAnimalType = animal;
-      // console.log("parent", animal);
-      console.log("全部資料", this.pets);
+      // console.log('parent', animal);
     },
     getCityOfAddress() {
       const apiData = this.pets;
@@ -77,6 +77,7 @@ export default {
         let city = address[0] + address[1] + address[2];
         cities[city] = city_code;
       });
+      // console.log(cities);
       this.cities = { ...cities };
     },
     getAnimalType() {

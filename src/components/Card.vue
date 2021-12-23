@@ -5,14 +5,12 @@
         <img :src="checkPhotoExit" alt="動物圖片" />
       </div>
       <div class="introduce">
-        <span>pet {{ pet.animal_id }} </span>
-        <span>動態props id{{ $route.params.id }}</span>
         <p>{{ pet.animal_kind }}</p>
         <p>{{ pet.animal_colour }}</p>
         <p>{{ bacterinTranslate }}</p>
       </div>
       <div class="address">
-        <img src="./../assets/images/map.png" alt="" />
+        <img src="./../assets/images/map.png" alt="map_icon" />
         <span>{{ pet.animal_place }}</span>
       </div>
     </div>

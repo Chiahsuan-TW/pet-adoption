@@ -7,14 +7,21 @@
         <!-- 裝飾線 -->
         <div class="line_horizontal"></div>
         <div class="line_vertical"></div>
+        <!--  -->
         <div class="row row-cols-1 row-cols-md-2 gx-3">
           <div class="col">
             <!-- 左半部 -->
             <div class="info_visual">
               <div class="info_img">
-                <div class="dots">
-                  <img src="./../assets/images/circles.png" alt="dots box" />
+                <!-- 元件放這邊 -->
+                <div class="wrap_img">
+                  <img :src="petDetailData.album_file" alt="動物圖片" />
                 </div>
+                <img
+                  class="dots"
+                  src="../assets/images/circles.png"
+                  alt="circles"
+                />
               </div>
               <div class="tracking">
                 <span
@@ -39,14 +46,30 @@
           <div class="col">
             <ul class="info_data">
               <li>狀態:<span>待領養</span></li>
-              <li>類型:<span>貓</span></li>
-              <li>顏色:<span>灰白色</span></li>
-              <li>型別:<span>女孩</span></li>
-              <li>體型:<span>小</span></li>
-              <li>收容地點:<span>澎湖縣流浪動物收容中心</span></li>
-              <li>收容地址:<span>澎湖縣流浪動物收容中心</span></li>
-              <li>聯絡電話:<span>06-9213559</span></li>
-              <li>入所日期:<span>2021/09/23</span></li>
+              <li>
+                類型:<span>{{ petDetailData.animal_kind }}</span>
+              </li>
+              <li>
+                顏色:<span>{{ petDetailData.animal_colour }}</span>
+              </li>
+              <li>
+                型別:<span>{{ petDetailData.animal_sex }}</span>
+              </li>
+              <li>
+                體型:<span>{{ petDetailData.animal_bodytype }}</span>
+              </li>
+              <li>
+                收容地點:<span>{{ petDetailData.shelter_name }}</span>
+              </li>
+              <li>
+                收容地址:<span>{{ petDetailData.shelter_address }}</span>
+              </li>
+              <li>
+                聯絡電話:<span>{{ petDetailData.shelter_tel }}</span>
+              </li>
+              <li>
+                入所日期:<span>{{ petDetailData.animal_createtime }}</span>
+              </li>
               <li>
                 備註:<span
                   >本站動物皆採現場互動面談後評估能否認養，不接受系統上的預約</span
@@ -477,21 +500,30 @@
       </div>
     </div>
   </div>
-  <pre>{{ id }}</pre>
-  <span>動態props id{{ $route.params.id }}</span>
+  <!-- <pre>{{ id }}</pre> -->
+  <!-- <span>動態props id{{ $route.params.id }}</span> -->
 </template>
-
 <script>
+import Api from "@/services/Api";
 export default {
   props: ["id"],
   data() {
     return {
       isLiked: false,
+      petDetailData: null,
     };
+  },
+  created() {
+    console.log(this.id);
+    this.getAnimal();
   },
   methods: {
     favoriteClick() {
       this.isLiked = !this.isLiked;
+    },
+    async getAnimal() {
+      const petInfor = await Api.getPetDetail(this.id);
+      this.petDetailData = petInfor.data[0];
     },
   },
   computed: {
@@ -560,11 +592,26 @@ export default {
 }
 .info_img {
   position: relative;
-  max-width: 500px;
+  width: 500px;
   height: 400px;
-  background-color: #ccc;
+  padding: 16px;
+  background-color: #fff;
   margin-bottom: 40px;
+  .wrap_img {
+    width: 468px;
+    height: 368px;
+    text-align: center;
+    background-color: color.$primary;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    vertical-align: middle;
+  }
   .dots {
+    width: 145px;
+    height: 115px;
     position: absolute;
     bottom: -60px;
     right: -80px;
