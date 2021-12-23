@@ -1,18 +1,22 @@
 <template>
-  <div class="pet_card">
-    <div class="wrap_img">
-      <img :src="checkPhotoExit" alt="動物圖片" />
+  <router-link :to="{ name: 'info', params: { id: pet.animal_id } }">
+    <div class="pet_card">
+      <div class="wrap_img">
+        <img :src="checkPhotoExit" alt="動物圖片" />
+      </div>
+      <div class="introduce">
+        <span>pet {{ pet.animal_id }} </span>
+        <span>動態props id{{ $route.params.id }}</span>
+        <p>{{ pet.animal_kind }}</p>
+        <p>{{ pet.animal_colour }}</p>
+        <p>{{ bacterinTranslate }}</p>
+      </div>
+      <div class="address">
+        <img src="./../assets/images/map.png" alt="" />
+        <span>{{ pet.animal_place }}</span>
+      </div>
     </div>
-    <div class="introduce">
-      <p>{{ pet.animal_kind }}</p>
-      <p>{{ pet.animal_colour }}</p>
-      <p>{{ bacterinTranslate }}</p>
-    </div>
-    <div class="address">
-      <img src="./../assets/images/map.png" alt="" />
-      <span>{{ pet.animal_place }}</span>
-    </div>
-  </div>
+  </router-link>
 </template>
 <script>
 export default {
@@ -22,6 +26,7 @@ export default {
       type: Object,
       required: true,
     },
+    id: { type: String },
   },
   data() {
     return {};

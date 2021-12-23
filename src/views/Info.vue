@@ -477,10 +477,13 @@
       </div>
     </div>
   </div>
+  <pre>{{ id }}</pre>
+  <span>動態props id{{ $route.params.id }}</span>
 </template>
 
 <script>
 export default {
+  props: ["id"],
   data() {
     return {
       isLiked: false,
