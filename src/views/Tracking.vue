@@ -92,4 +92,16 @@ h2 {
     }
   }
 }
+%pagination {
+  background: color.$secondary;
+  color: #ffff;
+}
+.pagination li {
+  &:first-child a {
+    @extend %pagination;
+  }
+  &:last-child a {
+    @extend %pagination;
+  }
+}
 </style>
