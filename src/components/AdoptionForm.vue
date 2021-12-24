@@ -151,7 +151,7 @@ export default {
   },
   data() {
     return {
-      isClosed: false,
+        isClosed: false,
     };
   },
   methods: {
