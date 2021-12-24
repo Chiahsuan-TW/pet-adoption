@@ -60,6 +60,7 @@
 
 <script>
 import Button from "@/components/Button";
+
 export default {
   name: "ApplicationForm",
   components: {

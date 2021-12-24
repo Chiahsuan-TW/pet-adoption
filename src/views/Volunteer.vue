@@ -97,13 +97,15 @@ export default {
       console.log("parent receive", form);
       this.closeForm();
 
-      // projectFirestore.collection("volunteer").add(form);
       try {
         const docRef = await addDoc(collection(db, "volunteers"), form);
         console.log("Document written with ID: ", docRef.id);
       } catch (e) {
         console.error("Error adding document: ", e);
       }
+    },
+    closeForm() {
+      this.formVisibility = false;
     },
   },
 };
