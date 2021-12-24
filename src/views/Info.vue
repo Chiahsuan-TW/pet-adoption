@@ -15,7 +15,7 @@
               <div class="info_img">
                 <!-- 元件放這邊 -->
                 <div class="wrap_img">
-                  <img :src="petDetailData.album_file" alt="動物圖片" />
+                  <img :src="checkPhotoExit" alt="動物圖片" />
                 </div>
                 <img
                   class="dots"
@@ -25,11 +25,11 @@
               </div>
               <div class="tracking">
                 <span
-                  :class="['tracking_icon', { favorite_true: isLiked }]"
-                  @click="favoriteClick"
+                  :class="['tracking_icon', { favorite_true: isLikedStyle }]"
+                  @click="clickFavoriteButton"
                   >&#9829;</span
                 >
-                <span class="tracking_text" @click="favoriteClick">{{
+                <span class="tracking_text" @click="clickFavoriteButton">{{
                   isTracked
                 }}</span>
               </div>
@@ -509,30 +509,82 @@ export default {
   props: ["id"],
   data() {
     return {
-      isLiked: false,
+      // isLiked: false,
+      //點擊愛心
+      //isLiked 會切換
+      //陣列第一筆都放目前資料
       petDetailData: null,
+      findIndexResult: null,
+      currentFavoriteData: null,
+      isLikedStyle: null,
     };
   },
   created() {
-    console.log(this.id);
     this.getAnimal();
+    this.getLocalStorage();
+    this.checkLikedStyle();
+    // console.log("AAA", this.findIndexResult);
   },
   methods: {
-    favoriteClick() {
-      this.isLiked = !this.isLiked;
-    },
     async getAnimal() {
       const petInfor = await Api.getPetDetail(this.id);
       this.petDetailData = petInfor.data[0];
     },
+    getLocalStorage() {
+      this.currentFavoriteData =
+        JSON.parse(localStorage.getItem("favorite")) || [];
+      this.findIndex();
+    },
+    setLocalStorage(currentFavoriteData) {
+      // console.log("所以我要存資料", currentFavoriteData);
+      localStorage.setItem("favorite", JSON.stringify(currentFavoriteData));
+    },
+    findIndex() {
+      this.findIndexResult = this.currentFavoriteData.findIndex((data) => {
+        return data.petId === this.id;
+      });
+    },
+    checkLikedStyle() {
+      if (this.findIndexResult > -1) {
+        this.isLikedStyle = true;
+      } else {
+        this.isLikedStyle = false;
+      }
+    },
+    clickFavoriteButton() {
+      this.getLocalStorage();
+      if (this.findIndexResult > -1) {
+        //表示local有資料
+        this.isLikedStyle = !this.isLikedStyle;
+        this.currentFavoriteData.splice(this.findIndexResult, 1);
+        this.setLocalStorage(this.currentFavoriteData);
+        return;
+      }
+      this.isLikedStyle = !this.isLikedStyle;
+      const saveData = {
+        petId: this.id,
+        animal_kind: this.petDetailData.animal_kind,
+        animal_colour: this.petDetailData.animal_colour,
+        animal_place: this.petDetailData.animal_place,
+        //要補轉換過的男女的資料
+      };
+      this.currentFavoriteData.push(saveData);
+      this.setLocalStorage(this.currentFavoriteData);
+    },
   },
   computed: {
     isTracked() {
-      if (this.isLiked) {
+      if (this.isLikedStyle) {
         return "取消追蹤";
       } else {
         return "追蹤";
       }
+    },
+    checkPhotoExit() {
+      if (this.petDetailData.album_file) {
+        return this.petDetailData.album_file;
+      }
+      return require("./../assets/images/dog-brown.jpg");
     },
   },
 };
