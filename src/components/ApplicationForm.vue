@@ -1,60 +1,62 @@
 <template>
-  <div
+  <!-- <div
     class="modal fade modified_modal"
-    id="staticBackdrop"
+    id="application"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  > -->
+  <div
+    class="modified_modal"
+    id="application"
     data-bs-backdrop="static"
     data-bs-keyboard="false"
     tabindex="-1"
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog">
-      <form class="modal-content" @submit.prevent="clickSubmit">
-        <h5 class="modal-title" id="staticBackdropLabel">志工報名</h5>
-        <div class="group">
-          <div>
-            <label for="name">姓名</label
-            ><input type="text" v-model="volunteerInfo.name" required />
-          </div>
-          <div>
-            <label for="tel">聯絡電話</label
-            ><input type="tel" v-model="volunteerInfo.tel" required />
-          </div>
-          <div>
-            <label for="email">電子信箱</label
-            ><input type="email" v-model="volunteerInfo.email" required />
-          </div>
-          <div>
-            <label for="address">通訊地址</label
-            ><input type="text" v-model="volunteerInfo.address" required />
-          </div>
-          <div>
-            <label for="reason">為什麼您想要來當志工呢？</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-          </div>
+    <form class="modal-content" @submit.prevent="clickSubmit">
+      <h5 class="modal-title" id="staticBackdropLabel">志工報名</h5>
+      <div class="group">
+        <div>
+          <label for="name">姓名</label>
+          <input type="text" v-model="volunteerInfo.name" required />
         </div>
-        <div class="modal-footer">
-          <p>單位收到資料後，三日內會有專人與您聯絡，感謝您的參與。</p>
-          <div class="button_group">
-            <Button
-              type="button"
-              class="cancel"
-              data-bs-dismiss="modal"
-              @click="this.clickCancel"
-            >
-              取消
-            </Button>
-
-            <Button
-              @click="validate"
-              class="validate"
-              :data-bs-dismiss="closeModal ? 'modal' : ''"
-              >送出</Button
-            >
-          </div>
+        <div>
+          <label for="tel">聯絡電話</label>
+          <input type="tel" v-model="volunteerInfo.tel" required />
         </div>
-      </form>
-    </div>
+        <div>
+          <label for="email">電子信箱</label>
+          <input type="email" v-model="volunteerInfo.email" required />
+        </div>
+        <div>
+          <label for="address">通訊地址</label>
+          <input type="text" v-model="volunteerInfo.address" required />
+        </div>
+        <div>
+          <label for="reason">為什麼您想要來當志工呢？</label>
+          <textarea
+            v-model="volunteerInfo.reason"
+            name="reason"
+            id="reason"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p>單位收到資料後，三日內會有專人與您聯絡，感謝您的參與。</p>
+        <div class="button_group">
+          <Button type="button" class="cancel" @click="closeModal">
+            取消
+          </Button>
+          <Button class="validate">送出</Button>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -63,6 +65,9 @@ import Button from "@/components/Button";
 
 export default {
   name: "ApplicationForm",
+  emits: {
+    input: null,
+  },
   components: {
     Button,
   },
@@ -73,21 +78,21 @@ export default {
         tel: "",
         email: "",
         address: "",
-        closeModal: false,
+        reason: "",
       },
+      // schema: {
+      //   username: "required",
+      //   email: "required|min:3|max:20|email",
+      //   digits: "required|digits:9",
+      // },
     };
   },
   methods: {
     clickSubmit() {
       this.$emit("clickSubmit", this.volunteerInfo);
     },
-    validate() {
-      if (!this.volunteerInfo.name) {
-        console.log("empty name");
-      } else {
-        this.closeModal = true;
-        return;
-      }
+    closeModal() {
+      this.$emit("closeModal");
     },
   },
 };
@@ -95,9 +100,12 @@ export default {
 
 <style lang="scss" scoped>
 .modified_modal {
-  .modal-dialog {
-    min-width: 90%;
-  }
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  z-index: 999;
 
   form {
     background-color: color.$primary;
