@@ -7,7 +7,7 @@
       <div class="introduce">
         <p>{{ pet.animal_kind }}</p>
         <p>{{ pet.animal_colour }}</p>
-        <p>{{ bacterinTranslate }}</p>
+        <p>{{ genderTranslate }}</p>
       </div>
       <div class="address">
         <img src="./../assets/images/map.png" alt="map_icon" />
@@ -30,8 +30,15 @@ export default {
     return {};
   },
   computed: {
-    bacterinTranslate() {
-      return this.pet.animal_bacterin === "F" ? "女生" : "男生";
+    genderTranslate() {
+      switch (this.pet.animal_bacterin) {
+        case "F":
+          return "女孩";
+        case "M":
+          return "男孩";
+        default:
+          return "尚未確認";
+      }
     },
     checkPhotoExit() {
       if (this.pet.album_file) {
