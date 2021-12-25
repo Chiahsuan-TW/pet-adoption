@@ -38,17 +38,15 @@
           </div>
         </div>
         <!--Bootstrap-->
-        <!-- Button trigger modal -->
-        <Button
-          type="button"
-          class="apply"
-          data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop"
+        <Button type="button cancel" class="apply" @click="openForm"
           >報名加入</Button
         >
-
         <!-- Modal -->
-        <ApplicationForm v-if="formVisibility" @clickSubmit="handleSubmit" />
+        <ApplicationForm
+          v-if="formVisibility"
+          @clickSubmit="handleSubmit"
+          @closeModal="closeForm"
+        />
       </div>
     </section>
     <section>
@@ -89,23 +87,24 @@ export default {
   },
   data() {
     return {
-      formVisibility: "false",
+      formVisibility: false,
     };
   },
   methods: {
     async handleSubmit(form) {
-      console.log("parent receive", form);
-      this.closeForm();
-
       try {
         const docRef = await addDoc(collection(db, "volunteers"), form);
         console.log("Document written with ID: ", docRef.id);
+        this.closeForm();
       } catch (e) {
         console.error("Error adding document: ", e);
       }
     },
     closeForm() {
       this.formVisibility = false;
+    },
+    openForm() {
+      this.formVisibility = true;
     },
   },
 };
@@ -212,6 +211,10 @@ main {
 
   .apply {
     margin-top: 36px;
+  }
+
+  ::v-deep .cancel {
+    background-color: color.$cancel_btn;
   }
 }
 </style>
