@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="parallax">
-      <section class="landing_page parallax_group">
+      <section class="landing_page">
         <section class="adoption">
           <div class="home">
             <img src="./../assets/images/home.png" alt="home icon" />
@@ -34,17 +34,17 @@
           希望能夠有一個家，<br />
           一個會好好愛我的主人
         </p>
-        <div class="gallery_img_2 parallax_layer parallax_layer--closely">
+        <div class="gallery_img_2 parallax_layer parallax_layer--deep">
           <img src="./../assets/images/photo/home-cat-1.jpg" alt="cat" />
         </div>
         <div class="gallery_img_3 parallax_layer parallax_layer--fore">
           <img src="./../assets/images/photo/home-cat-2.jpg" alt="cat" />
         </div>
         <p>你能夠帶我回家嗎？</p>
-        <div class="gallery_img_4 parallax_layer parallax_layer--deep">
+        <div class="gallery_img_4 parallax_layer parallax_layer--back">
           <img src="./../assets/images/photo/home-dog-3.jpg" alt="brown dog" />
         </div>
-        <div class="gallery_img_5 parallax_layer parallax_layer--back">
+        <div class="gallery_img_5 parallax_layer parallax_layer--closely">
           <img src="./../assets/images/photo/home-dog-4.jpg" alt="black dog" />
         </div>
         <div class="gallery_text_link">
@@ -200,6 +200,11 @@ export default {
   z-index: 6;
   p {
     text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 12px #fff, 0 0 20px #fff;
+  }
+}
+.gallery {
+  > p {
+    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #fff;
   }
 }
 //main
