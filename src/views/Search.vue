@@ -13,15 +13,7 @@
       <section class="content">
         <Card v-for="pet in pets" :key="pet.animal_id" :pet="pet"></Card>
       </section>
-      <nav aria-label="Page navigation ">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="##">第一頁</a></li>
-          <li class="page-item"><a class="page-link active" href="##">1</a></li>
-          <li class="page-item"><a class="page-link" href="##">2</a></li>
-          <li class="page-item"><a class="page-link" href="##">3</a></li>
-          <li class="page-item"><a class="page-link" href="##">最後一頁</a></li>
-        </ul>
-      </nav>
+      <Pagination></Pagination>
     </div>
   </div>
 </template>
@@ -30,11 +22,13 @@
 import Card from "@/components/Card";
 import Api from "@/services/Api";
 import Filter from "@/components/Filter";
+import Pagination from "@/components/Pagination";
 export default {
   name: "Search",
   components: {
     Card,
     Filter,
+    Pagination,
   },
   data() {
     return {
@@ -94,6 +88,7 @@ export default {
       const kind = this.selectAnimalType ? this.selectAnimalType : "";
       const { data } = await Api.getPetsByVariable(kind, cityCode);
       this.pets = data;
+      console.log(data.length);
       this.selectCity = null;
       this.selectAnimalType = null;
     },
@@ -138,16 +133,5 @@ h2 {
   gap: 20px;
 }
 
-%pagination {
-  background: color.$secondary;
-  color: #ffff;
-}
-.pagination li {
-  &:first-child a {
-    @extend %pagination;
-  }
-  &:last-child a {
-    @extend %pagination;
-  }
-}
+
 </style>
