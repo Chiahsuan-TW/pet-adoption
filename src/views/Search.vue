@@ -132,6 +132,4 @@ h2 {
   flex-wrap: wrap;
   gap: 20px;
 }
-
-
 </style>

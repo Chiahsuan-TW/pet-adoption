@@ -160,11 +160,13 @@ export default {
       }
       this.isLikedStyle = !this.isLikedStyle;
       const saveData = {
-        petId: this.id,
+        animal_id: this.id,
         animal_kind: this.petDetailData.animal_kind,
         animal_colour: this.petDetailData.animal_colour,
         animal_place: this.petDetailData.animal_place,
         //要補轉換過的男女的資料
+        animal_bacterin: this.petDetailData.animal_bacterin,
+        album_file: this.petDetailData.album_file,
       };
       this.currentFavoriteData.push(saveData);
       this.setLocalStorage(this.currentFavoriteData);

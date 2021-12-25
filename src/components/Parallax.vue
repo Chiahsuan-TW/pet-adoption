@@ -1,10 +1,14 @@
-<template></template>
+<template>
+  <div class="parallax">
+    <slot></slot>
+  </div>
+</template>
 <script>
 export default {
   name: "Parallax",
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .parallax {
   height: 100vh;
   overflow-x: hidden;
