@@ -81,7 +81,7 @@
           class="product_description parallax_layer parallax_layer--closely"
         >
           <div class="product_text">
-            <h3>周邊商品 - 客製化項圈</h3>
+            <h3>週邊商品 - 客製化項圈</h3>
             <h4>訂做你們之間的獨一無二</h4>
             <p>商品所得將全數用於協助浪浪尋找歸屬</p>
             <Button>前往製作</Button>
@@ -310,6 +310,12 @@ main {
   position: relative;
   width: 100%;
   height: 1441px;
+  img {
+    box-shadow: 2px 2px 30px #333;
+    &[alt^="right"] {
+      box-shadow: none;
+    }
+  }
   p {
     font-weight: 500;
     font-size: 24px;
@@ -458,14 +464,24 @@ main {
       position: absolute;
       top: 313px;
       right: 100px;
+      text-align: center;
       h3 {
         margin-bottom: 16px;
+        font-size: 50px;
+        font-family: 900;
+        color: color.$text_dark;
       }
       h4 {
         margin-bottom: 16px;
+        font-size: 30px;
+        font-weight: 900;
+        color: color.$text_light;
       }
       p {
         margin-bottom: 40px;
+        font-size: 20px;
+        font-weight: 900;
+        color: color.$text_light;
       }
     }
     img {
