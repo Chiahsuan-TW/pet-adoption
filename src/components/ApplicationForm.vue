@@ -17,36 +17,39 @@
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
-    <form class="modal-content" @submit.prevent="clickSubmit">
+    <Form @submit="onSubmit" :validation-schema="schema">
       <h5 class="modal-title" id="staticBackdropLabel">志工報名</h5>
       <div class="group">
         <div>
           <label for="name">姓名</label>
-          <input type="text" v-model="volunteerInfo.name" required />
+          <!-- <input type="text" v-model="volunteerInfo.name" required /> -->
+          <Field name="name" type="name" />
+          <ErrorMessage name="name" />
         </div>
         <div>
           <label for="tel">聯絡電話</label>
-          <input type="tel" v-model="volunteerInfo.tel" required />
+          <Field name="tel" type="tel" placeholder="電話格式: 06266245" />
+          <ErrorMessage name="tel" />
         </div>
         <div>
           <label for="email">電子信箱</label>
-          <input type="email" v-model="volunteerInfo.email" required />
+          <!-- <input type="email" v-model="volunteerInfo.email" required /> -->
+          <Field name="email" type="email" />
+          <ErrorMessage name="email" />
         </div>
         <div>
           <label for="address">通訊地址</label>
-          <input type="text" v-model="volunteerInfo.address" required />
+          <!-- <input type="text" v-model="volunteerInfo.address" required /> -->
+          <Field name="address" type="address" />
+          <ErrorMessage name="address" />
         </div>
         <div>
           <label for="reason">為什麼您想要來當志工呢？</label>
-          <textarea
-            v-model="volunteerInfo.reason"
-            name="reason"
-            id="reason"
-            cols="30"
-            rows="10"
-          ></textarea>
+          <Field name="reason" type="text" rows="20" />
+          <!-- <textarea name="reason" id="reason" cols="30" rows="10"></textarea> -->
         </div>
       </div>
+
       <div class="modal-footer">
         <p>單位收到資料後，三日內會有專人與您聯絡，感謝您的參與。</p>
         <div class="button_group">
@@ -56,12 +59,14 @@
           <Button class="validate">送出</Button>
         </div>
       </div>
-    </form>
+    </Form>
   </div>
 </template>
 
 <script>
 import Button from "@/components/Button";
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 
 export default {
   name: "ApplicationForm",
@@ -70,21 +75,19 @@ export default {
   },
   components: {
     Button,
+    Form,
+    Field,
+    ErrorMessage,
   },
   data() {
+    const schema = yup.object({
+      name: yup.string().trim().required(),
+      tel: yup.string().length(8).required(),
+      email: yup.string().required().email(),
+      address: yup.string().trim().required(),
+    });
     return {
-      volunteerInfo: {
-        name: "",
-        tel: "",
-        email: "",
-        address: "",
-        reason: "",
-      },
-      // schema: {
-      //   username: "required",
-      //   email: "required|min:3|max:20|email",
-      //   digits: "required|digits:9",
-      // },
+      schema,
     };
   },
   methods: {
@@ -93,6 +96,10 @@ export default {
     },
     closeModal() {
       this.$emit("closeModal");
+    },
+    onSubmit(values) {
+      console.log(values);
+      this.$emit("clickSubmit", values);
     },
   },
 };
@@ -106,6 +113,7 @@ export default {
   align-items: center;
   top: 50%;
   z-index: 999;
+  border: 1px solid color.$text_light;
 
   form {
     background-color: color.$primary;
@@ -140,6 +148,10 @@ export default {
         border: 0;
         border: 2px solid color.$secondary;
         outline: none;
+      }
+
+      span[role="alert"] {
+        color: #e04b51;
       }
 
       textarea {
