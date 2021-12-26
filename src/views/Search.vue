@@ -1,6 +1,6 @@
 <template>
   <div class="search_page">
-    <div class="wrap_container">
+    <div class="search_container">
       <h2>尋找浪浪</h2>
       <Filter
         @clickSend="sendConfirm"
@@ -9,8 +9,9 @@
         :cities="cities"
         :animalKind="animalKind"
       ></Filter>
-      <section class="content">
+      <section class="search_content">
         <Card
+          class="search_card"
           v-for="pet in dataPartition"
           :key="pet.animal_id"
           :pet="pet"
@@ -123,7 +124,7 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.wrap_container {
+.search_container {
   margin: 0 auto;
   max-width: 1440px;
   padding: 0px 100px 60px 100px;
@@ -136,7 +137,7 @@ h2 {
   font-size: 50px;
 }
 
-.wrap_container {
+.search_container {
   .pagination {
     justify-content: center;
     font-size: 18px;
@@ -153,9 +154,41 @@ h2 {
     }
   }
 }
-.content {
+.search_content {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
+  .search_card {
+    display: inline-block;
+    .pet_card {
+      width: 100%;
+      height: auto;
+      text-align: center;
+      .wrap_img {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+@media (max-width: 1439px) {
+  .search_container {
+    .search_content {
+      .search_card {
+        flex: 0 0 46%;
+        gap: 4%;
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .search_container {
+    padding: 0 30px;
+    .search_content {
+      .search_card {
+        flex: 0 0 100%;
+      }
+    }
+  }
 }
 </style>
