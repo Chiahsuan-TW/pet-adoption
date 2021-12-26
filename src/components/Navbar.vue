@@ -8,7 +8,10 @@
       <router-link :to="{ name: 'Tracking' }">追蹤浪浪</router-link>
       <router-link :to="{ name: 'Volunteer' }">志工招募</router-link>
       <a href="##">愛心項圈</a>
-      <router-link :to="{ name: 'Info' }">資訊</router-link>
+      <router-link :to="{ name: 'Management' }">後台管理</router-link>
+      <span class="moon" @click="clickDark" :class="{ isDark }"
+        ><i class="fas fa-moon fa-fw"></i
+      ></span>
     </div>
   </nav>
 </template>
@@ -33,6 +36,30 @@ nav {
   }
   a + a {
     margin-left: 60px;
+  }
+}
+.moon {
+  font-size: 30px;
+  border-radius: 100px;
+  background-color: color.$text_dark;
+  color: color.$secondary;
+}
+.isDark {
+  font-size: 30px;
+  border-radius: 100px;
+  background-color: orange;
+  color: rgb(241, 245, 10);
+}
+.dark_background {
+  background: #000;
+  .list-group-item {
+    background: #000;
+    color: #fff;
+  }
+
+  color: #fff;
+  h2 {
+    color: orange;
   }
 }
 </style>
