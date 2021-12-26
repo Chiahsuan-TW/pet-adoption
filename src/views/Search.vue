@@ -168,6 +168,10 @@ h2 {
       .wrap_img {
         margin: 0 auto;
       }
+      .introduce {
+        width: 368px;
+        margin: 0 auto;
+      }
     }
   }
 }
@@ -175,18 +179,17 @@ h2 {
   .search_container {
     .search_content {
       .search_card {
-        flex: 0 0 46%;
-        gap: 4%;
+        flex: 1 0 0;
+        gap: 2%;
       }
     }
   }
 }
 @media (max-width: 767px) {
   .search_container {
-    padding: 0 30px;
     .search_content {
       .search_card {
-        flex: 0 0 100%;
+        // flex: 0 0 80%;
       }
     }
   }
