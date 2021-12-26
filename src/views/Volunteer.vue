@@ -38,17 +38,15 @@
           </div>
         </div>
         <!--Bootstrap-->
-        <!-- Button trigger modal -->
-        <Button
-          type="button"
-          class="btn apply"
-          data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop"
+        <Button type="button cancel" class="apply" @click="openForm"
           >報名加入</Button
         >
-
         <!-- Modal -->
-        <ApplicationForm @clickSubmit="handleSubmit" />
+        <ApplicationForm
+          v-if="formVisibility"
+          @clickSubmit="handleSubmit"
+          @closeModal="closeForm"
+        />
       </div>
     </section>
     <section>
@@ -87,17 +85,27 @@ export default {
     Button,
     ApplicationForm,
   },
+  data() {
+    return {
+      formVisibility: false,
+    };
+  },
   methods: {
     async handleSubmit(form) {
-      console.log("parent receive", form);
-
-      // projectFirestore.collection("volunteer").add(form);
       try {
         const docRef = await addDoc(collection(db, "volunteers"), form);
+        alert("感謝您的報名，志工會在收到資料，志工會在收到資料後，與您聯繫");
         console.log("Document written with ID: ", docRef.id);
+        this.closeForm();
       } catch (e) {
         console.error("Error adding document: ", e);
       }
+    },
+    closeForm() {
+      this.formVisibility = false;
+    },
+    openForm() {
+      this.formVisibility = true;
     },
   },
 };
@@ -204,6 +212,10 @@ main {
 
   .apply {
     margin-top: 36px;
+  }
+
+  ::v-deep .cancel {
+    background-color: color.$cancel_btn;
   }
 }
 </style>
