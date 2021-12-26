@@ -3,8 +3,18 @@
     <span class="sun clickSun"><i class="fas fa-sun fa-fw"></i></span>
     
   </div> -->
+  <!-- <div class="list-group">
+    <a
+      href="#"
+      class="list-group-item list-group-item-action active"
+      aria-current="true"
+    >
+      志工招募資訊
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">認養申請</a>
+  </div> -->
 
-  <div class="content" :class="{ dark_background }">
+  <div class="backend_content" :class="{ dark_background }">
     <h2>志工招募資訊</h2>
     <div>
       <ul class="list-group list-group-numbered">
@@ -99,4 +109,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scope></style>
+<style lang="scss" scope>
+.backend_content {
+}
+</style>
