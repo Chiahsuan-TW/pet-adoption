@@ -393,6 +393,9 @@ button[data-bs-target="#application"] {
           box-shadow: 0 0 3px #ffc574, 0 0 12px #ffc574;
           transform: translate(-2px, -2px);
         }
+        &:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0 1000px #fff inset;
+        }
       }
     }
   }

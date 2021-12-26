@@ -335,18 +335,17 @@ export default {
   },
   data() {
     return {
-      accept: true,
       questions: {
-        one: true,
-        two: true,
-        three: true,
-        four: true,
-        five: true,
-        six: true,
-        seven: true,
-        eight: true,
-        nine: true,
-        ten: true,
+        one: false,
+        two: false,
+        three: false,
+        four: false,
+        five: false,
+        six: false,
+        seven: false,
+        eight: false,
+        nine: false,
+        ten: false,
       },
     };
   },
