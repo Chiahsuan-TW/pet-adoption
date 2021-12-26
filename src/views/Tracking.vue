@@ -2,15 +2,11 @@
   <div class="tracking">
     <div class="tracking_container">
       <h2>追蹤浪浪</h2>
-
+      <!-- <p>{{ getTrackingPets }}</p> -->
       <section class="tracking_content">
-        <Card :pet="pet" />
-        <Card :pet="pet" />
-        <Card :pet="pet" />
-        <Card :pet="pet" />
-        <Card :pet="pet" />
-        <Card :pet="pet" />
+        <!-- <Card :pet="pet" /> -->
         <!-- <Card v-for="pet in trackingPets" :key="pet.animal_id" :pet="pet" /> -->
+        <Card v-for="pet in pets" :key="pet.animal_id" :pet="pet" />
       </section>
     </div>
   </div>
@@ -33,17 +29,20 @@ export default {
   components: { Card },
   data() {
     return {
-      trackingPets: [],
-      pet: {
-        animal_id: 123,
-        animal_kind: "狗",
-        animal_colour: "brown",
-        animal_bacterin: "F",
-        animal_place: "tainan",
-      },
+      pets: null,
+
+      // pet: {
+      //   animal_id: 123,
+      //   animal_kind: "狗",
+      //   animal_colour: "brown",
+      //   animal_bacterin: "F",
+      //   animal_place: "tainan",
+      // },
     };
   },
   created() {
+    this.pets = JSON.parse(localStorage.getItem("favorite"));
+    console.log(this.pets);
     // const pet = {
     //   animal_id: 124,
     //   animal_kind: "狗",
@@ -56,6 +55,8 @@ export default {
     // console.log(favorite);
     // this.trackingPets.push(favorite);
   },
+  methods: {},
+  computed: {},
 };
 </script>
 

@@ -52,33 +52,36 @@
           <img src="./../assets/images/arrow-right.png" alt="right arraow" />
         </div>
       </section>
-      <section class="volunteer">
-        <h3>志工招募</h3>
-        <h4>我們需要你，成為我們最強的後盾</h4>
-        <div>
+      <section class="volunteer parallax_group">
+        <div class="volunteer_title parallax_layer parallax_layer--fore">
+          <h3>志工招募</h3>
+          <h4>我們需要你，成為我們最強的後盾</h4>
+        </div>
+        <div class="volunteer_img parallax_layer parallax_layer--base">
           <img
             src="./../assets/images/photo/home-volunteer.jpg"
             alt="volunteer packing stuff"
           />
         </div>
-        <router-link :to="{ name: 'Volunteer' }"
-          ><Button>我有興趣</Button></router-link
-        >
+        <div class="volunteer_btn parallax_layer parallax_layer--closely">
+          <router-link :to="{ name: 'Volunteer' }"
+            ><Button>我有興趣</Button></router-link
+          >
+        </div>
       </section>
-      <section class="product">
-        <section class="cat_profile">
+      <section class="product parallax_group">
+        <section class="cat_profile parallax_layer parallax_layer--fore">
           <img src="./../assets/images/photo/home-customize.jpg" alt="cat" />
         </section>
-        <section class="product_description">
-          <div class="circles">
-            <img
-              src="./../assets/images/circle-hollow.png"
-              alt="hollow circle"
-            />
-            <img src="./../assets/images/circle-solid.png" alt="solid circle" />
-          </div>
+        <div class="circles parallax_layer parallax_layer--back">
+          <img src="./../assets/images/circle-hollow.png" alt="hollow circle" />
+          <img src="./../assets/images/circle-solid.png" alt="solid circle" />
+        </div>
+        <section
+          class="product_description parallax_layer parallax_layer--closely"
+        >
           <div class="product_text">
-            <h3>周邊商品 - 客製化項圈</h3>
+            <h3>週邊商品 - 客製化項圈</h3>
             <h4>訂做你們之間的獨一無二</h4>
             <p>商品所得將全數用於協助浪浪尋找歸屬</p>
             <Button>前往製作</Button>
@@ -207,13 +210,36 @@ export default {
     text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #fff;
   }
 }
+
+// parallax for group3
+.volunteer.parallax_group {
+  height: 928px;
+  .volunteer_img {
+    text-align: center;
+  }
+  .volunteer_btn {
+    a {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+// parallax for group4
+.product.parallax_group {
+  height: 881px;
+}
 //main
 main {
   max-width: 1440px;
   margin: 0 auto;
 }
-
+// landing_page
 .landing_page {
+  position: relative;
+  z-index: 99;
   height: calc(100vh - 112px);
   display: flex;
   justify-content: space-between;
@@ -278,12 +304,18 @@ main {
     bottom: 0;
   }
 }
-
+// gallery
 .gallery {
   padding: 50px 100px 64px;
   position: relative;
   width: 100%;
   height: 1441px;
+  img {
+    box-shadow: 2px 2px 30px #333;
+    &[alt^="right"] {
+      box-shadow: none;
+    }
+  }
   p {
     font-weight: 500;
     font-size: 24px;
@@ -366,90 +398,182 @@ main {
   }
 }
 
+// volunteer
 .volunteer {
   background-color: color.$primary;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
   padding: 40px 0;
-
-  h3 {
-    color: color.$text_dark;
-    font-weight: 900;
-    font-size: 50px;
-  }
-
-  h4 {
-    margin-top: 16px;
-    color: color.$text_light;
-    font-weight: 900;
-    font-size: 30px;
-  }
-
-  div {
-    margin-top: 40px;
-  }
-
-  button {
-    margin-top: 40px;
-  }
-}
-
-.product {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px 0 60px;
-  background-color: color.$primary;
-  position: relative;
-
-  &_description {
-    padding-right: 100px;
-  }
-
-  .circles {
-    text-align: right;
-    position: relative;
-
-    img:last-child {
-      position: absolute;
-      top: 140px;
-      right: 124px;
+  .volunteer_title {
+    h3 {
+      color: color.$text_dark;
+      font-weight: 900;
+      font-size: 50px;
+      text-align: center;
+      text-shadow: 0 0 3px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 35px #fff;
+    }
+    h4 {
+      margin-top: 16px;
+      color: color.$text_light;
+      font-weight: 900;
+      font-size: 30px;
+      text-align: center;
+      text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 15px, 0 0 25px #fff;
     }
   }
 
-  &_text {
-    margin-top: 123px;
-    text-align: center;
-  }
-
-  h3 {
-    color: color.$text_dark;
-    font-weight: 900;
-    font-size: 50px;
-  }
-
-  h4 {
-    margin-top: 16px;
-    color: color.$text_light;
-    font-weight: 900;
-    font-size: 30px;
-  }
-
-  p {
-    margin-top: 16px;
-    font-weight: 900;
-    font-size: 20px;
-    color: color.$text_light;
-  }
-
   button {
-    margin-top: 40px;
+    box-shadow: 0 0 5px rgb(255, 227, 200), 0 0 15px rgb(255, 227, 200),
+      0 0 25px rgb(255, 227, 200), 0 0 50px rgb(255, 227, 200),
+      0 0 100px rgb(255, 227, 200);
   }
+}
+// product
+.product {
+  height: 881px;
+  .cat_profile {
+    img {
+      top: 40px;
+    }
+  }
+  .circles {
+    img {
+      position: absolute;
+      border-radius: 50%;
+    }
+    img[alt="hollow circle"] {
+      top: 40px;
+      right: 100px;
+      animation: spin 12s infinite alternate;
+      animation-timing-function: linear;
+      box-shadow: 0 0 3px color.$secondary, 0 0 5px color.$secondary,
+        0 0 15px color.$secondary, 0 0 30px color.$secondary,
+        0 0 100px color.$secondary;
+    }
+    img[alt="solid circle"] {
+      top: 180px;
+      right: 244px;
+      animation: spin 3s infinite alternate;
+      animation-timing-function: linear;
+      animation-delay: 2s;
+    }
+  }
+  .product_description {
+    .product_text {
+      position: absolute;
+      top: 313px;
+      right: 100px;
+      text-align: center;
+      h3 {
+        margin-bottom: 16px;
+        font-size: 50px;
+        font-family: 900;
+        color: color.$text_dark;
+      }
+      h4 {
+        margin-bottom: 16px;
+        font-size: 30px;
+        font-weight: 900;
+        color: color.$text_light;
+      }
+      p {
+        margin-bottom: 40px;
+        font-size: 20px;
+        font-weight: 900;
+        color: color.$text_light;
+      }
+    }
+    img {
+      position: absolute;
+      bottom: 151px;
+      right: 555px;
+    }
+  }
+}
 
-  .horizontal_line {
-    position: absolute;
-    left: 40%;
-    bottom: 152px;
+// .product {
+// display: flex;
+// justify-content: space-between;
+//   padding: 40px 0 60px;
+//   background-color: color.$primary;
+//   // position: relative;
+
+//   &_description {
+//     padding-right: 100px;
+//   }
+
+//   .circles {
+//     text-align: right;
+//     position: relative;
+
+//     img:last-child {
+//       position: absolute;
+//       top: 140px;
+//       right: 124px;
+//     }
+//   }
+
+//   &_text {
+//     margin-top: 123px;
+//     text-align: center;
+//   }
+
+//   h3 {
+//     color: color.$text_dark;
+//     font-weight: 900;
+//     font-size: 50px;
+//   }
+
+//   h4 {
+//     margin-top: 16px;
+//     color: color.$text_light;
+//     font-weight: 900;
+//     font-size: 30px;
+//   }
+
+//   p {
+//     margin-top: 16px;
+//     font-weight: 900;
+//     font-size: 20px;
+//     color: color.$text_light;
+//   }
+
+//   button {
+//     margin-top: 40px;
+//   }
+
+//   .horizontal_line {
+//     position: absolute;
+//     left: 40%;
+//     bottom: 152px;
+//   }
+// }
+
+@keyframes spin {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    transform: rotate3d(0, 1, 0, 72deg);
+    filter: hue-rotate(72deg);
+  }
+  40% {
+    transform: rotate3d(0, 1, 0, 144deg);
+    filter: hue-rotate(144deg);
+  }
+  65% {
+    transform: rotate3d(0, 1, 0, 216deg);
+    filter: hue-rotate(216deg);
+  }
+  80% {
+    transform: rotate3d(0, 1, 0, 288deg);
+    filter: hue-rotate(288deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg);
+    filter: hue-rotate(360deg);
   }
 }
 </style>
