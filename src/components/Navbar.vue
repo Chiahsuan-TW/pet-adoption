@@ -15,7 +15,9 @@
       <router-link :to="{ name: 'Volunteer' }">志工招募</router-link>
       <a href="##">愛心項圈</a>
       <router-link :to="{ name: 'Management' }">後台管理</router-link>
-      <span class="moon"><i class="fas fa-moon fa-fw"></i></span>
+      <span class="moon" @click="clickDark"
+        ><i class="fas fa-moon fa-fw"></i
+      ></span>
     </div>
   </nav>
 
@@ -62,6 +64,17 @@
 <script>
 export default {
   name: "Navbar",
+  data() {
+    return {
+      // isDark:true;
+    };
+  },
+  created() {},
+  methods: {},
+  clickDark() {
+    console.log("點擊月亮");
+    this.isDark = !this.isDark;
+  },
 };
 </script>
 
