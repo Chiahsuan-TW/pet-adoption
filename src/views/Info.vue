@@ -110,7 +110,7 @@ export default {
       //點擊愛心
       //isLiked 會切換
       //陣列第一筆都放目前資料
-      petDetailData: null,
+      petDetailData: {},
       findIndexResult: null,
       currentFavoriteData: null,
       isLikedStyle: null,
@@ -161,12 +161,12 @@ export default {
       this.isLikedStyle = !this.isLikedStyle;
       const saveData = {
         animal_id: this.id,
-        animal_kind: this.petDetailData.animal_kind,
-        animal_colour: this.petDetailData.animal_colour,
-        animal_place: this.petDetailData.animal_place,
+        animal_kind: this.petDetailData?.animal_kind,
+        animal_colour: this.petDetailData?.animal_colour,
+        animal_place: this.petDetailData?.animal_place,
         //要補轉換過的男女的資料
         animal_bacterin: this.petDetailData.animal_bacterin,
-        album_file: this.petDetailData.album_file,
+        album_file: this.petDetailData?.album_file,
       };
       this.currentFavoriteData.push(saveData);
       this.setLocalStorage(this.currentFavoriteData);
@@ -177,7 +177,7 @@ export default {
   },
   computed: {
     checkPhotoExit() {
-      if (this.petDetailData.album_file) {
+      if (this.petDetailData?.album_file) {
         return this.petDetailData.album_file;
       }
       return require("./../assets/images/dog-brown.jpg");
