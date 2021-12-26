@@ -1,11 +1,11 @@
 <template>
-  <link
+  <!-- <link
     rel="stylesheet"
     href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
     crossorigin="anonymous"
-  />
-  <nav>
+  /> -->
+  <!-- <nav>
     <router-link :to="{ name: 'Home' }"
       ><img src="./../assets/images/paw.png" alt="dog paw"
     /></router-link>
@@ -17,14 +17,13 @@
       <router-link :to="{ name: 'Management' }">後台管理</router-link>
       <span class="moon"><i class="fas fa-moon fa-fw"></i></span>
     </div>
-  </nav>
+  </nav> -->
 
-  <nav class="my_nav navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="my_nav navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-      <router-link :to="{ name: 'Home' }" class="logo"
-        ><h1>
-          <img src="./../assets/images/paw.png" alt="dog paw" /></h1
-      ></router-link>
+      <router-link :to="{ name: 'Home' }" class="logo navbar-brand">
+        <img src="./../assets/images/paw.png" alt="dog paw" />
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -39,20 +38,28 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link :to="{ name: 'Search' }">尋找浪浪</router-link>
+            <router-link class="nav-link" :to="{ name: 'Search' }"
+              >尋找浪浪</router-link
+            >
           </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'Tracking' }">追蹤浪浪</router-link>
+            <router-link class="nav-link" :to="{ name: 'Tracking' }"
+              >追蹤浪浪</router-link
+            >
           </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'Volunteer' }">志工招募</router-link>
+            <router-link class="nav-link" :to="{ name: 'Volunteer' }"
+              >志工招募</router-link
+            >
           </li>
           <li class="nav-item">
-            <a href="##">愛心項圈</a>
+            <a href="##" class="nav-link">愛心項圈</a>
           </li>
-          <!-- <li class="nav-item">
-            <router-link :to="{ name: 'Info' }">資訊</router-link>
-          </li> -->
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'Management' }"
+              >後台管理</router-link
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -67,59 +74,93 @@ export default {
 
 <style lang="scss" scoped>
 .my_nav {
+  padding: 41px 100px;
+  background-color: color.$primary;
+
   .container-fluid {
     padding: 0;
     .navbar-collapse {
-      flex: 0 0 100%;
       .navbar-nav {
         flex: 1 0 0;
         justify-content: flex-end;
-        gap: 60px;
         .nav-item {
-          flex: 0 0 50%;
+          &:not(:last-child) {
+            margin-right: 60px;
+          }
+          .nav-link {
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.25s;
+            &:hover {
+              color: color.$secondary;
+            }
+          }
         }
       }
     }
   }
 }
+@media (max-width: 991px) {
+  .my_nav {
+    .container-fluid {
+      .navbar-collapse {
+        margin-top: 10px;
+        .navbar-nav {
+          .nav-item {
+            .nav-link {
+              text-align: center;
+              border-bottom: 1px dotted #ddd;
+              transition: 0.25s;
+              &:hover {
+                background-color: color.$secondary;
+                color: #fff;
+                border-radius: 10px;
+              }
+            }
+          }
+          .nav-item:not(:last-child) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+// nav {
+//   padding: 41px 100px;
+//   background-color: color.$primary;
+// }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 41px 100px;
-  background-color: color.$primary;
-}
+// .tabs {
+//   a {
+//     color: color.$text_dark;
+//   }
+//   a + a {
+//     margin-left: 60px;
+//   }
+// }
+// .moon {
+//   font-size: 30px;
+//   border-radius: 100px;
+//   background-color: color.$text_dark;
+//   color: color.$secondary;
+// }
+// .isDark {
+//   font-size: 30px;
+//   border-radius: 100px;
+//   background-color: orange;
+//   color: rgb(241, 245, 10);
+// }
+// .dark_background {
+//   background: #000;
+//   .list-group-item {
+//     background: #000;
+//     color: #fff;
+//   }
 
-.tabs {
-  a {
-    color: color.$text_dark;
-  }
-  a + a {
-    margin-left: 60px;
-  }
-}
-.moon {
-  font-size: 30px;
-  border-radius: 100px;
-  background-color: color.$text_dark;
-  color: color.$secondary;
-}
-.isDark {
-  font-size: 30px;
-  border-radius: 100px;
-  background-color: orange;
-  color: rgb(241, 245, 10);
-}
-.dark_background {
-  background: #000;
-  .list-group-item {
-    background: #000;
-    color: #fff;
-  }
-
-  color: #fff;
-  h2 {
-    color: orange;
-  }
-}
+//   color: #fff;
+//   h2 {
+//     color: orange;
+//   }
+// }
 </style>
