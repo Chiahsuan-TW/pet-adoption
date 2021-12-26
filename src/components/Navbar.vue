@@ -1,4 +1,10 @@
 <template>
+  <link
+    rel="stylesheet"
+    href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+    crossorigin="anonymous"
+  />
   <nav>
     <router-link :to="{ name: 'Home' }"
       ><img src="./../assets/images/paw.png" alt="dog paw"
@@ -9,9 +15,7 @@
       <router-link :to="{ name: 'Volunteer' }">志工招募</router-link>
       <a href="##">愛心項圈</a>
       <router-link :to="{ name: 'Management' }">後台管理</router-link>
-      <span class="moon" @click="clickDark" :class="{ isDark }"
-        ><i class="fas fa-moon fa-fw"></i
-      ></span>
+      <span class="moon"><i class="fas fa-moon fa-fw"></i></span>
     </div>
   </nav>
 </template>
