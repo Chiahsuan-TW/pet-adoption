@@ -155,6 +155,7 @@ h2 {
   }
 }
 .search_content {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
