@@ -94,34 +94,70 @@
             <div>
               <div class="hadpets">
                 <label for="hadpets">現有動物隻數</label>
-                <input v-model="formData.hadpets" type="text" name="hadpets" id="hadpets" required />
+                <input
+                  v-model="formData.hadpets"
+                  type="text"
+                  name="hadpets"
+                  id="hadpets"
+                  required
+                />
               </div>
               <div></div>
             </div>
             <div>
               <div class="name">
                 <label for="name">認養人姓名</label>
-                <input v-model="formData.name" type="text" name="name" id="name" required />
+                <input
+                  v-model="formData.name"
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                />
               </div>
               <div class="birth">
                 <label for="birth">認養人出生日期</label>
-                <input v-model="formData.birth" type="text" name="birth" id="birth" required />
+                <input
+                  v-model="formData.birth"
+                  type="text"
+                  name="birth"
+                  id="birth"
+                  required
+                />
               </div>
             </div>
             <div>
               <div class="tel">
                 <label for="tel">認養人聯絡電話</label>
-                <input v-model="formData.tel" type="tel" name="tel" id="tel" required />
+                <input
+                  v-model="formData.tel"
+                  type="tel"
+                  name="tel"
+                  id="tel"
+                  required
+                />
               </div>
               <div class="mail">
                 <label for="mail">電子信箱</label>
-                <input v-model="formData.mail" type="email" name="mail" id="mail" required />
+                <input
+                  v-model="formData.mail"
+                  type="email"
+                  name="mail"
+                  id="mail"
+                  required
+                />
               </div>
             </div>
             <div>
               <div class="address">
                 <label for="address">通訊地址</label>
-                <input v-model="formData.address" type="text" name="address" id="address" required />
+                <input
+                  v-model="formData.address"
+                  type="text"
+                  name="address"
+                  id="address"
+                  required
+                />
               </div>
               <div></div>
             </div>
@@ -156,17 +192,17 @@ export default {
   },
   data() {
     return {
-        isClosed: false,
-        formData: {
-          location: "",
-          sapce: "",
-          hadpets: null,
-          name: "",
-          birth: "",
-          tel: "",
-          mail: "",
-          address: ""
-        }
+      isClosed: false,
+      formData: {
+        location: "",
+        sapce: "",
+        hadpets: null,
+        name: "",
+        birth: "",
+        tel: "",
+        mail: "",
+        address: "",
+      },
     };
   },
   methods: {
@@ -174,7 +210,6 @@ export default {
       this.isClosed = true;
     },
     async handleSubmit(form) {
-
       try {
         const docRef = await addDoc(collection(db, "adopters"), form);
         console.log("Document written with ID: ", docRef.id);

@@ -278,7 +278,7 @@
               data-bs-toggle="modal"
               data-bs-target="#application"
             >
-              <a href="##" data-bs-dismiss="modal">下一步</a>
+              <a href="##" data-bs-dismiss="modal" @click="validate">下一步</a>
             </Button>
             <!-- <Button
               class="next_btn"
@@ -301,10 +301,21 @@ export default {
   components: {
     Button,
   },
+  data() {
+    return {
+      accept: false,
+    };
+  },
   methods: {
-    handleSubmit() {
+    validate(e) {
       //TODO: 驗證
-      console.log("OK");
+      if (this.accept) {
+        console.log("next");
+        return;
+      } else {
+        console.log("STOP");
+        e.stopImmediatePropagation();
+      }
     },
   },
 };
