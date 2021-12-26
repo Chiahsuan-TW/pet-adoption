@@ -27,7 +27,9 @@ export default {
     id: { type: String },
   },
   data() {
-    return {};
+    return {
+      currentPage: 2,
+    };
   },
   computed: {
     genderTranslate() {

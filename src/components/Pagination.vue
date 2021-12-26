@@ -1,15 +1,48 @@
 <template>
   <nav aria-label="Page navigation ">
     <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="##">第一頁</a></li>
-      <li class="page-item"><a class="page-link active" href="##">1</a></li>
-      <li class="page-item"><a class="page-link" href="##">2</a></li>
-      <li class="page-item"><a class="page-link" href="##">3</a></li>
-      <li class="page-item"><a class="page-link" href="##">最後一頁</a></li>
+      <li class="page-item">
+        <a class="page-link" href="##" @click.prevent="clickPagination(1)"
+          >第一頁</a
+        >
+      </li>
+      <li
+        class="page-item"
+        v-for="numberOfpage in totalPage"
+        :key="numberOfpage"
+        @click.prevent="clickPagination(numberOfpage)"
+      >
+        <a class="page-link" href="##">{{ numberOfpage }} </a>
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="##"
+          @click.prevent="clickPagination(totalPage)"
+          >最後一頁</a
+        >
+      </li>
     </ul>
   </nav>
 </template>
-<script></script>
+<script>
+export default {
+  props: {
+    totalPage: {
+      type: Number,
+    },
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    clickPagination(numberOfpage) {
+      this.$emit("clickNumberOfPage", numberOfpage);
+    },
+  },
+  created() {},
+};
+</script>
 <style lang="scss" scope>
 %pagination {
   background: color.$secondary;

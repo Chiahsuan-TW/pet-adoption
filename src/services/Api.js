@@ -16,7 +16,7 @@ export default {
   },
   getPetsByVariable(kind, city) {
     return api.get(
-      `TransService.aspx?UnitId=QcbUEzN6E6DL&animal_area_pkid=${city}&animal_kind=${kind}`
+      `TransService.aspx?UnitId=QcbUEzN6E6DL&animal_area_pkid=${city}&animal_kind=${kind}&$top=100`
     );
   },
   getPetDetail(id) {

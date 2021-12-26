@@ -70,7 +70,7 @@ export default {
   methods: {
     click_city(city) {
       this.$emit("confirm", city);
-      console.log(this.animalKind);
+      // console.log(this.animalKind);
     },
     click_animal(animal) {
       // console.log(animal);

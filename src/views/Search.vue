@@ -9,11 +9,17 @@
         :cities="cities"
         :animalKind="animalKind"
       ></Filter>
-      <!-- <button type="button" style="padding: 30px" @click="getAnimalType">看api資料</button> -->
       <section class="content">
-        <Card v-for="pet in pets" :key="pet.animal_id" :pet="pet"></Card>
+        <Card
+          v-for="pet in dataPartition"
+          :key="pet.animal_id"
+          :pet="pet"
+        ></Card>
       </section>
-      <Pagination></Pagination>
+      <Pagination
+        :totalPage="claculatePages"
+        @clickNumberOfPage="numberOfpage"
+      ></Pagination>
     </div>
   </div>
 </template>
@@ -37,13 +43,16 @@ export default {
       animalKind: null,
       selectCity: null,
       selectAnimalType: null,
+      resultPerPage: 20,
+      currentPage: 1,
+      renderData: null,
     };
   },
   created() {
     Api.getPets()
       .then((response) => {
         this.pets = response.data;
-        // console.log('顯示第一次接api回傳', response.data);
+        // console.log("顯示第一次接api回傳", this.pets);
         this.getCityOfAddress();
         this.getAnimalType();
       })
@@ -54,13 +63,16 @@ export default {
   methods: {
     getCity(city) {
       this.selectCity = city;
-      console.log("選擇都市的", this.selectCity, this.cities[this.selectCity]);
-
-      // console.log('parent', city);
+      // console.log(
+      //   "選擇都市",
+      //   this.selectCity,
+      //   "code",
+      //   this.cities[this.selectCity]
+      // );
     },
     getAnimal(animal) {
       this.selectAnimalType = animal;
-      // console.log('parent', animal);
+      console.log("animal", this.selectAnimalType);
     },
     getCityOfAddress() {
       const apiData = this.pets;
@@ -88,9 +100,23 @@ export default {
       const kind = this.selectAnimalType ? this.selectAnimalType : "";
       const { data } = await Api.getPetsByVariable(kind, cityCode);
       this.pets = data;
-      console.log(data.length);
       this.selectCity = null;
       this.selectAnimalType = null;
+    },
+    numberOfpage(page) {
+      console.log("接受子的頁數", page);
+      this.currentPage = page;
+    },
+  },
+  computed: {
+    dataPartition() {
+      const start = (this.currentPage - 1) * this.resultPerPage;
+      const end = this.currentPage * this.resultPerPage;
+      return this.pets.slice(start, end);
+    },
+    claculatePages() {
+      const Pages = Math.ceil(this.pets.length / this.resultPerPage);
+      return Pages;
     },
   },
 };
@@ -132,6 +158,4 @@ h2 {
   flex-wrap: wrap;
   gap: 20px;
 }
-
-
 </style>
