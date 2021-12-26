@@ -140,7 +140,6 @@
               </button>
               <Button
                 class="btn next_btn"
-                @click="closeForm"
                 :data-bs-dismiss="isClosed ? 'modal' : ''"
                 :disabled="isConfirmed ? false : true"
                 >申請</Button
@@ -159,6 +158,7 @@ import { db } from "../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import Swal from "sweetalert2";
 
 export default {
   name: "AdoptionForm",
@@ -197,12 +197,17 @@ export default {
     },
     onSubmit(values) {
       console.log(values);
-      this.isClosed = true;
       this.handleSubmit(values);
+      this.closeForm();
     },
     async handleSubmit(form) {
       try {
         const docRef = await addDoc(collection(db, "adopters"), form);
+        Swal.fire({
+          icon: "success",
+          title: "感謝您的申請",
+          text: "志工會在收到資料後，與您聯繫",
+        });
         console.log("Document written with ID: ", docRef.id);
         this.closeForm();
       } catch (e) {
