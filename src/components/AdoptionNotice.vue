@@ -36,6 +36,7 @@
                 name="question_1"
                 id="question_1_true"
                 value="true"
+                v-model="questions.one"
               />
               <label for="question_1_true">是</label>
               <input
@@ -43,6 +44,7 @@
                 name="question_1"
                 id="question_1_false"
                 value="false"
+                v-model="questions.one"
                 checked
               />
               <label for="question_1_false">否</label>
@@ -62,6 +64,7 @@
                 name="question_2"
                 id="question_2_true"
                 value="true"
+                v-model="questions.two"
               />
               <label for="question_2_true">是</label>
               <input
@@ -69,6 +72,7 @@
                 name="question_2"
                 id="question_2_false"
                 value="false"
+                v-model="questions.two"
                 checked
               />
               <label for="question_2_false">否</label>
@@ -87,6 +91,7 @@
                 name="question_3"
                 id="question_3_true"
                 value="true"
+                v-model="questions.three"
               />
               <label for="question_3_true">是</label>
               <input
@@ -94,6 +99,7 @@
                 name="question_3"
                 id="question_3_false"
                 value="false"
+                v-model="questions.three"
                 checked
               />
               <label for="question_3_false">否</label>
@@ -114,6 +120,7 @@
                 name="question_4"
                 id="question_4_true"
                 value="true"
+                v-model="questions.four"
               />
               <label for="question_4_true">是</label>
               <input
@@ -121,6 +128,7 @@
                 name="question_4"
                 id="question_4_false"
                 value="false"
+                v-model="questions.four"
                 checked
               />
               <label for="question_4_false">否</label>
@@ -139,6 +147,7 @@
                 name="question_5"
                 id="question_5_true"
                 value="true"
+                v-model="questions.five"
               />
               <label for="question_5_true">是</label>
               <input
@@ -146,6 +155,7 @@
                 name="question_5"
                 id="question_5_false"
                 value="false"
+                v-model="questions.five"
                 checked
               />
               <label for="question_5_false">否</label>
@@ -162,6 +172,7 @@
                 name="question_6"
                 id="question_6_true"
                 value="true"
+                v-model="questions.six"
               />
               <label for="question_6_true">是</label>
               <input
@@ -169,6 +180,7 @@
                 name="question_6"
                 id="question_6_false"
                 value="false"
+                v-model="questions.six"
                 checked
               />
               <label for="question_6_false">否</label>
@@ -184,6 +196,7 @@
                 name="question_7"
                 id="question_7_true"
                 value="true"
+                v-model="questions.seven"
               />
               <label for="question_7_true">是</label>
               <input
@@ -191,6 +204,7 @@
                 name="question_7"
                 id="question_7_false"
                 value="false"
+                v-model="questions.seven"
                 checked
               />
               <label for="question_7_false">否</label>
@@ -209,6 +223,7 @@
                 name="question_8"
                 id="question_8_true"
                 value="true"
+                v-model="questions.eight"
               />
               <label for="question_8_true">是</label>
               <input
@@ -216,6 +231,7 @@
                 name="question_8"
                 id="question_8_false"
                 value="false"
+                v-model="questions.eight"
                 checked
               />
               <label for="question_8_false">否</label>
@@ -234,6 +250,7 @@
                 name="question_9"
                 id="question_9_true"
                 value="true"
+                v-model="questions.nine"
               />
               <label for="question_9_true">是</label>
               <input
@@ -241,6 +258,7 @@
                 name="question_9"
                 id="question_9_false"
                 value="false"
+                v-model="questions.nine"
                 checked
               />
               <label for="question_9_false">否</label>
@@ -259,6 +277,7 @@
                 name="question_10"
                 id="question_10_true"
                 value="true"
+                v-model="questions.ten"
               />
               <label for="question_10_true">是</label>
               <input
@@ -266,6 +285,7 @@
                 name="question_10"
                 id="question_10_false"
                 value="false"
+                v-model="questions.ten"
                 checked
               />
               <label for="question_10_false">否</label>
@@ -278,7 +298,15 @@
               data-bs-toggle="modal"
               data-bs-target="#application"
             >
-              <a href="##" data-bs-dismiss="modal" @click="validate">下一步</a>
+              <button
+                href="##"
+                data-bs-dismiss="modal"
+                @click="validate"
+                :disabled="isAllTrue ? false : true"
+                class="next_btn inner"
+              >
+                下一步
+              </button>
             </Button>
             <!-- <Button
               class="next_btn"
@@ -304,18 +332,36 @@ export default {
   data() {
     return {
       accept: false,
+      questions: {
+        one: false,
+        two: false,
+        three: false,
+        four: false,
+        five: false,
+        six: false,
+        seven: false,
+        eight: false,
+        nine: false,
+        ten: false,
+      },
     };
   },
   methods: {
     validate(e) {
       //TODO: 驗證
-      if (this.accept) {
+      if (this.isAllTrue) {
         console.log("next");
         return;
       } else {
         console.log("STOP");
         e.stopImmediatePropagation();
       }
+    },
+  },
+  computed: {
+    isAllTrue() {
+      const answers = Object.values(this.questions);
+      return answers.every((answer) => answer === "true");
     },
   },
 };
@@ -383,6 +429,12 @@ export default {
   }
   &:hover {
     background-color: #deb071;
+  }
+  .next_btn.inner {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: #fff;
   }
 }
 @media (max-width: 767px) {
