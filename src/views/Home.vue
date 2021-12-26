@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="parallax">
-      <section class="landing_page">
+      <section class="landing_page parallax_group">
         <section class="adoption">
           <div class="home">
             <img src="./../assets/images/home.png" alt="home icon" />

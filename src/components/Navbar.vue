@@ -74,6 +74,8 @@ export default {
 
 <style lang="scss" scoped>
 .my_nav {
+  position: sticky;
+  top: 0;
   padding: 41px 100px;
   background-color: color.$primary;
 
