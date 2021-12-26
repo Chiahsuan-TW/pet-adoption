@@ -157,7 +157,6 @@ h2 {
 .search_content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 20px;
   .search_card {
     display: inline-block;
@@ -179,17 +178,22 @@ h2 {
   .search_container {
     .search_content {
       .search_card {
-        flex: 1 0 0;
+        flex: 0 1 48%;
         gap: 2%;
+        .pet_card {
+          padding-right: 0;
+          padding-left: 0;
+        }
       }
     }
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   .search_container {
     .search_content {
+      justify-content: center;
       .search_card {
-        // flex: 0 0 80%;
+        flex: 0 0 80%;
       }
     }
   }
