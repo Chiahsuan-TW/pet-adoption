@@ -12,9 +12,9 @@
     </div>
   </nav>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="my_nav navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <router-link :to="{ name: 'Home' }"
+      <router-link :to="{ name: 'Home' }" class="logo"
         ><h1>
           <img src="./../assets/images/paw.png" alt="dog paw" /></h1
       ></router-link>
@@ -38,10 +38,13 @@
             <router-link :to="{ name: 'Tracking' }">追蹤浪浪</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <router-link :to="{ name: 'Volunteer' }">志工招募</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <a href="##">愛心項圈</a>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'Info' }">資訊</router-link>
           </li>
         </ul>
       </div>
@@ -56,6 +59,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.my_nav {
+  .container-fluid {
+    padding: 0;
+    .navbar-collapse {
+      flex: 0 0 100%;
+      .navbar-nav {
+        flex: 1 0 0;
+        justify-content: flex-end;
+        gap: 60px;
+        .nav-item {
+          flex: 0 0 50%;
+        }
+      }
+    }
+  }
+}
+
 nav {
   display: flex;
   justify-content: space-between;
