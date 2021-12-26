@@ -3,7 +3,8 @@
     <span class="sun clickSun"><i class="fas fa-sun fa-fw"></i></span>
     
   </div> -->
-  <div class="backend_content" :class="{ dark_background }">
+  <div class="backend_page" :class="{ dark_background }">
+    <h2>後台系統</h2>
     <div class="accordion" id="accordionExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
@@ -24,27 +25,20 @@
           aria-labelledby="headingOne"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
-            <h2>志工招募資訊</h2>
-            <div>
-              <ul class="list-group list-group-numbered">
-                <p v-if="noVolunteers">目前無人申請</p>
+          <div class="volunteer_content content_layout accordion-body">
+            <p v-if="noVolunteers">目前無人申請</p>
 
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-start"
-                  v-for="volunteer in volunteers"
-                  :key="volunteer"
-                >
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">姓名:{{ volunteer["name"] }}</div>
-                    <p>電話:{{ volunteer["tel"] }}</p>
-                    <p>電子信箱:{{ volunteer["email"] }}</p>
-                    <p>地址:{{ volunteer["address"] }}</p>
-                  </div>
-                  <!-- <span class="badge bg-primary rounded-pill">14</span> -->
-                </li>
-              </ul>
-            </div>
+            <ul class="volunteer_table">
+              <li class="" v-for="volunteer in volunteers" :key="volunteer">
+                <div class="table_content">
+                  <p class="name"><span>姓名:</span>{{ volunteer["name"] }}</p>
+                  <p><span>電話:</span>{{ volunteer["tel"] }}</p>
+                  <p><span>電子信箱:</span>{{ volunteer["email"] }}</p>
+                  <p><span>地址:</span>{{ volunteer["address"] }}</p>
+                </div>
+                <!-- <span class="badge bg-primary rounded-pill">14</span> -->
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -67,25 +61,18 @@
           aria-labelledby="headingTwo"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
-            <h2>認養申請</h2>
-            <div>
-              <p v-if="noAdopters">目前無人申請</p>
-              <ul class="list-group list-group-numbered">
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-start"
-                  v-for="adopter in adopters"
-                  :key="adopter"
-                >
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">姓名:{{ adopter["name"] }}</div>
-                    <p>電話:{{ adopter["tel"] }}</p>
-                    <p>電子信箱:{{ adopter["email"] }}</p>
-                    <p>地址:{{ adopter["address"] }}</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
+          <div class="adoption_content content_layout accordion-body">
+            <p v-if="noAdopters">目前無人申請</p>
+            <ul class="volunteer_table">
+              <li v-for="adopter in adopters" :key="adopter">
+                <div class="table_content">
+                  <p class="name"><span>姓名:</span>{{ adopter["name"] }}</p>
+                  <p><span>電話:</span>{{ adopter["tel"] }}</p>
+                  <p><span>電子信箱:</span>{{ adopter["email"] }}</p>
+                  <p><span>地址:</span>{{ adopter["address"] }}</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -147,8 +134,87 @@ export default {
 };
 </script>
 <style lang="scss" scope>
-.backend_content {
+.backend_page {
   max-width: 1440px;
+  min-height: 80vh;
+  padding: 0px 100px 60px 100px;
   margin: 0 auto;
+  background-color: color.$primary;
+  h2 {
+    color: #5e5b56;
+    margin-bottom: 26px;
+    font-size: 50px;
+  }
+}
+.accordion-item {
+  border-radius: 10px;
+  border: 2px solid color.$secondary;
+  box-shadow: 2px 2px 5px #999;
+  .accordion-header {
+    margin-bottom: 0;
+    .accordion-button {
+      padding: 18px 38px;
+      color: color.$text_dark;
+      font-size: 36px;
+      &:not(.collapsed) {
+        background-color: color.$primary;
+      }
+      &:focus {
+        border-color: color.$secondary;
+        box-shadow: 3px 3px 3px color.$secondary, 0 0 5px color.$secondary,
+          0 0 12px color.$secondary;
+      }
+    }
+  }
+}
+
+.content_layout {
+  p {
+  }
+  .volunteer_table {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background-color: color.$primary;
+    counter-reset: num;
+    li {
+      display: flex;
+      align-items: center;
+      flex: 0 0 100%;
+      gap: 50px;
+      padding: 20px;
+      .table_content {
+        flex: 1 0 0;
+      }
+      p {
+        padding: 5px 10px;
+        font-size: 20px;
+        span {
+          display: inline-block;
+          margin-right: 10px;
+          width: 100px;
+          font-size: 22px;
+        }
+      }
+      .name {
+        margin-bottom: 10px;
+        font-size: 28px;
+        font-weight: 600;
+        border-bottom: 2px solid #000;
+      }
+      &::before {
+        display: block;
+        font-size: 28px;
+        font-weight: 900;
+        counter-increment: num;
+        content: counter(num) ".";
+      }
+      &:nth-child(odd) {
+        background-color: color.$secondary;
+      }
+    }
+  }
 }
 </style>
