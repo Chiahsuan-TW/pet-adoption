@@ -23,7 +23,12 @@
         </div>
         <h3>步驟二 認養申請</h3>
         <div class="confirm_check">
-          <input type="checkbox" name="" id="confirm_check" />
+          <input
+            type="checkbox"
+            name=""
+            id="confirm_check"
+            v-model="isConfirmed"
+          />
           <label for="confirm_check"
             >本人願意遵守以下規定, 並提出認養申請</label
           >
@@ -64,140 +69,82 @@
             本認養申請資料送出後，不代表已完成所選動物之認養，亦不代表您已具認養本動物的第一優先權，認養以收容所現場完成程序為準。
           </li>
         </ol>
-        <Form @submit="onSubmit" :validation-schema="schema" id="my-form">
+        <Form @submit="onSubmit" :validation-schema="schema">
           <div class="applicant_info">
             <h4>申請資料</h4>
             <div class="applicant_input">
               <div>
                 <div class="location">
                   <label for="location">飼養地點</label>
-                  <Field name="location" type="location" />
-                  <ErrorMessage name="location" />
-                  <!-- <input
-                    v-model="formData.location"
-                    type="text"
+                  <Field
                     name="location"
-                    id="location"
+                    type="location"
                     placeholder="請輸入地址及型態(公寓、透天...)"
-                    required
-                  /> -->
+                  />
+                  <ErrorMessage name="location" />
                 </div>
                 <div class="space">
                   <label for="space">空間大小</label>
-                  <Field name="space" type="space" />
+                  <Field name="space" type="space" placeholder="請輸入坪數" />
                   <ErrorMessage name="space" />
-                  <!-- <input
-                    v-model="formData.space"
-                    type="text"
-                    name="space"
-                    id="space"
-                    placeholder="請輸入坪數"
-                    required
-                  /> -->
                 </div>
               </div>
               <div>
                 <div class="hadpets">
                   <label for="hadpets">現有動物隻數</label>
-                  <!-- <Field name="hadpets" type="hadpets" />
-                  <ErrorMessage name="hadpets" /> -->
-                  <!-- <input
-                    v-model="formData.hadpets"
-                    type="text"
-                    name="hadpets"
-                    id="hadpets"
-                    required
-                  /> -->
+                  <Field name="hadpets" type="hadpets" />
+                  <ErrorMessage name="hadpets" />
                 </div>
                 <div></div>
               </div>
               <div>
                 <div class="name">
                   <label for="name">認養人姓名</label>
-                  <!-- <Field name="name" type="name" />
-                  <ErrorMessage name="name" /> -->
-                  <!-- <input
-                    v-model="formData.name"
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                  /> -->
+                  <Field name="name" type="name" />
+                  <ErrorMessage name="name" />
                 </div>
                 <div class="birth">
                   <label for="birth">認養人出生日期</label>
-                  <!-- <Field name="birth" type="birth" />
-                  <ErrorMessage name="birth" /> -->
-                  <!-- <input
-                    v-model="formData.birth"
-                    type="text"
-                    name="birth"
-                    id="birth"
-                    required
-                  /> -->
+                  <Field name="birth" type="birth" />
+                  <ErrorMessage name="birth" />
                 </div>
               </div>
               <div>
                 <div class="tel">
                   <label for="tel">認養人聯絡電話</label>
-                  <!-- <Field name="tel" type="tel" />
-                  <ErrorMessage name="tel" /> -->
-                  <!-- <input
-                    v-model="formData.tel"
-                    type="tel"
-                    name="tel"
-                    id="tel"
-                    required
-                  /> -->
+                  <Field name="tel" type="tel" />
+                  <ErrorMessage name="tel" />
                 </div>
                 <div class="mail">
                   <label for="mail">電子信箱</label>
-                  <!-- <Field name="mail" type="mail" />
-                  <ErrorMessage name="mail" /> -->
-                  <!-- <input
-                    v-model="formData.mail"
-                    type="email"
-                    name="mail"
-                    id="mail"
-                    required
-                  /> -->
+                  <Field name="mail" type="mail" />
+                  <ErrorMessage name="mail" />
                 </div>
               </div>
               <div>
                 <div class="address">
                   <label for="address">通訊地址</label>
-                  <!-- <Field name="address" type="address" />
-                  <ErrorMessage name="address" /> -->
-                  <!-- <input
-                    v-model="formData.address"
-                    type="text"
-                    name="address"
-                    id="address"
-                    required
-                  /> -->
+                  <Field name="address" type="address" />
+                  <ErrorMessage name="address" />
                 </div>
                 <div></div>
               </div>
             </div>
             <div class="form_btn">
-              <button class="btn cancel_btn" data-bs-dismiss="modal">
+              <button
+                type="button"
+                class="btn cancel_btn"
+                data-bs-dismiss="modal"
+              >
                 取消
               </button>
-              <!-- <button
+              <Button
                 class="btn next_btn"
-                @click="handleSubmit(formData)"
+                @click="closeForm"
                 :data-bs-dismiss="isClosed ? 'modal' : ''"
+                :disabled="isConfirmed ? false : true"
+                >申請</Button
               >
-                申請
-              </button> -->
-              <button
-                class="btn next_btn"
-                :data-bs-dismiss="isClosed ? 'modal' : ''"
-                @click="closeForm()"
-                form="my-form"
-              >
-                申請
-              </button>
             </div>
           </div>
         </Form>
@@ -207,6 +154,7 @@
 </template>
 
 <script>
+import Button from "@/components/Button";
 import { db } from "../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
 import { Form, Field, ErrorMessage } from "vee-validate";
@@ -218,6 +166,7 @@ export default {
     Form,
     Field,
     ErrorMessage,
+    Button,
   },
   props: {
     formVisibility: {
@@ -235,11 +184,11 @@ export default {
       tel: yup.string().length(9).required(),
       mail: yup.string().email().required(),
       address: yup.string().trim().required(),
-      email: yup.string().email().required(),
     });
     return {
       schema,
       isClosed: false,
+      isConfirmed: false,
     };
   },
   methods: {
@@ -248,6 +197,8 @@ export default {
     },
     onSubmit(values) {
       console.log(values);
+      this.isClosed = true;
+      this.handleSubmit(values);
     },
     async handleSubmit(form) {
       try {
@@ -445,5 +396,9 @@ button[data-bs-target="#application"] {
       }
     }
   }
+}
+
+span[role="alert"] {
+  color: #e04b51;
 }
 </style>

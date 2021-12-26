@@ -325,23 +325,28 @@
 import Button from "@/components/Button";
 export default {
   name: "AdoptionNotice",
+  pros: {
+    formVisibility: {
+      type: Boolean,
+    },
+  },
   components: {
     Button,
   },
   data() {
     return {
-      accept: false,
+      accept: true,
       questions: {
-        one: false,
-        two: false,
-        three: false,
-        four: false,
-        five: false,
-        six: false,
-        seven: false,
-        eight: false,
-        nine: false,
-        ten: false,
+        one: true,
+        two: true,
+        three: true,
+        four: true,
+        five: true,
+        six: true,
+        seven: true,
+        eight: true,
+        nine: true,
+        ten: true,
       },
     };
   },
