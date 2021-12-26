@@ -43,7 +43,7 @@ export default {
       animalKind: null,
       selectCity: null,
       selectAnimalType: null,
-      resultPerPage: 20,
+      resultPerPage: 15,
       currentPage: 1,
       renderData: null,
     };

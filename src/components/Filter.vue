@@ -10,7 +10,7 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        請選擇
+        {{ type }}
       </a>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -33,7 +33,7 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        請選擇
+        {{ city }}
       </a>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -64,17 +64,22 @@ export default {
   },
   data() {
     return {
+      type: "請選擇",
+      city: "請選擇",
+
       theCity: null,
     };
   },
   methods: {
     click_city(city) {
       this.$emit("confirm", city);
+      this.city = city;
       // console.log(this.animalKind);
     },
     click_animal(animal) {
       // console.log(animal);
       this.$emit("confirm_animal", animal);
+      this.type = animal;
     },
   },
 };
