@@ -299,7 +299,6 @@
               data-bs-target="#application"
             >
               <button
-                href="##"
                 data-bs-dismiss="modal"
                 @click="validate"
                 :disabled="isAllTrue ? false : true"

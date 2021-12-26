@@ -64,115 +64,143 @@
             本認養申請資料送出後，不代表已完成所選動物之認養，亦不代表您已具認養本動物的第一優先權，認養以收容所現場完成程序為準。
           </li>
         </ol>
-        <div class="applicant_info">
-          <h4>申請資料</h4>
-          <div class="applicant_input">
-            <div>
-              <div class="location">
-                <label for="location">飼養地點</label>
-                <input
-                  v-model="formData.location"
-                  type="text"
-                  name="location"
-                  id="location"
-                  placeholder="請輸入地址及型態(公寓、透天...)"
-                  required
-                />
+        <Form @submit="onSubmit" :validation-schema="schema" id="my-form">
+          <div class="applicant_info">
+            <h4>申請資料</h4>
+            <div class="applicant_input">
+              <div>
+                <div class="location">
+                  <label for="location">飼養地點</label>
+                  <Field name="location" type="location" />
+                  <ErrorMessage name="location" />
+                  <!-- <input
+                    v-model="formData.location"
+                    type="text"
+                    name="location"
+                    id="location"
+                    placeholder="請輸入地址及型態(公寓、透天...)"
+                    required
+                  /> -->
+                </div>
+                <div class="space">
+                  <label for="space">空間大小</label>
+                  <Field name="space" type="space" />
+                  <ErrorMessage name="space" />
+                  <!-- <input
+                    v-model="formData.space"
+                    type="text"
+                    name="space"
+                    id="space"
+                    placeholder="請輸入坪數"
+                    required
+                  /> -->
+                </div>
               </div>
-              <div class="space">
-                <label for="space">空間大小</label>
-                <input
-                  v-model="formData.space"
-                  type="text"
-                  name="space"
-                  id="space"
-                  placeholder="請輸入坪數"
-                  required
-                />
+              <div>
+                <div class="hadpets">
+                  <label for="hadpets">現有動物隻數</label>
+                  <!-- <Field name="hadpets" type="hadpets" />
+                  <ErrorMessage name="hadpets" /> -->
+                  <!-- <input
+                    v-model="formData.hadpets"
+                    type="text"
+                    name="hadpets"
+                    id="hadpets"
+                    required
+                  /> -->
+                </div>
+                <div></div>
+              </div>
+              <div>
+                <div class="name">
+                  <label for="name">認養人姓名</label>
+                  <!-- <Field name="name" type="name" />
+                  <ErrorMessage name="name" /> -->
+                  <!-- <input
+                    v-model="formData.name"
+                    type="text"
+                    name="name"
+                    id="name"
+                    required
+                  /> -->
+                </div>
+                <div class="birth">
+                  <label for="birth">認養人出生日期</label>
+                  <!-- <Field name="birth" type="birth" />
+                  <ErrorMessage name="birth" /> -->
+                  <!-- <input
+                    v-model="formData.birth"
+                    type="text"
+                    name="birth"
+                    id="birth"
+                    required
+                  /> -->
+                </div>
+              </div>
+              <div>
+                <div class="tel">
+                  <label for="tel">認養人聯絡電話</label>
+                  <!-- <Field name="tel" type="tel" />
+                  <ErrorMessage name="tel" /> -->
+                  <!-- <input
+                    v-model="formData.tel"
+                    type="tel"
+                    name="tel"
+                    id="tel"
+                    required
+                  /> -->
+                </div>
+                <div class="mail">
+                  <label for="mail">電子信箱</label>
+                  <!-- <Field name="mail" type="mail" />
+                  <ErrorMessage name="mail" /> -->
+                  <!-- <input
+                    v-model="formData.mail"
+                    type="email"
+                    name="mail"
+                    id="mail"
+                    required
+                  /> -->
+                </div>
+              </div>
+              <div>
+                <div class="address">
+                  <label for="address">通訊地址</label>
+                  <!-- <Field name="address" type="address" />
+                  <ErrorMessage name="address" /> -->
+                  <!-- <input
+                    v-model="formData.address"
+                    type="text"
+                    name="address"
+                    id="address"
+                    required
+                  /> -->
+                </div>
+                <div></div>
               </div>
             </div>
-            <div>
-              <div class="hadpets">
-                <label for="hadpets">現有動物隻數</label>
-                <input
-                  v-model="formData.hadpets"
-                  type="text"
-                  name="hadpets"
-                  id="hadpets"
-                  required
-                />
-              </div>
-              <div></div>
-            </div>
-            <div>
-              <div class="name">
-                <label for="name">認養人姓名</label>
-                <input
-                  v-model="formData.name"
-                  type="text"
-                  name="name"
-                  id="name"
-                  required
-                />
-              </div>
-              <div class="birth">
-                <label for="birth">認養人出生日期</label>
-                <input
-                  v-model="formData.birth"
-                  type="text"
-                  name="birth"
-                  id="birth"
-                  required
-                />
-              </div>
-            </div>
-            <div>
-              <div class="tel">
-                <label for="tel">認養人聯絡電話</label>
-                <input
-                  v-model="formData.tel"
-                  type="tel"
-                  name="tel"
-                  id="tel"
-                  required
-                />
-              </div>
-              <div class="mail">
-                <label for="mail">電子信箱</label>
-                <input
-                  v-model="formData.mail"
-                  type="email"
-                  name="mail"
-                  id="mail"
-                  required
-                />
-              </div>
-            </div>
-            <div>
-              <div class="address">
-                <label for="address">通訊地址</label>
-                <input
-                  v-model="formData.address"
-                  type="text"
-                  name="address"
-                  id="address"
-                  required
-                />
-              </div>
-              <div></div>
+            <div class="form_btn">
+              <button class="btn cancel_btn" data-bs-dismiss="modal">
+                取消
+              </button>
+              <!-- <button
+                class="btn next_btn"
+                @click="handleSubmit(formData)"
+                :data-bs-dismiss="isClosed ? 'modal' : ''"
+              >
+                申請
+              </button> -->
+              <button
+                class="btn next_btn"
+                :data-bs-dismiss="isClosed ? 'modal' : ''"
+                @click="closeForm()"
+                form="my-form"
+              >
+                申請
+              </button>
             </div>
           </div>
-          <div class="form_btn">
-            <button class="btn cancel_btn" data-bs-dismiss="modal">取消</button>
-            <button
-              class="btn next_btn"
-              @click="handleSubmit(formData)"
-              :data-bs-dismiss="isClosed ? 'modal' : ''"
-            >
-              申請
-            </button>
-          </div>
-        </div>
+        </Form>
       </div>
     </div>
   </div>
@@ -181,9 +209,16 @@
 <script>
 import { db } from "../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 
 export default {
   name: "AdoptionForm",
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },
   props: {
     formVisibility: {
       type: Boolean,
@@ -191,23 +226,28 @@ export default {
     },
   },
   data() {
+    const schema = yup.object({
+      location: yup.string().trim().required(),
+      space: yup.string().trim().required(),
+      hadpets: yup.string().trim().required(),
+      name: yup.string().trim().required(),
+      birth: yup.string().trim().required(),
+      tel: yup.string().length(9).required(),
+      mail: yup.string().email().required(),
+      address: yup.string().trim().required(),
+      email: yup.string().email().required(),
+    });
     return {
+      schema,
       isClosed: false,
-      formData: {
-        location: "",
-        sapce: "",
-        hadpets: null,
-        name: "",
-        birth: "",
-        tel: "",
-        mail: "",
-        address: "",
-      },
     };
   },
   methods: {
     closeForm() {
       this.isClosed = true;
+    },
+    onSubmit(values) {
+      console.log(values);
     },
     async handleSubmit(form) {
       try {
