@@ -3,55 +3,92 @@
     <span class="sun clickSun"><i class="fas fa-sun fa-fw"></i></span>
     
   </div> -->
-  <!-- <div class="list-group">
-    <a
-      href="#"
-      class="list-group-item list-group-item-action active"
-      aria-current="true"
-    >
-      志工招募資訊
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">認養申請</a>
-  </div> -->
-
   <div class="backend_content" :class="{ dark_background }">
-    <h2>志工招募資訊</h2>
-    <div>
-      <ul class="list-group list-group-numbered">
-        <p v-if="noVolunteers">目前無人申請</p>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            志工招募資訊
+          </button>
+        </h2>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse show"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <h2>志工招募資訊</h2>
+            <div>
+              <ul class="list-group list-group-numbered">
+                <p v-if="noVolunteers">目前無人申請</p>
 
-        <li
-          class="list-group-item d-flex justify-content-between align-items-start"
-          v-for="volunteer in volunteers"
-          :key="volunteer"
-        >
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">姓名:{{ volunteer["name"] }}</div>
-            <p>電話:{{ volunteer["tel"] }}</p>
-            <p>電子信箱:{{ volunteer["email"] }}</p>
-            <p>地址:{{ volunteer["address"] }}</p>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-start"
+                  v-for="volunteer in volunteers"
+                  :key="volunteer"
+                >
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">姓名:{{ volunteer["name"] }}</div>
+                    <p>電話:{{ volunteer["tel"] }}</p>
+                    <p>電子信箱:{{ volunteer["email"] }}</p>
+                    <p>地址:{{ volunteer["address"] }}</p>
+                  </div>
+                  <!-- <span class="badge bg-primary rounded-pill">14</span> -->
+                </li>
+              </ul>
+            </div>
           </div>
-          <!-- <span class="badge bg-primary rounded-pill">14</span> -->
-        </li>
-      </ul>
-    </div>
-    <h2>認養申請</h2>
-    <div>
-      <p v-if="noAdopters">目前無人申請</p>
-      <ul class="list-group list-group-numbered">
-        <li
-          class="list-group-item d-flex justify-content-between align-items-start"
-          v-for="adopter in adopters"
-          :key="adopter"
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+          >
+            認養申請
+          </button>
+        </h2>
+        <div
+          id="collapseTwo"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample"
         >
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">姓名:{{ adopter["name"] }}</div>
-            <p>電話:{{ adopter["tel"] }}</p>
-            <p>電子信箱:{{ adopter["email"] }}</p>
-            <p>地址:{{ adopter["address"] }}</p>
+          <div class="accordion-body">
+            <h2>認養申請</h2>
+            <div>
+              <p v-if="noAdopters">目前無人申請</p>
+              <ul class="list-group list-group-numbered">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-start"
+                  v-for="adopter in adopters"
+                  :key="adopter"
+                >
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">姓名:{{ adopter["name"] }}</div>
+                    <p>電話:{{ adopter["tel"] }}</p>
+                    <p>電子信箱:{{ adopter["email"] }}</p>
+                    <p>地址:{{ adopter["address"] }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -111,5 +148,7 @@ export default {
 </script>
 <style lang="scss" scope>
 .backend_content {
+  max-width: 1440px;
+  margin: 0 auto;
 }
 </style>
