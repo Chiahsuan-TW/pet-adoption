@@ -57,9 +57,15 @@ export default {
   width: 400px;
   height: 426px;
   background: #fff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.6);
   color: color.$text_dark;
   margin-bottom: 20px;
+  transition: 0.5s;
+  &:hover {
+    filter: brightness(130%);
+    transform: translate(-4px, -6px);
+    box-shadow: 0 0 5px #888, 0 0 15px #888, 0 0 25px #888;
+  }
 }
 .wrap_img {
   width: 368px;

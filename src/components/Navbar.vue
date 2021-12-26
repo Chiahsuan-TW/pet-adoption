@@ -18,6 +18,45 @@
       <span class="moon"><i class="fas fa-moon fa-fw"></i></span>
     </div>
   </nav>
+
+  <nav class="my_nav navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <router-link :to="{ name: 'Home' }" class="logo"
+        ><h1>
+          <img src="./../assets/images/paw.png" alt="dog paw" /></h1
+      ></router-link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link :to="{ name: 'Search' }">尋找浪浪</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'Tracking' }">追蹤浪浪</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'Volunteer' }">志工招募</router-link>
+          </li>
+          <li class="nav-item">
+            <a href="##">愛心項圈</a>
+          </li>
+          <!-- <li class="nav-item">
+            <router-link :to="{ name: 'Info' }">資訊</router-link>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -27,6 +66,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.my_nav {
+  .container-fluid {
+    padding: 0;
+    .navbar-collapse {
+      flex: 0 0 100%;
+      .navbar-nav {
+        flex: 1 0 0;
+        justify-content: flex-end;
+        gap: 60px;
+        .nav-item {
+          flex: 0 0 50%;
+        }
+      }
+    }
+  }
+}
+
 nav {
   display: flex;
   justify-content: space-between;

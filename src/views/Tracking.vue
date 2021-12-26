@@ -1,12 +1,14 @@
 <template>
-  <div class="tracking">
+  <div class="tracking_page">
     <div class="tracking_container">
       <h2>追蹤浪浪</h2>
-      <!-- <p>{{ getTrackingPets }}</p> -->
       <section class="tracking_content">
-        <!-- <Card :pet="pet" /> -->
-        <!-- <Card v-for="pet in trackingPets" :key="pet.animal_id" :pet="pet" /> -->
-        <Card v-for="pet in pets" :key="pet.animal_id" :pet="pet" />
+        <Card
+          class="tracking_card"
+          v-for="pet in pets"
+          :key="pet.animal_id"
+          :pet="pet"
+        />
       </section>
     </div>
   </div>
@@ -76,7 +78,45 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  width: 100%;
+  ::v-deep .tracking_card {
+    display: inline-block;
+    .pet_card {
+      width: 100%;
+      height: auto;
+      text-align: center;
+      .wrap_img {
+        margin: 0 auto;
+      }
+      .introduce {
+        width: 368px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+@media (max-width: 1439px) {
+  .tracking_container {
+    .tracking_content {
+      .tracking_card {
+        flex: 0 1 48%;
+        gap: 2%;
+        .pet_card {
+          padding-right: 0;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 992px) {
+  .tracking_container {
+    .tracking_content {
+      justify-content: center;
+      .tracking_card {
+        flex: 0 0 80%;
+      }
+    }
+  }
 }
 .pagination {
   justify-content: center;
