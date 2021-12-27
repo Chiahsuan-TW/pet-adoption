@@ -79,7 +79,7 @@ export default {
   data() {
     const schema = yup.object({
       name: yup.string().trim().required(),
-      tel: yup.string().length(8).required(),
+      tel: yup.string().length(9).required(),
       email: yup.string().required().email(),
       address: yup.string().trim().required(),
     });
