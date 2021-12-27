@@ -368,7 +368,6 @@ main {
 
     img {
       animation: move 0.5s infinite alternate;
-
       @keyframes move {
         0% {
           transform: translateX(-6px);
@@ -377,10 +376,10 @@ main {
           transform: translateX(-3px);
         }
         50% {
-          transform: translateX(0px);
+          transform: translateX(-6px);
         }
         75% {
-          transform: translateX(5px);
+          transform: translateX(-3px);
         }
         100% {
           transform: translateX(10px);
