@@ -9,18 +9,23 @@
         :cities="cities"
         :animalKind="animalKind"
       ></Filter>
-      <section class="search_content">
-        <Card
-          class="search_card"
-          v-for="pet in dataPartition"
-          :key="pet.animal_id"
-          :pet="pet"
-        ></Card>
-      </section>
-      <Pagination
-        :totalPage="claculatePages"
-        @clickNumberOfPage="numberOfpage"
-      ></Pagination>
+      <div v-if="isLoading">
+        <Spinner />
+      </div>
+      <div v-else>
+        <section class="search_content">
+          <Card
+            class="search_card"
+            v-for="pet in dataPartition"
+            :key="pet.animal_id"
+            :pet="pet"
+          ></Card>
+        </section>
+        <Pagination
+          :totalPage="claculatePages"
+          @clickNumberOfPage="numberOfpage"
+        ></Pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -30,12 +35,14 @@ import Card from "@/components/Card";
 import Api from "@/services/Api";
 import Filter from "@/components/Filter";
 import Pagination from "@/components/Pagination";
+import Spinner from "@/components/Spinner";
 export default {
   name: "Search",
   components: {
     Card,
     Filter,
     Pagination,
+    Spinner,
   },
   data() {
     return {
@@ -47,6 +54,7 @@ export default {
       resultPerPage: 15,
       currentPage: 1,
       renderData: null,
+      isLoading: true,
     };
   },
   created() {
@@ -56,6 +64,7 @@ export default {
         // console.log("顯示第一次接api回傳", this.pets);
         this.getCityOfAddress();
         this.getAnimalType();
+        this.isLoading = false;
       })
       .catch((error) => {
         console.log(error);
@@ -95,12 +104,18 @@ export default {
       this.animalKind = [...new Set(allAnimalKind)];
     },
     async sendConfirm() {
+      this.isLoading = true;
       const cityCode = this.cities[this.selectCity]
         ? this.cities[this.selectCity]
         : "";
       const kind = this.selectAnimalType ? this.selectAnimalType : "";
       const { data } = await Api.getPetsByVariable(kind, cityCode);
       this.pets = data;
+      this.$router.push({
+        name: "Search",
+        query: { category: kind, city: this.selectCity },
+      });
+      this.isLoading = false;
       this.selectCity = null;
       this.selectAnimalType = null;
     },
