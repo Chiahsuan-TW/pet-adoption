@@ -5,7 +5,7 @@
       <section class="tracking_content">
         <Card
           class="tracking_card"
-          v-for="pet in pets"
+          v-for="pet in dataPartition"
           :key="pet.animal_id"
           :pet="pet"
         />
@@ -14,25 +14,24 @@
   </div>
 
   <nav aria-label="Page navigation ">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="##">第一頁</a></li>
-      <li class="page-item"><a class="page-link active" href="##">1</a></li>
-      <li class="page-item"><a class="page-link" href="##">2</a></li>
-      <li class="page-item"><a class="page-link" href="##">3</a></li>
-      <li class="page-item"><a class="page-link" href="##">最後一頁</a></li>
-    </ul>
+    <Pagination
+      :totalPage="claculatePages"
+      @clickNumberOfPage="numberOfpage"
+    ></Pagination>
   </nav>
 </template>
 
 <script>
 import Card from "@/components/Card.vue";
+import Pagination from "@/components/Pagination.vue";
 export default {
   name: "Tracking",
-  components: { Card },
+  components: { Card, Pagination },
   data() {
     return {
       pets: null,
-
+      resultPerPage: 15,
+      currentPage: 1,
       // pet: {
       //   animal_id: 123,
       //   animal_kind: "狗",
@@ -57,8 +56,23 @@ export default {
     // console.log(favorite);
     // this.trackingPets.push(favorite);
   },
-  methods: {},
-  computed: {},
+  methods: {
+    numberOfpage(page) {
+      console.log("接受子的頁數", page);
+      this.currentPage = page;
+    },
+  },
+  computed: {
+    dataPartition() {
+      const start = (this.currentPage - 1) * this.resultPerPage;
+      const end = this.currentPage * this.resultPerPage;
+      return this.pets.slice(start, end);
+    },
+    claculatePages() {
+      const Pages = Math.ceil(this.pets.length / this.resultPerPage);
+      return Pages;
+    },
+  },
 };
 </script>
 
@@ -144,5 +158,9 @@ h2 {
   &:last-child a {
     @extend %pagination;
   }
+}
+.Page {
+  display: flex;
+  justify-content: center;
 }
 </style>

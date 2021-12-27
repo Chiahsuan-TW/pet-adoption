@@ -56,4 +56,11 @@ export default {
     @extend %pagination;
   }
 }
+.pagination {
+  justify-content: center;
+
+  a {
+    color: color.$text_dark;
+  }
+}
 </style>
