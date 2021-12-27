@@ -60,11 +60,11 @@ export default {
   box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.6);
   color: color.$text_dark;
   margin-bottom: 20px;
-  transition: 0.5s;
+  transition: 0.6s;
   &:hover {
-    filter: brightness(130%);
-    transform: translate(-4px, -6px);
-    box-shadow: 0 0 5px #888, 0 0 15px #888, 0 0 25px #888;
+    filter: brightness(120%);
+    transform: translate(-4px, -8px);
+    box-shadow: 6px 4px 10px #777, 0 0 25px #777;
   }
 }
 .wrap_img {

@@ -21,12 +21,12 @@
         </h2>
         <div
           id="collapseOne"
-          class="accordion-collapse collapse show"
+          class="accordion-collapse collapse"
           aria-labelledby="headingOne"
           data-bs-parent="#accordionExample"
         >
           <div class="volunteer_content content_layout accordion-body">
-            <p v-if="noVolunteers">目前無人申請</p>
+            <p v-if="noVolunteers">目前無人申請喔!</p>
 
             <ul class="volunteer_table">
               <li class="" v-for="volunteer in volunteers" :key="volunteer">
@@ -52,7 +52,7 @@
             aria-expanded="false"
             aria-controls="collapseTwo"
           >
-            認養申請
+            認養申請資訊
           </button>
         </h2>
         <div
@@ -62,7 +62,7 @@
           data-bs-parent="#accordionExample"
         >
           <div class="adoption_content content_layout accordion-body">
-            <p v-if="noAdopters">目前無人申請</p>
+            <p v-if="noAdopters">目前無人申請喔!</p>
             <ul class="volunteer_table">
               <li v-for="adopter in adopters" :key="adopter">
                 <div class="table_content">
@@ -142,21 +142,28 @@ export default {
   background-color: color.$primary;
   h2 {
     color: #5e5b56;
-    margin-bottom: 26px;
+    margin-bottom: 50px;
     font-size: 50px;
   }
 }
 .accordion-item {
-  border-radius: 10px;
   border: 2px solid color.$secondary;
   box-shadow: 2px 2px 5px #999;
+  transition: transform 0.4s;
+  &:not(:first-of-type) {
+    margin-top: 20px;
+    border: 2px solid color.$secondary;
+  }
+  &:hover {
+    transform: translate(-4px, -8px);
+  }
   .accordion-header {
     margin-bottom: 0;
     .accordion-button {
       padding: 18px 38px;
       color: color.$text_dark;
       font-size: 36px;
-      &:not(.collapsed) {
+      &:not(.collapse) {
         background-color: color.$primary;
       }
       &:focus {
@@ -169,7 +176,14 @@ export default {
 }
 
 .content_layout {
-  p {
+  padding: 30px 20px;
+  > p {
+    padding: 20px;
+    font-size: 36px;
+    color: #fff;
+    background-color: #dcba8a;
+    border-radius: 20px;
+    text-align: center;
   }
   .volunteer_table {
     display: flex;
@@ -184,7 +198,7 @@ export default {
       align-items: center;
       flex: 0 0 100%;
       gap: 50px;
-      padding: 20px;
+      padding: 10px 20px;
       .table_content {
         flex: 1 0 0;
       }

@@ -78,7 +78,12 @@ export default {
   top: 0;
   padding: 41px 100px;
   background-color: color.$primary;
-
+  .logo {
+    transition: filter 0.25s;
+    &:hover {
+      filter: brightness(50%);
+    }
+  }
   .container-fluid {
     padding: 0;
     .navbar-collapse {
