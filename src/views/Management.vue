@@ -130,6 +130,8 @@ export default {
       this.dark_background = !this.dark_background;
       // console.log(this.isLight);
     },
+    computed: {},
+    methods: {},
   },
 };
 </script>

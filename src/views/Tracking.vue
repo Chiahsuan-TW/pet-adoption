@@ -44,18 +44,7 @@ export default {
   },
   created() {
     this.pets = JSON.parse(localStorage.getItem("favorite"));
-    console.log(this.pets);
-    // const pet = {
-    //   animal_id: 124,
-    //   animal_kind: "狗",
-    //   animal_colour: "brown",
-    //   animal_bacterin: "F",
-    //   animal_place: "tainan",
-    // };
-    // localStorage.setItem("favorite", JSON.stringify(pet));
-    // const favorite = JSON.parse(localStorage.getItem("favorite"));
-    // console.log(favorite);
-    // this.trackingPets.push(favorite);
+    // console.log(this.pets);
   },
   methods: {},
   computed: {},

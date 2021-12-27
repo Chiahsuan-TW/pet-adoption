@@ -1,8 +1,14 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: {},
-  mutations: {},
+  state: {
+    isLoveStyle: false,
+  },
+  mutations: {
+    changeLoveStyle(state) {
+      state.isLoveStyle = true;
+    },
+  },
   actions: {},
   modules: {},
 });
