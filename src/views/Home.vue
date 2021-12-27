@@ -1,10 +1,12 @@
 <template>
   <main>
     <div class="parallax">
-      <section class="landing_page parallax_group">
+      <section class="landing_page">
         <section class="adoption">
           <div class="home">
-            <img src="./../assets/images/home.png" alt="home icon" />
+            <div class="mask">
+              <img src="./../assets/images/home.png" alt="home icon" />
+            </div>
           </div>
           <h1>浪我陪你等家</h1>
           <h2>領養代替購買</h2>
@@ -12,18 +14,20 @@
           <div class="dots">
             <img src="./../assets/images/circles.png" alt="dots box" />
           </div>
-          <button @click="scrollToNext">
-            <img
-              src="./../assets/images/arrow-down.png"
-              alt="arrow downwards"
-            />
+          <button>
+            <a href="#gallery">
+              <img
+                src="./../assets/images/arrow-down.png"
+                alt="arrow downwards"
+              />
+            </a>
           </button>
         </section>
         <section class="dog_profile">
           <img src="./../assets/images/photo/home-dog-1.jpg" alt="brown dog" />
         </section>
       </section>
-      <section class="gallery parallax_group">
+      <section id="gallery" class="gallery parallax_group">
         <div class="gallery_img_1 parallax_layer parallax_layer--base">
           <img
             src="./../assets/images/photo/home-dog-2.jpg"
@@ -47,10 +51,10 @@
         <div class="gallery_img_5 parallax_layer parallax_layer--closely">
           <img src="./../assets/images/photo/home-dog-4.jpg" alt="black dog" />
         </div>
-        <div class="gallery_text_link">
+        <router-link class="gallery_text_link" :to="{ name: 'Search' }">
           <p>為牠駐足，尋找你們之間的命中注定</p>
           <img src="./../assets/images/arrow-right.png" alt="right arraow" />
-        </div>
+        </router-link>
       </section>
       <section class="volunteer parallax_group">
         <div class="volunteer_title parallax_layer parallax_layer--fore">
@@ -158,6 +162,7 @@ export default {
     }
   }
 }
+// p
 // parallax for group2
 .gallery.parallax_group {
   height: 1441px;
@@ -199,9 +204,18 @@ export default {
   }
 }
 .gallery_text_link {
-  position: relative;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: fit-content;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 6;
   p {
+    font-size: 40px;
+    font-weight: 900;
     text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 12px #fff, 0 0 20px #fff;
   }
 }
@@ -240,7 +254,7 @@ main {
 .landing_page {
   position: relative;
   z-index: 99;
-  height: calc(100vh - 112px);
+  height: calc(100vh - 125px);
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -286,7 +300,7 @@ main {
   }
 
   .dog_profile {
-    height: calc(100vh - 112px);
+    height: 100%;
     width: 50%;
 
     img {
@@ -303,6 +317,18 @@ main {
     position: absolute;
     bottom: 0;
     transition: 0.25s;
+    a {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
     &:hover {
       filter: contrast(120%);
     }
@@ -315,7 +341,7 @@ main {
   width: 100%;
   height: 1441px;
   img {
-    box-shadow: 2px 4px 20px #555;
+    // box-shadow: 1px 2px 10px #555;
     &[alt^="right"] {
       box-shadow: none;
     }
@@ -492,6 +518,38 @@ main {
   100% {
     transform: rotate3d(0, 1, 0, 360deg);
     filter: hue-rotate(360deg);
+  }
+}
+
+// home animation
+.home {
+  position: relative;
+  width: 575px;
+  height: 290px;
+  .mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: transparent;
+    animation: mask 5s ease infinite;
+    overflow: hidden;
+    img {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+  }
+}
+@keyframes mask {
+  from {
+    height: 0;
+    top: 290px;
+  }
+  to {
+    height: 290px;
+    top: 0;
   }
 }
 </style>

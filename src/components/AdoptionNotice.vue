@@ -482,7 +482,7 @@ export default {
   }
   p {
     display: flex;
-    width: 900px;
+    width: 800px;
   }
   .check_box {
     input[type="radio"] {
@@ -512,7 +512,7 @@ export default {
   .question {
     flex-wrap: wrap;
     p {
-      margin-bottom: 8px;
+      margin-bottom: 15px;
     }
     .check_box {
       margin-left: 16px;
