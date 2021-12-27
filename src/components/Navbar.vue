@@ -1,10 +1,10 @@
 <template>
-  <!-- <link
+  <link
     rel="stylesheet"
     href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
     crossorigin="anonymous"
-  /> -->
+  />
   <!-- <nav>
     <router-link :to="{ name: 'Home' }"
       ><img src="./../assets/images/paw.png" alt="dog paw"
@@ -48,7 +48,10 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Tracking' }">
+            <router-link
+              class="nav-link tracking_link"
+              :to="{ name: 'Tracking' }"
+            >
               <i class="fas fa-heart love" v-if="isLoveStyle"></i
               >追蹤浪浪</router-link
             >
@@ -213,20 +216,42 @@ export default {
   background-color: orange;
   color: rgb(241, 245, 10);
 }
-.love {
-  color: red;
-  height: 50px;
-  // animation-name: oxxo;
-  // animation-duration: 1s;
-  // animation-timing-function: ease-in;
-  // animation-iteration-count: infinite;
-  // @keyframes oxxo {
-  //   from {
-  //     top: 0;
-  //   }
-  //   to {
-  //     bottom: 100px;
-  //   }
+.tracking_link {
+  position: relative;
+  .love {
+    position: absolute;
+    left: -22px;
+    top: 10px;
+    color: red;
+    font-size: 22px;
+    animation: oxxo 3s linear, 1.5s linear 3s moving infinite;
+    animation-fill-mode: forwards;
+  }
+}
+@keyframes oxxo {
+  from {
+    top: -80px;
+  }
+  to {
+    top: 10px;
+  }
+}
+@keyframes moving {
+  0% {
+    left: -22px;
+  }
+  25% {
+    left: -25px;
+  }
+  50% {
+    left: -22px;
+  }
+  75% {
+    left: -19px;
+  }
+  100% {
+    left: -22px;
+  }
 }
 // animation: move 1s infinite alternate;
 
