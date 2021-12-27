@@ -48,7 +48,8 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Tracking' }"
+            <router-link class="nav-link" :to="{ name: 'Tracking' }">
+              <i class="fas fa-heart love" v-if="isLoveStyle"></i
               >追蹤浪浪</router-link
             >
           </li>
@@ -215,9 +216,9 @@ export default {
 .love {
   color: red;
   height: 50px;
-  animation-name: oxxo;
-  animation-duration: 1s;
-  animation-timing-function: ease-in;
+  // animation-name: oxxo;
+  // animation-duration: 1s;
+  // animation-timing-function: ease-in;
   // animation-iteration-count: infinite;
   // @keyframes oxxo {
   //   from {
@@ -226,25 +227,25 @@ export default {
   //   to {
   //     bottom: 100px;
   //   }
-  // }
-  animation: move 1s infinite alternate;
-
-  @keyframes move {
-    0% {
-      transform: translateX(-6px);
-    }
-    25% {
-      transform: translateX(-3px);
-    }
-    50% {
-      transform: translateX(0px);
-    }
-    75% {
-      transform: translateX(3px);
-    }
-    100% {
-      transform: translateX(0px);
-    }
-  }
 }
+// animation: move 1s infinite alternate;
+
+// @keyframes move {
+//   0% {
+//     transform: translateX(-6px);
+//   }
+//   25% {
+//     transform: translateX(-3px);
+//   }
+//   50% {
+//     transform: translateX(0px);
+//   }
+//   75% {
+//     transform: translateX(3px);
+//   }
+//   100% {
+//     transform: translateX(0px);
+//   }
+// }
+// }
 </style>
