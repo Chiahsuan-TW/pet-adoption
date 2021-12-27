@@ -139,7 +139,7 @@ export default {
     },
     findIndex() {
       this.findIndexResult = this.currentFavoriteData.findIndex((data) => {
-        return data.petId === this.id;
+        return data.animal_id === this.id;
       });
     },
     checkLikedStyle() {

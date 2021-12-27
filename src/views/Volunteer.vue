@@ -78,6 +78,8 @@ import Button from "@/components/Button";
 import ApplicationForm from "@/components/ApplicationForm";
 import { db } from "../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
+import Swal from "sweetalert2";
+
 
 export default {
   name: "Volunteer",
@@ -94,7 +96,11 @@ export default {
     async handleSubmit(form) {
       try {
         const docRef = await addDoc(collection(db, "volunteers"), form);
-        alert("感謝您的報名，志工會在收到資料，志工會在收到資料後，與您聯繫");
+        Swal.fire({
+          icon: "success",
+          title: "感謝您的報名",
+          text: "志工會在收到資料後，與您聯繫",
+        });
         console.log("Document written with ID: ", docRef.id);
         this.closeForm();
       } catch (e) {

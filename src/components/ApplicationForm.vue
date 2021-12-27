@@ -79,7 +79,7 @@ export default {
   data() {
     const schema = yup.object({
       name: yup.string().trim().required(),
-      tel: yup.string().length(8).required(),
+      tel: yup.string().length(9).required(),
       email: yup.string().required().email(),
       address: yup.string().trim().required(),
     });
@@ -138,6 +138,10 @@ export default {
         border: 0;
         border: 2px solid color.$secondary;
         outline: none;
+
+        &:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0 1000px #fff inset;
+        }
       }
       span[role="alert"] {
         color: #e04b51;
