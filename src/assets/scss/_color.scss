@@ -1,4 +1,4 @@
-$primary: #fbf8f5;
+$primary: #fbf8f5; 
 $secondary: #dec39e;
 $text_dark: #5e5b56;
 $text_light: #818181;
@@ -7,7 +7,12 @@ $cancel_btn: #e5e5e5;
 
 :root {
   --primary:$fbf8f5;
-  --test1:black;
+  --secondary:black;
 }
 
-:root.dark {}
+:root.dark {
+  --primary:pink;
+  --secondary:red;
+
+}
+

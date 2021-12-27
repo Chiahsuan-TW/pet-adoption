@@ -106,6 +106,12 @@ export default {
   components: {
     Button,
   },
+  data() {
+    return {
+      pets: [],
+      isLoveStyle: null,
+    };
+  },
   methods: {
     scrollToNext() {
       window.scrollTo({
@@ -113,6 +119,21 @@ export default {
         behavior: "smooth",
       });
     },
+    isExistData() {
+      console.log("我在home", this.pets, this.pets.length);
+      if (this.pets.length > 0) {
+        this.$store.commit("changeLoveStyle");
+        // this.isLoveStyle = true;
+      } else {
+        this.isLoveStyle = false;
+      }
+      // this.$p("isLoveStyle", this.isLoveStyle);
+    },
+  },
+  created() {
+    this.pets = JSON.parse(localStorage.getItem("favorite")) || [];
+    // console.log("2", this.pets);
+    this.isExistData();
   },
 };
 </script>

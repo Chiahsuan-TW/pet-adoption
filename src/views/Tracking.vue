@@ -44,7 +44,7 @@ export default {
   },
   created() {
     this.pets = JSON.parse(localStorage.getItem("favorite"));
-    console.log(this.pets);
+    // console.log(this.pets);
   },
   methods: {},
   computed: {},

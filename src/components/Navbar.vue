@@ -11,11 +11,14 @@
     /></router-link>
     <div class="tabs">
       <router-link :to="{ name: 'Search' }">尋找浪浪</router-link>
-      <router-link :to="{ name: 'Tracking' }">追蹤浪浪</router-link>
+      <router-link :to="{ name: 'Tracking' }">
+        <i class="fas fa-heart love" v-if="isLoveStyle"></i
+        >追蹤浪浪</router-link
+      >
       <router-link :to="{ name: 'Volunteer' }">志工招募</router-link>
       <a href="##">愛心項圈</a>
       <router-link :to="{ name: 'Management' }">後台管理</router-link>
-      <span class="moon" @click="clickDark"
+      <span class="moon" @click="clickDark" :class="{ isDark }"
         ><i class="fas fa-moon fa-fw"></i
       ></span>
     </div>
@@ -62,18 +65,31 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Navbar",
+  emits: ["darkModel"],
   data() {
     return {
-      // isDark:true;
+      isDark: true,
+      currentFavoriteData: null,
+      // isLoveStyle: true,
+      // show: true,
     };
   },
-  created() {},
-  methods: {},
-  clickDark() {
-    console.log("點擊月亮");
-    this.isDark = !this.isDark;
+  computed: {
+    ...mapState(["isLoveStyle"]),
+  },
+  methods: {
+    clickDark() {
+      this.isDark = !this.isDark;
+      this.$emit("darkModel", this.isDark);
+    },
+
+    isLove(islove) {
+      console.log("我在navbar", islove);
+    },
   },
 };
 </script>
@@ -111,28 +127,55 @@ nav {
     margin-left: 60px;
   }
 }
-.moon {
+.moon.isDark {
   font-size: 30px;
   border-radius: 100px;
   background-color: color.$text_dark;
   color: color.$secondary;
 }
-.isDark {
+.moon {
   font-size: 30px;
   border-radius: 100px;
   background-color: orange;
   color: rgb(241, 245, 10);
 }
-.dark_background {
-  background: #000;
-  .list-group-item {
-    background: #000;
-    color: #fff;
-  }
+.love {
+  color: red;
+  // float: right;
+  // position: absolute;
+  // top: 8%;
+  // transform: translate(120px);
+  height: 50px;
+  animation-name: oxxo;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  // animation-iteration-count: infinite;
+  // @keyframes oxxo {
+  //   from {
+  //     top: 0;
+  //   }
+  //   to {
+  //     bottom: 100px;
+  //   }
+  // }
+  animation: move 1s infinite alternate;
 
-  color: #fff;
-  h2 {
-    color: orange;
+  @keyframes move {
+    0% {
+      transform: translateX(-6px);
+    }
+    25% {
+      transform: translateX(-3px);
+    }
+    50% {
+      transform: translateX(0px);
+    }
+    75% {
+      transform: translateX(3px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
   }
 }
 </style>
