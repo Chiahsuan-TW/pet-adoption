@@ -152,23 +152,23 @@ h2 {
   font-size: 50px;
 }
 
-.search_container {
-  .pagination {
-    justify-content: center;
-    font-size: 18px;
-    a {
-      color: #e5e5e5;
-      border: 0;
-      background: none;
-      &:focus {
-        box-shadow: none;
-      }
-      &:hover {
-        color: color.$text_dark;
-      }
-    }
-  }
-}
+// .search_container {
+//   .pagination {
+//     justify-content: center;
+//     font-size: 18px;
+//     a {
+//       color: #e5e5e5;
+//       border: 0;
+//       background: none;
+//       &:focus {
+//         box-shadow: none;
+//       }
+//       &:hover {
+//         color: color.$text_dark;
+//       }
+//     }
+//   }
+// }
 .search_content {
   width: 100%;
   display: flex;
