@@ -120,7 +120,7 @@ export default {
       //陣列第一筆都放目前資料
       petDetailData: {},
       findIndexResult: null,
-      currentFavoriteData: null,
+      currentFavoriteData: [],
       isLikedStyle: null,
       formVisibility: false,
       query: {
@@ -222,6 +222,16 @@ export default {
           return "小";
         default:
           return "尚未確認";
+      }
+    },
+  },
+  watch: {
+    currentFavoriteData: function (newValue) {
+      this.$store.commit("setFollowAmount", newValue.length);
+      if (newValue.length > 0) {
+        this.$store.commit("hasLoveStyle");
+      } else {
+        this.$store.commit("deleteLoveStyle");
       }
     },
   },

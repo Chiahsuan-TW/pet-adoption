@@ -52,8 +52,11 @@
               class="nav-link tracking_link"
               :to="{ name: 'Tracking' }"
             >
-              <i class="fas fa-heart love" v-if="isLoveStyle"></i
-              >追蹤浪浪</router-link
+              <!-- <i class="fas fa-heart love" v-if="isLoveStyle"></i> -->
+              <div v-if="isLoveStyle" class="heart love">
+                <span>{{ followAmount }}</span>
+              </div>
+              追蹤浪浪</router-link
             >
           </li>
           <li class="nav-item">
@@ -85,12 +88,10 @@ export default {
     return {
       isDark: true,
       currentFavoriteData: null,
-      // isLoveStyle: true,
-      // show: true,
     };
   },
   computed: {
-    ...mapState(["isLoveStyle"]),
+    ...mapState(["isLoveStyle", "followAmount"]),
   },
   methods: {
     clickDark() {
@@ -218,17 +219,56 @@ export default {
 }
 .tracking_link {
   position: relative;
+
+  .heart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: pink;
+    height: 20px;
+    width: 20px;
+    transform: rotate(-45deg);
+
+    &::after {
+      background-color: pink;
+      content: "";
+      border-radius: 50%;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 0px;
+      left: 10px;
+      z-index: -2;
+    }
+
+    &::before {
+      content: "";
+      background-color: pink;
+      border-radius: 50%;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: -10px;
+      left: 0px;
+      z-index: -2;
+    }
+
+    span {
+      font-size: 12px;
+      color: color.$text_dark;
+      transform: rotate(45deg);
+    }
+  }
+
   .love {
     position: absolute;
-    left: -22px;
-    top: 10px;
-    color: red;
-    font-size: 22px;
-    animation: oxxo 3s linear, 1.5s linear 3s moving infinite;
+    right: 100%;
+    animation: moveIn 3s linear, 1.5s linear 3s pump infinite;
     animation-fill-mode: forwards;
   }
 }
-@keyframes oxxo {
+@keyframes moveIn {
   from {
     top: -80px;
   }
@@ -253,24 +293,23 @@ export default {
     left: -22px;
   }
 }
-// animation: move 1s infinite alternate;
 
-// @keyframes move {
-//   0% {
-//     transform: translateX(-6px);
-//   }
-//   25% {
-//     transform: translateX(-3px);
-//   }
-//   50% {
-//     transform: translateX(0px);
-//   }
-//   75% {
-//     transform: translateX(3px);
-//   }
-//   100% {
-//     transform: translateX(0px);
-//   }
-// }
-// }
+@keyframes pump {
+  0% {
+    transform: rotate(-45deg), scale(0);
+  }
+  25% {
+    transform: rotate(-45deg) scale(0.8);
+  }
+  50% {
+    transform: rotate(-45deg), scale(0.6);
+  }
+  75% {
+    transform: rotate(-45deg), scale(0.8);
+  }
+  100% {
+    transform: rotate(-45deg), scale(0);
+  }
+}
+
 </style>

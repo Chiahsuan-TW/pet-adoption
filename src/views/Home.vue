@@ -124,19 +124,16 @@ export default {
       });
     },
     isExistData() {
-      console.log("我在home", this.pets, this.pets.length);
+      this.$store.commit("setFollowAmount", this.pets.length);
       if (this.pets.length > 0) {
-        this.$store.commit("changeLoveStyle");
-        // this.isLoveStyle = true;
+        this.$store.commit("hasLoveStyle");
       } else {
-        this.isLoveStyle = false;
+        this.$store.commit("deleteLoveStyle");
       }
-      // this.$p("isLoveStyle", this.isLoveStyle);
     },
   },
   created() {
     this.pets = JSON.parse(localStorage.getItem("favorite")) || [];
-    // console.log("2", this.pets);
     this.isExistData();
   },
 };
