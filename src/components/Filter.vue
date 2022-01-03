@@ -77,10 +77,8 @@ export default {
     click_city(city) {
       this.$emit("confirm", city);
       this.city = city;
-      // console.log(this.animalKind);
     },
     click_animal(animal) {
-      // console.log(animal);
       this.$emit("confirm_animal", animal);
       this.type = animal;
     },
@@ -178,7 +176,8 @@ $border: 2px solid color.$secondary;
       padding: 0;
       transform: translate3d(0, 46px, 0) !important;
       max-height: 200px;
-      overflow: scroll;
+      overflow-x: hidden;
+      overflow-y: auto;
       a {
         width: 100%;
         text-align: center;
@@ -193,8 +192,5 @@ $border: 2px solid color.$secondary;
       }
     }
   }
-}
-.dropdown-menu.show {
-  // top: -5px !important;
 }
 </style>
