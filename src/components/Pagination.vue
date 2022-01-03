@@ -38,15 +38,16 @@ export default {
     totalPage: {
       type: Number,
     },
+    currentPage: {
+      type: Number,
+    },
   },
   data() {
-    return {
-      currentPage: 1,
-    };
+    return {};
   },
   methods: {
     clickPagination(numberOfpage) {
-      this.currentPage = numberOfpage;
+      // this.currentPage = numberOfpage;
       this.$emit("clickNumberOfPage", numberOfpage);
     },
   },

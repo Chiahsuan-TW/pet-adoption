@@ -3,7 +3,7 @@
     <div class="search_container">
       <h2>尋找浪浪</h2>
       <Filter
-        @clickSend="sendConfirm"
+        @clickSend="sendConfirm(true)"
         @confirm="getCity"
         @confirm_animal="getAnimal"
         :cities="cities"
@@ -23,6 +23,7 @@
         </section>
         <Pagination
           :totalPage="claculatePages"
+          :currentPage="currentPage"
           @clickNumberOfPage="numberOfpage"
         ></Pagination>
       </div>
@@ -57,32 +58,12 @@ export default {
       isLoading: true,
     };
   },
-  created() {
-    Api.getPets()
-      .then((response) => {
-        this.pets = response.data;
-        // console.log("顯示第一次接api回傳", this.pets);
-        this.getCityOfAddress();
-        this.getAnimalType();
-        this.isLoading = false;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
   methods: {
     getCity(city) {
       this.selectCity = city;
-      // console.log(
-      //   "選擇都市",
-      //   this.selectCity,
-      //   "code",
-      //   this.cities[this.selectCity]
-      // );
     },
     getAnimal(animal) {
       this.selectAnimalType = animal;
-      console.log("animal", this.selectAnimalType);
     },
     getCityOfAddress() {
       const apiData = this.pets;
@@ -93,7 +74,6 @@ export default {
         let city = address[0] + address[1] + address[2];
         cities[city] = city_code;
       });
-      // console.log(cities);
       this.cities = { ...cities };
     },
     getAnimalType() {
@@ -103,25 +83,47 @@ export default {
       });
       this.animalKind = [...new Set(allAnimalKind)];
     },
-    async sendConfirm() {
+    async sendConfirm(isSamePage) {
       this.isLoading = true;
+
+      if (isSamePage) {
+        this.currentPage = 1;
+      }
+
       const cityCode = this.cities[this.selectCity]
         ? this.cities[this.selectCity]
         : "";
       const kind = this.selectAnimalType ? this.selectAnimalType : "";
       const { data } = await Api.getPetsByVariable(kind, cityCode);
       this.pets = data;
+
       this.$router.push({
         name: "Search",
-        query: { category: kind, city: this.selectCity },
+        query: {
+          category: kind,
+          city: this.selectCity,
+          page: this.currentPage,
+        },
       });
       this.isLoading = false;
-      this.selectCity = null;
-      this.selectAnimalType = null;
     },
     numberOfpage(page) {
-      console.log("接受子的頁數", page);
       this.currentPage = page;
+      this.$router.push({
+        name: "Search",
+        query: { category: this.selectAnimalType, city: this.selectCity, page },
+      });
+    },
+    async getAllAnimals() {
+      try {
+        const { data } = await Api.getPets();
+        this.pets = data;
+        this.getCityOfAddress();
+        this.getAnimalType();
+        this.isLoading = false;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   computed: {
@@ -135,10 +137,34 @@ export default {
       return Pages;
     },
   },
+  async created() {
+    const { city, category, page } = this.$route.query;
+    await this.getAllAnimals();
+
+    //不是從info頁進來
+    if (!city && !category && !page) {
+      return;
+
+      //從info頁進來，但沒有搜尋
+    } else if (!city && !category) {
+      this.currentPage = Number(page);
+
+      //從info頁進來，有搜尋也有點選頁數
+    } else {
+      this.selectCity = city;
+      this.selectAnimalType = category;
+      this.currentPage = Number(page);
+
+      await this.sendConfirm(false);
+
+      this.selectCity = null;
+      this.selectAnimalType = null;
+    }
+  },
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .search_container {
   margin: 0 auto;
   max-width: 1440px;
@@ -152,23 +178,6 @@ h2 {
   font-size: 50px;
 }
 
-// .search_container {
-//   .pagination {
-//     justify-content: center;
-//     font-size: 18px;
-//     a {
-//       color: #e5e5e5;
-//       border: 0;
-//       background: none;
-//       &:focus {
-//         box-shadow: none;
-//       }
-//       &:hover {
-//         color: color.$text_dark;
-//       }
-//     }
-//   }
-// }
 .search_content {
   width: 100%;
   display: flex;

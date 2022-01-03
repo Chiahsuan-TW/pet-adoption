@@ -79,7 +79,15 @@
       <div class="search_others">
         <div class="line_horizontal_long"></div>
         <button type="button" class="text_btn">尋找其他浪浪</button>
-        <router-link :to="{ name: 'Search' }"
+        <router-link
+          :to="{
+            name: 'Search',
+            query: {
+              category: this.query.category,
+              city: this.query.city,
+              page: this.query.page,
+            },
+          }"
           ><img src="./../assets/images/arrow-right.png" alt="right arraow"
         /></router-link>
       </div>
@@ -115,6 +123,11 @@ export default {
       currentFavoriteData: null,
       isLikedStyle: null,
       formVisibility: false,
+      query: {
+        category: "",
+        city: "",
+        page: "",
+      },
     };
   },
   created() {
@@ -211,6 +224,14 @@ export default {
           return "尚未確認";
       }
     },
+  },
+  beforeRouteEnter(to, from, next) {
+    const { query } = from;
+
+    next((vm) => {
+      vm.query = { ...query };
+      console.log("confrimed", vm.query);
+    });
   },
 };
 </script>
