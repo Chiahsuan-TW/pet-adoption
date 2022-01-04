@@ -45,8 +45,11 @@ export default {
     checkPhotoExit() {
       if (this.pet.album_file) {
         return this.pet.album_file;
+      } else if (!this.pet.album_file && this.pet.animal_kind === "狗") {
+        return require("./../assets/images/dog-brown.jpg");
+      } else {
+        return require("./../assets/images/photo/search-cat.jpg");
       }
-      return require("./../assets/images/dog-brown.jpg");
     },
   },
 };
