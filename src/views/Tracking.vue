@@ -69,6 +69,7 @@ export default {
 .tracking_container {
   margin: 0 auto;
   max-width: 1440px;
+  min-height: 80vh;
   padding: 0 100px 60px 100px;
   background-color: color.$primary;
 }
@@ -121,9 +122,13 @@ h2 {
     }
   }
 }
-.pagination {
+::v-deep .pagination {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px;
   justify-content: center;
   font-size: 18px;
+  background-color: color.$primary;
   a {
     color: #e5e5e5;
     border: 0;

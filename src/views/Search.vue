@@ -168,6 +168,7 @@ export default {
 .search_container {
   margin: 0 auto;
   max-width: 1440px;
+  min-height: 80vh;
   padding: 0px 100px 60px 100px;
   background: color.$primary;
 }
