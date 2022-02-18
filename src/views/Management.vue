@@ -113,13 +113,11 @@ export default {
       queryAdopters.forEach((adopt) => {
         this.adopters.push(adopt.data());
       });
-      // console.log(this.adopters.length == 0);
       if (this.adopters.length === 0) {
         return (this.noAdopters = true);
       }
     },
     checkApplication(data) {
-      console.log(data.length);
       if (data.length === 0) {
         return true;
       }
@@ -128,10 +126,7 @@ export default {
     clickDark() {
       this.isDark = !this.isDark;
       this.dark_background = !this.dark_background;
-      // console.log(this.isLight);
     },
-    computed: {},
-    methods: {},
   },
 };
 </script>

@@ -134,7 +134,6 @@ export default {
     this.getAnimal();
     this.getLocalStorage();
     this.checkLikedStyle();
-    // console.log("AAA", this.findIndexResult);
   },
   methods: {
     async getAnimal() {
@@ -147,7 +146,6 @@ export default {
       this.findIndex();
     },
     setLocalStorage(currentFavoriteData) {
-      // console.log("所以我要存資料", currentFavoriteData);
       localStorage.setItem("favorite", JSON.stringify(currentFavoriteData));
     },
     findIndex() {
@@ -181,7 +179,6 @@ export default {
         album_file: this.petDetailData.album_file,
       };
       this.currentFavoriteData.push(saveData);
-      // console.log(this.currentFavoriteData);
       this.setLocalStorage(this.currentFavoriteData);
     },
     showForm() {
@@ -240,7 +237,6 @@ export default {
 
     next((vm) => {
       vm.query = { ...query };
-      console.log("confrimed", vm.query);
     });
   },
 };

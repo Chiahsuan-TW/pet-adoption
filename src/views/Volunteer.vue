@@ -80,7 +80,6 @@ import { db } from "../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 
-
 export default {
   name: "Volunteer",
   components: {

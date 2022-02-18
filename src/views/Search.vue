@@ -48,8 +48,8 @@ export default {
   data() {
     return {
       pets: null,
-      cities: null,
-      animalKind: null,
+      cities: {},
+      animalKind: {},
       selectCity: null,
       selectAnimalType: null,
       resultPerPage: 15,

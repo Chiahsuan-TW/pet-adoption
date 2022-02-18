@@ -353,10 +353,8 @@ export default {
     validate(e) {
       //TODO: 驗證
       if (this.isAllTrue) {
-        console.log("next");
         return;
       } else {
-        console.log("STOP");
         e.stopImmediatePropagation();
       }
     },

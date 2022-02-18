@@ -98,10 +98,6 @@ export default {
       this.isDark = !this.isDark;
       this.$emit("darkModel", this.isDark);
     },
-
-    isLove(islove) {
-      console.log("我在navbar", islove);
-    },
   },
 };
 </script>
@@ -311,5 +307,4 @@ export default {
     transform: rotate(-45deg), scale(0);
   }
 }
-
 </style>

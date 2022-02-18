@@ -43,11 +43,9 @@ export default {
   },
   created() {
     this.pets = JSON.parse(localStorage.getItem("favorite"));
-    // console.log(this.pets);
   },
   methods: {
     numberOfpage(page) {
-      console.log("接受子的頁數", page);
       this.currentPage = page;
     },
   },

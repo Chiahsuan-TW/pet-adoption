@@ -95,7 +95,6 @@ export default {
       this.$emit("closeModal");
     },
     onSubmit(values) {
-      console.log(values);
       this.$emit("clickSubmit", values);
     },
   },

@@ -78,21 +78,21 @@
                   <label for="location">飼養地點</label>
                   <Field
                     name="location"
-                    type="location"
+                    type="text"
                     placeholder="請輸入地址及型態(公寓、透天...)"
                   />
                   <ErrorMessage name="location" />
                 </div>
                 <div class="space">
                   <label for="space">空間大小</label>
-                  <Field name="space" type="space" placeholder="請輸入坪數" />
+                  <Field name="space" type="number" placeholder="請輸入坪數" />
                   <ErrorMessage name="space" />
                 </div>
               </div>
               <div>
                 <div class="hadpets">
                   <label for="hadpets">現有動物隻數</label>
-                  <Field name="hadpets" type="hadpets" />
+                  <Field name="hadpets" type="number" />
                   <ErrorMessage name="hadpets" />
                 </div>
                 <div></div>
@@ -100,19 +100,19 @@
               <div>
                 <div class="name">
                   <label for="name">認養人姓名</label>
-                  <Field name="name" type="name" />
+                  <Field name="name" type="text" />
                   <ErrorMessage name="name" />
                 </div>
                 <div class="birth">
                   <label for="birth">認養人出生日期</label>
-                  <Field name="birth" type="birth" />
+                  <Field name="birth" type="date" />
                   <ErrorMessage name="birth" />
                 </div>
               </div>
               <div>
                 <div class="tel">
                   <label for="tel">認養人聯絡電話</label>
-                  <Field name="tel" type="tel" />
+                  <Field name="tel" type="text" />
                   <ErrorMessage name="tel" />
                 </div>
                 <div class="mail">
@@ -124,7 +124,7 @@
               <div>
                 <div class="address">
                   <label for="address">通訊地址</label>
-                  <Field name="address" type="address" />
+                  <Field name="address" type="text" />
                   <ErrorMessage name="address" />
                 </div>
                 <div></div>
@@ -196,7 +196,6 @@ export default {
       this.isClosed = true;
     },
     onSubmit(values) {
-      console.log(values);
       this.handleSubmit(values);
       this.closeForm();
     },
