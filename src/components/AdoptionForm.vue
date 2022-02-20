@@ -117,8 +117,8 @@
                 </div>
                 <div class="mail">
                   <label for="mail">電子信箱</label>
-                  <Field name="mail" type="mail" />
-                  <ErrorMessage name="mail" />
+                  <Field name="email" type="mail" />
+                  <ErrorMessage name="email" />
                 </div>
               </div>
               <div>
@@ -169,6 +169,10 @@ export default {
     Button,
   },
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     formVisibility: {
       type: Boolean,
       default: false,
@@ -182,7 +186,7 @@ export default {
       name: yup.string().trim().required(),
       birth: yup.string().trim().required(),
       tel: yup.string().length(9).required(),
-      mail: yup.string().email().required(),
+      email: yup.string().email().required(),
       address: yup.string().trim().required(),
     });
     return {
@@ -201,7 +205,12 @@ export default {
     },
     async handleSubmit(form) {
       try {
-        const docRef = await addDoc(collection(db, "adopters"), form);
+        const formData = {
+          ...form,
+          petID: this.id,
+        };
+
+        const docRef = await addDoc(collection(db, "adopters"), formData);
         Swal.fire({
           icon: "success",
           title: "感謝您的申請",

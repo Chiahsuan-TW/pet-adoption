@@ -97,7 +97,7 @@
   <!-- 認養須知 modal -->
   <AdoptionNotice @next="showForm" />
   <!-- 認養申請 modal -->
-  <AdoptionForm :formVisibility="formVisibility" />
+  <AdoptionForm :formVisibility="formVisibility" :id="id" />
   <!-- <pre>{{ id }}</pre> -->
   <!-- <span>動態props id{{ $route.params.id }}</span> -->
 </template>
