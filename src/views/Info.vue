@@ -95,7 +95,7 @@
   </div>
 
   <!-- 認養須知 modal -->
-  <AdoptionNotice @next="showForm" />
+  <AdoptionNotice @next="showForm" :formVisibility="formVisibility" />
   <!-- 認養申請 modal -->
   <AdoptionForm :formVisibility="formVisibility" :id="id" />
   <!-- <pre>{{ id }}</pre> -->
