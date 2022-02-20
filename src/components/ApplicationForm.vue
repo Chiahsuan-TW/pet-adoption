@@ -1,13 +1,4 @@
 <template>
-  <!-- <div
-    class="modal fade modified_modal"
-    id="application"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  > -->
   <div
     class="modified_modal"
     id="application"
@@ -22,7 +13,6 @@
       <div class="group">
         <div>
           <label for="name">姓名</label>
-          <!-- <input type="text" v-model="volunteerInfo.name" required /> -->
           <Field name="name" type="name" />
           <ErrorMessage name="name" />
         </div>
@@ -33,20 +23,17 @@
         </div>
         <div>
           <label for="email">電子信箱</label>
-          <!-- <input type="email" v-model="volunteerInfo.email" required /> -->
           <Field name="email" type="email" />
           <ErrorMessage name="email" />
         </div>
         <div>
           <label for="address">通訊地址</label>
-          <!-- <input type="text" v-model="volunteerInfo.address" required /> -->
           <Field name="address" type="address" />
           <ErrorMessage name="address" />
         </div>
         <div>
           <label for="reason">為什麼您想要來當志工呢？</label>
           <Field name="reason" type="text" rows="20" />
-          <!-- <textarea name="reason" id="reason" cols="30" rows="10"></textarea> -->
         </div>
       </div>
       <div class="modal-footer">
@@ -67,9 +54,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 export default {
   name: "ApplicationForm",
-  emits: {
-    input: null,
-  },
+  emits: ["clickSubmit", "closeModal"],
   components: {
     Button,
     Form,
@@ -88,9 +73,6 @@ export default {
     };
   },
   methods: {
-    clickSubmit() {
-      this.$emit("clickSubmit", this.volunteerInfo);
-    },
     closeModal() {
       this.$emit("closeModal");
     },
